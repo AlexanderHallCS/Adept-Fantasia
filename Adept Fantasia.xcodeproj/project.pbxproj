@@ -16,6 +16,7 @@
 		11D88AC5215D0BA90087643D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11D88AC3215D0BA90087643D /* LaunchScreen.storyboard */; };
 		11D88AD0215D0BA90087643D /* Adept_FantasiaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D88ACF215D0BA90087643D /* Adept_FantasiaTests.swift */; };
 		11D88ADB215D0BA90087643D /* Adept_FantasiaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D88ADA215D0BA90087643D /* Adept_FantasiaUITests.swift */; };
+		11EABD79216251B100C6E6A7 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 11EABD78216251B100C6E6A7 /* GameScene.sks */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		11D88AD6215D0BA90087643D /* Adept FantasiaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Adept FantasiaUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		11D88ADA215D0BA90087643D /* Adept_FantasiaUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Adept_FantasiaUITests.swift; sourceTree = "<group>"; };
 		11D88ADC215D0BA90087643D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		11EABD78216251B100C6E6A7 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,9 +104,10 @@
 			isa = PBXGroup;
 			children = (
 				11D88AB4215D0BA90087643D /* AppDelegate.swift */,
+				11EABD78216251B100C6E6A7 /* GameScene.sks */,
 				117C4779215D122700E1F40A /* AdeptFantasia.xcdatamodeld */,
-				11D88ABA215D0BA90087643D /* GameScene.swift */,
 				11D88ABC215D0BA90087643D /* GameViewController.swift */,
+				11D88ABA215D0BA90087643D /* GameScene.swift */,
 				11D88ABE215D0BA90087643D /* Main.storyboard */,
 				11D88AC1215D0BA90087643D /* Assets.xcassets */,
 				11D88AC3215D0BA90087643D /* LaunchScreen.storyboard */,
@@ -238,6 +241,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				11EABD79216251B100C6E6A7 /* GameScene.sks in Resources */,
 				11D88AC0215D0BA90087643D /* Main.storyboard in Resources */,
 				11D88AC2215D0BA90087643D /* Assets.xcassets in Resources */,
 				11D88AC5215D0BA90087643D /* LaunchScreen.storyboard in Resources */,
