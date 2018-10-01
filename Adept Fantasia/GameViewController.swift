@@ -14,10 +14,14 @@ class GameViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         if let view = self.view as! SKView? {
+            //NEED a GameScene.SKS file to run vvv!!!!
             // Load the SKScene from 'GameScene.sks'
             if let scene = SKScene(fileNamed: "GameScene") {
+                
+               scene.backgroundColor = SKColor.blue
+                
                 // Set the scale mode to scale to fit the window
                 scene.scaleMode = .aspectFill
                 
@@ -32,6 +36,15 @@ class GameViewController: UIViewController {
         }
     }
 
+    
+    @IBAction func playButon(_ sender: Any) {
+        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+        
+        //change identifier and what it's cast "as"
+        let nextViewController = storyBoard.instantiateViewController(withIdentifier: "second") as! GameViewController
+        self.present(nextViewController, animated:true, completion:nil)
+    }
+    
     override var shouldAutorotate: Bool {
         return true
     }
