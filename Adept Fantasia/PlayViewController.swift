@@ -1,8 +1,8 @@
 //
-//  GameViewController.swift
+//  PlayViewController.swift
 //  Adept Fantasia
 //
-//  Created by Alexander Hall on 9/27/18.
+//  Created by Alexander Hall on 10/1/18.
 //  Copyright © 2018 Hall Inc. All rights reserved.
 //
 
@@ -10,17 +10,19 @@ import UIKit
 import SpriteKit
 import GameplayKit
 
-class GameViewController: UIViewController {
-
+//MUST CLICK THE RECTANGLE BAR ON TOP OF THE VIEWCONTROLLER IN STORYBOARD(with first responder and exit) TO TYPE IN THE CLASS NAME INTO CUSTOM CLASS
+class PlayViewController: UIViewController {
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+       
         if let view = self.view as! SKView? {
-            //NEED a GameScene.SKS file to run vvv!!!!
-            // Load the SKScene from 'GameScene.sks'
-            if let scene = SKScene(fileNamed: "GameScene") {
+            
+            //NEED a PlayScene.SKS file to run vvv!!!!
+            // Load the SKScene from 'PlayScene.sks'
+            if let scene = SKScene(fileNamed: "PlayScene") {
                 
-               scene.backgroundColor = SKColor.blue
+                scene.backgroundColor = SKColor.red
                 
                 // Set the scale mode to scale to fit the window
                 scene.scaleMode = .aspectFill
@@ -35,23 +37,16 @@ class GameViewController: UIViewController {
             view.showsNodeCount = true
         }
     }
-
-    @IBAction func playButton(_ sender: Any) {
-        self.performSegue(withIdentifier: "SegueToMainView", sender: nil)
+    
+    @IBAction func SegueToEndViewButton(_ sender: Any) {
+        self.performSegue(withIdentifier: "SegueFromPlayViewToEndView", sender: nil)
+        //NOT RUNNING
+        print("ran!")
     }
-    
-    /*@IBAction func playButon(_ sender: Any) {
-        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-        
-        //change identifier and what it's cast "as"
-        let nextViewController = storyBoard.instantiateViewController(withIdentifier: "second") as! GameViewController
-        self.present(nextViewController, animated:true, completion:nil)
-    } */
-    
     override var shouldAutorotate: Bool {
         return true
     }
-
+    
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         if UIDevice.current.userInterfaceIdiom == .phone {
             return .allButUpsideDown
@@ -59,13 +54,14 @@ class GameViewController: UIViewController {
             return .all
         }
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Release any cached data, images, etc that aren't in use.
     }
-
+    
     override var prefersStatusBarHidden: Bool {
         return true
     }
 }
+

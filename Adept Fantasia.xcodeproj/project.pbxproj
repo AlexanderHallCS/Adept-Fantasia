@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		117C477B215D122700E1F40A /* AdeptFantasia.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 117C4779215D122700E1F40A /* AdeptFantasia.xcdatamodeld */; };
+		11A7AB132163A4900018A4B6 /* PlayScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 11A7AB122163A4900018A4B6 /* PlayScene.sks */; };
+		11A7AB1B2163A6A40018A4B6 /* EndScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 11A7AB1A2163A6A40018A4B6 /* EndScene.sks */; };
+		11A7AB1D2163A8B90018A4B6 /* PlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A7AB1C2163A8B90018A4B6 /* PlayViewController.swift */; };
+		11A7AB1F2163A8FD0018A4B6 /* EndViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A7AB1E2163A8FD0018A4B6 /* EndViewController.swift */; };
 		11D88AB5215D0BA90087643D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D88AB4215D0BA90087643D /* AppDelegate.swift */; };
 		11D88ABB215D0BA90087643D /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D88ABA215D0BA90087643D /* GameScene.swift */; };
 		11D88ABD215D0BA90087643D /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D88ABC215D0BA90087643D /* GameViewController.swift */; };
@@ -38,6 +42,10 @@
 
 /* Begin PBXFileReference section */
 		117C477A215D122700E1F40A /* AdeptFantasia.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = AdeptFantasia.xcdatamodel; sourceTree = "<group>"; };
+		11A7AB122163A4900018A4B6 /* PlayScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = PlayScene.sks; sourceTree = "<group>"; };
+		11A7AB1A2163A6A40018A4B6 /* EndScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = EndScene.sks; sourceTree = "<group>"; };
+		11A7AB1C2163A8B90018A4B6 /* PlayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayViewController.swift; sourceTree = "<group>"; };
+		11A7AB1E2163A8FD0018A4B6 /* EndViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndViewController.swift; sourceTree = "<group>"; };
 		11D88AB1215D0BA90087643D /* Adept Fantasia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Adept Fantasia.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		11D88AB4215D0BA90087643D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		11D88ABA215D0BA90087643D /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
@@ -109,6 +117,10 @@
 				11D88ABC215D0BA90087643D /* GameViewController.swift */,
 				11D88ABA215D0BA90087643D /* GameScene.swift */,
 				11D88ABE215D0BA90087643D /* Main.storyboard */,
+				11A7AB1E2163A8FD0018A4B6 /* EndViewController.swift */,
+				11A7AB1A2163A6A40018A4B6 /* EndScene.sks */,
+				11A7AB1C2163A8B90018A4B6 /* PlayViewController.swift */,
+				11A7AB122163A4900018A4B6 /* PlayScene.sks */,
 				11D88AC1215D0BA90087643D /* Assets.xcassets */,
 				11D88AC3215D0BA90087643D /* LaunchScreen.storyboard */,
 				11D88AC6215D0BA90087643D /* Info.plist */,
@@ -241,6 +253,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				11A7AB1B2163A6A40018A4B6 /* EndScene.sks in Resources */,
+				11A7AB132163A4900018A4B6 /* PlayScene.sks in Resources */,
 				11EABD79216251B100C6E6A7 /* GameScene.sks in Resources */,
 				11D88AC0215D0BA90087643D /* Main.storyboard in Resources */,
 				11D88AC2215D0BA90087643D /* Assets.xcassets in Resources */,
@@ -269,9 +283,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				11A7AB1F2163A8FD0018A4B6 /* EndViewController.swift in Sources */,
 				11D88ABB215D0BA90087643D /* GameScene.swift in Sources */,
 				11D88ABD215D0BA90087643D /* GameViewController.swift in Sources */,
 				11D88AB5215D0BA90087643D /* AppDelegate.swift in Sources */,
+				11A7AB1D2163A8B90018A4B6 /* PlayViewController.swift in Sources */,
 				117C477B215D122700E1F40A /* AdeptFantasia.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

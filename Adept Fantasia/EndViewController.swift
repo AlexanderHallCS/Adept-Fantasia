@@ -1,8 +1,8 @@
 //
-//  GameViewController.swift
+//  EndViewController.swift
 //  Adept Fantasia
 //
-//  Created by Alexander Hall on 9/27/18.
+//  Created by Alexander Hall on 10/1/18.
 //  Copyright © 2018 Hall Inc. All rights reserved.
 //
 
@@ -10,17 +10,17 @@ import UIKit
 import SpriteKit
 import GameplayKit
 
-class GameViewController: UIViewController {
-
+class EndViewController: UIViewController {
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         if let view = self.view as! SKView? {
-            //NEED a GameScene.SKS file to run vvv!!!!
-            // Load the SKScene from 'GameScene.sks'
-            if let scene = SKScene(fileNamed: "GameScene") {
+            //NEED a EndScene.SKS file to run vvv!!!!
+            // Load the SKScene from 'EndScene.sks'
+            if let scene = SKScene(fileNamed: "EndScene") {
                 
-               scene.backgroundColor = SKColor.blue
+                scene.backgroundColor = SKColor.green
                 
                 // Set the scale mode to scale to fit the window
                 scene.scaleMode = .aspectFill
@@ -35,23 +35,11 @@ class GameViewController: UIViewController {
             view.showsNodeCount = true
         }
     }
-
-    @IBAction func playButton(_ sender: Any) {
-        self.performSegue(withIdentifier: "SegueToMainView", sender: nil)
-    }
-    
-    /*@IBAction func playButon(_ sender: Any) {
-        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-        
-        //change identifier and what it's cast "as"
-        let nextViewController = storyBoard.instantiateViewController(withIdentifier: "second") as! GameViewController
-        self.present(nextViewController, animated:true, completion:nil)
-    } */
     
     override var shouldAutorotate: Bool {
         return true
     }
-
+    
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         if UIDevice.current.userInterfaceIdiom == .phone {
             return .allButUpsideDown
@@ -59,13 +47,15 @@ class GameViewController: UIViewController {
             return .all
         }
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Release any cached data, images, etc that aren't in use.
     }
-
+    
     override var prefersStatusBarHidden: Bool {
         return true
     }
 }
+
+

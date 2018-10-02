@@ -23,33 +23,67 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <state key="normal" backgroundImage="PlayButton"/>
                                 <connections>
-                                    <action selector="playButon:" destination="BV1-FR-VrT" eventType="touchUpInside" id="hHF-vA-NX9"/>
-                                    <segue destination="wMm-Eq-4mF" kind="show" id="eZd-nS-Fe3"/>
+                                    <action selector="playButton:" destination="BV1-FR-VrT" eventType="touchUpInside" id="LFP-bt-fYG"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <viewLayoutGuide key="safeArea" id="4qk-I5-YsI"/>
                     </view>
+                    <connections>
+                        <segue destination="wMm-Eq-4mF" kind="show" identifier="SegueToMainView" id="Ho0-nT-3d8"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-274.39999999999998" y="116.49175412293854"/>
         </scene>
-        <!--View Controller-->
+        <!--Play View Controller-->
         <scene sceneID="w5W-LF-SST">
             <objects>
-                <viewController id="wMm-Eq-4mF" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" restorationIdentifier="second" id="JNe-tl-4Kk">
+                <viewController title="Play View Controller" id="wMm-Eq-4mF" customClass="PlayViewController" customModule="Adept_Fantasia" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="JNe-tl-4Kk" customClass="SKView">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yyL-YP-p9k">
+                                <rect key="frame" x="138" y="341" width="138" height="55"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Sample Button"/>
+                                <connections>
+                                    <action selector="SegueToEndViewButton:" destination="ZRc-FX-L2O" eventType="touchUpInside" id="x67-uO-h7e"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <viewLayoutGuide key="safeArea" id="lvC-3c-nvs"/>
                     </view>
+                    <connections>
+                        <segue destination="Idm-Ax-AwT" kind="show" identifier="SegueFromPlayViewToEndView" id="bii-ZU-4IS"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ceg-yC-goL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="ZRc-FX-L2O" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="568" y="116"/>
+            <point key="canvasLocation" x="595.6521739130435" y="115.7608695652174"/>
+        </scene>
+        <!--End View Controller-->
+        <scene sceneID="khg-hJ-uu7">
+            <objects>
+                <viewController title="End View Controller" id="Idm-Ax-AwT" customClass="EndViewController" customModule="Adept_Fantasia" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="9QE-Lc-R3T" customClass="SKView">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <viewLayoutGuide key="safeArea" id="FAL-I8-gn7"/>
+                    </view>
+                    <connections>
+                        <segue destination="BV1-FR-VrT" kind="show" identifier="SegueFromEndViewToStartView" id="fRi-JJ-2eo"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pm0-Go-9bC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1294" y="1146"/>
         </scene>
     </scenes>
     <resources>
