@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		117AC3112164F76F00AB9856 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 11D88AC1215D0BA90087643D /* Assets.xcassets */; };
 		117C477B215D122700E1F40A /* AdeptFantasia.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 117C4779215D122700E1F40A /* AdeptFantasia.xcdatamodeld */; };
 		11A7AB132163A4900018A4B6 /* PlayScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 11A7AB122163A4900018A4B6 /* PlayScene.sks */; };
 		11A7AB1B2163A6A40018A4B6 /* EndScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 11A7AB1A2163A6A40018A4B6 /* EndScene.sks */; };
@@ -16,7 +17,6 @@
 		11D88ABB215D0BA90087643D /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D88ABA215D0BA90087643D /* GameScene.swift */; };
 		11D88ABD215D0BA90087643D /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D88ABC215D0BA90087643D /* GameViewController.swift */; };
 		11D88AC0215D0BA90087643D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11D88ABE215D0BA90087643D /* Main.storyboard */; };
-		11D88AC2215D0BA90087643D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 11D88AC1215D0BA90087643D /* Assets.xcassets */; };
 		11D88AC5215D0BA90087643D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11D88AC3215D0BA90087643D /* LaunchScreen.storyboard */; };
 		11D88AD0215D0BA90087643D /* Adept_FantasiaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D88ACF215D0BA90087643D /* Adept_FantasiaTests.swift */; };
 		11D88ADB215D0BA90087643D /* Adept_FantasiaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D88ADA215D0BA90087643D /* Adept_FantasiaUITests.swift */; };
@@ -257,7 +257,7 @@
 				11A7AB132163A4900018A4B6 /* PlayScene.sks in Resources */,
 				11EABD79216251B100C6E6A7 /* GameScene.sks in Resources */,
 				11D88AC0215D0BA90087643D /* Main.storyboard in Resources */,
-				11D88AC2215D0BA90087643D /* Assets.xcassets in Resources */,
+				117AC3112164F76F00AB9856 /* Assets.xcassets in Resources */,
 				11D88AC5215D0BA90087643D /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

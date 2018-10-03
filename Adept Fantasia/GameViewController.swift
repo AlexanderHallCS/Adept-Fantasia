@@ -35,18 +35,10 @@ class GameViewController: UIViewController {
             view.showsNodeCount = true
         }
     }
-
+    
     @IBAction func playButton(_ sender: Any) {
         self.performSegue(withIdentifier: "SegueToMainView", sender: nil)
     }
-    
-    /*@IBAction func playButon(_ sender: Any) {
-        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-        
-        //change identifier and what it's cast "as"
-        let nextViewController = storyBoard.instantiateViewController(withIdentifier: "second") as! GameViewController
-        self.present(nextViewController, animated:true, completion:nil)
-    } */
     
     override var shouldAutorotate: Bool {
         return true
