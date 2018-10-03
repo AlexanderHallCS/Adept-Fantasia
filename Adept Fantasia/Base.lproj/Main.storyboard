@@ -18,12 +18,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d0f-hY-pj7">
-                                <rect key="frame" x="135" y="328" width="145" height="80"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                <state key="normal" backgroundImage="PlayButton"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4wK-OY-U6q">
+                                <rect key="frame" x="69" y="484" width="277" height="158"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button" image="PlayStartButton"/>
                                 <connections>
-                                    <action selector="playButton:" destination="BV1-FR-VrT" eventType="touchUpInside" id="LFP-bt-fYG"/>
+                                    <action selector="playButton:" destination="BV1-FR-VrT" eventType="touchUpInside" id="rYa-QT-ZZF"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -36,7 +36,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-274.39999999999998" y="116.49175412293854"/>
+            <point key="canvasLocation" x="-275.36231884057975" y="115.7608695652174"/>
         </scene>
         <!--Play View Controller-->
         <scene sceneID="w5W-LF-SST">
@@ -51,11 +51,11 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Sample Button"/>
                                 <connections>
-                                    <action selector="SegueToEndViewButton:" destination="ZRc-FX-L2O" eventType="touchUpInside" id="x67-uO-h7e"/>
+                                    <action selector="SegueToEndViewController:" destination="wMm-Eq-4mF" eventType="touchUpInside" id="rMT-Ry-yDn"/>
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <viewLayoutGuide key="safeArea" id="lvC-3c-nvs"/>
                     </view>
                     <connections>
@@ -63,7 +63,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ceg-yC-goL" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="ZRc-FX-L2O" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="595.6521739130435" y="115.7608695652174"/>
         </scene>
@@ -74,7 +73,17 @@
                     <view key="view" contentMode="scaleToFill" id="9QE-Lc-R3T" customClass="SKView">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lIG-25-YRd">
+                                <rect key="frame" x="39" y="285" width="337" height="167"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button" image="PlayAgainButton"/>
+                                <connections>
+                                    <action selector="PlayAgainButton:" destination="Idm-Ax-AwT" eventType="touchUpInside" id="sJ2-3o-Pji"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.34385064244270325" green="0.80170410871505737" blue="0.81093233823776245" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="FAL-I8-gn7"/>
                     </view>
                     <connections>
@@ -83,10 +92,11 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pm0-Go-9bC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1294" y="1146"/>
+            <point key="canvasLocation" x="1292.753623188406" y="1145.3804347826087"/>
         </scene>
     </scenes>
     <resources>
-        <image name="PlayButton" width="422" height="171"/>
+        <image name="PlayAgainButton" width="744" height="313"/>
+        <image name="PlayStartButton" width="569" height="296"/>
     </resources>
 </document>

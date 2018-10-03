@@ -35,6 +35,9 @@ class EndViewController: UIViewController {
             view.showsNodeCount = true
         }
     }
+    @IBAction func PlayAgainButton(_ sender: Any) {
+        self.performSegue(withIdentifier: "SegueFromEndViewToStartView", sender: nil)
+    }
     
     override var shouldAutorotate: Bool {
         return true

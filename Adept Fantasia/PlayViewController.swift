@@ -38,11 +38,10 @@ class PlayViewController: UIViewController {
         }
     }
     
-    @IBAction func SegueToEndViewButton(_ sender: Any) {
+    @IBAction func SegueToEndViewController(_ sender: Any) {
         self.performSegue(withIdentifier: "SegueFromPlayViewToEndView", sender: nil)
-        //NOT RUNNING
-        print("ran!")
     }
+    
     override var shouldAutorotate: Bool {
         return true
     }
