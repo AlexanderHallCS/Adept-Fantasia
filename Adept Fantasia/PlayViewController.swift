@@ -31,7 +31,7 @@ class PlayViewController: UIViewController {
             } */
         }
         catch {
-            //something
+            print("The audio file was not found!")
         }
        
         audioPlayer.play()
