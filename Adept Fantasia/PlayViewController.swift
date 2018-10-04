@@ -11,9 +11,9 @@ import SpriteKit
 import GameplayKit
 import AVFoundation
 
+var audioPlayer = AVAudioPlayer()
+
 class PlayViewController: UIViewController {
-    
-   var audioPlayer = AVAudioPlayer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
