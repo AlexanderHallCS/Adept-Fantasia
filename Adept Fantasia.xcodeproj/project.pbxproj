@@ -21,6 +21,7 @@
 		11D88AD0215D0BA90087643D /* Adept_FantasiaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D88ACF215D0BA90087643D /* Adept_FantasiaTests.swift */; };
 		11D88ADB215D0BA90087643D /* Adept_FantasiaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D88ADA215D0BA90087643D /* Adept_FantasiaUITests.swift */; };
 		11EABD79216251B100C6E6A7 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 11EABD78216251B100C6E6A7 /* GameScene.sks */; };
+		11EF85742166485700B09A15 /* Aaron_Smith_Ft_Luvli_Dancin_Krono_Remix_ostofmydays_(mp3co.biz).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 11EF85732166485700B09A15 /* Aaron_Smith_Ft_Luvli_Dancin_Krono_Remix_ostofmydays_(mp3co.biz).mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +62,7 @@
 		11D88ADA215D0BA90087643D /* Adept_FantasiaUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Adept_FantasiaUITests.swift; sourceTree = "<group>"; };
 		11D88ADC215D0BA90087643D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		11EABD78216251B100C6E6A7 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
+		11EF85732166485700B09A15 /* Aaron_Smith_Ft_Luvli_Dancin_Krono_Remix_ostofmydays_(mp3co.biz).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Aaron_Smith_Ft_Luvli_Dancin_Krono_Remix_ostofmydays_(mp3co.biz).mp3"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +118,7 @@
 				117C4779215D122700E1F40A /* AdeptFantasia.xcdatamodeld */,
 				11D88ABC215D0BA90087643D /* GameViewController.swift */,
 				11D88ABA215D0BA90087643D /* GameScene.swift */,
+				11EF85722166482000B09A15 /* Music */,
 				11D88ABE215D0BA90087643D /* Main.storyboard */,
 				11A7AB1E2163A8FD0018A4B6 /* EndViewController.swift */,
 				11A7AB1A2163A6A40018A4B6 /* EndScene.sks */,
@@ -144,6 +147,14 @@
 				11D88ADC215D0BA90087643D /* Info.plist */,
 			);
 			path = "Adept FantasiaUITests";
+			sourceTree = "<group>";
+		};
+		11EF85722166482000B09A15 /* Music */ = {
+			isa = PBXGroup;
+			children = (
+				11EF85732166485700B09A15 /* Aaron_Smith_Ft_Luvli_Dancin_Krono_Remix_ostofmydays_(mp3co.biz).mp3 */,
+			);
+			path = Music;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -255,6 +266,7 @@
 			files = (
 				11A7AB1B2163A6A40018A4B6 /* EndScene.sks in Resources */,
 				11A7AB132163A4900018A4B6 /* PlayScene.sks in Resources */,
+				11EF85742166485700B09A15 /* Aaron_Smith_Ft_Luvli_Dancin_Krono_Remix_ostofmydays_(mp3co.biz).mp3 in Resources */,
 				11EABD79216251B100C6E6A7 /* GameScene.sks in Resources */,
 				11D88AC0215D0BA90087643D /* Main.storyboard in Resources */,
 				117AC3112164F76F00AB9856 /* Assets.xcassets in Resources */,

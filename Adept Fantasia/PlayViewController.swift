@@ -10,7 +10,6 @@ import UIKit
 import SpriteKit
 import GameplayKit
 
-//MUST CLICK THE RECTANGLE BAR ON TOP OF THE VIEWCONTROLLER IN STORYBOARD(with first responder and exit) TO TYPE IN THE CLASS NAME INTO CUSTOM CLASS
 class PlayViewController: UIViewController {
     
     override func viewDidLoad() {
@@ -18,7 +17,6 @@ class PlayViewController: UIViewController {
        
         if let view = self.view as! SKView? {
             
-            //NEED a PlayScene.SKS file to run vvv!!!!
             // Load the SKScene from 'PlayScene.sks'
             if let scene = SKScene(fileNamed: "PlayScene") {
                 
@@ -37,6 +35,10 @@ class PlayViewController: UIViewController {
             view.showsNodeCount = true
         }
     }
+    
+    /*func onEndOfGame() {
+        self.performSegue(withIdentifier: "SegueFromPlayViewToEndView", sender: nil)
+    } */
     
     @IBAction func SegueToEndViewController(_ sender: Any) {
         self.performSegue(withIdentifier: "SegueFromPlayViewToEndView", sender: nil)
