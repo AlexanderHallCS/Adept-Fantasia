@@ -9,12 +9,33 @@
 import UIKit
 import SpriteKit
 import GameplayKit
+import AVFoundation
 
 class PlayViewController: UIViewController {
     
+   var audioPlayer = AVAudioPlayer()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        do {
+            audioPlayer = try AVAudioPlayer(contentsOf: URL.init(fileURLWithPath: Bundle.main.path(forResource: "Aaron_Smith_Ft_Luvli_Dancin_Krono_Remix_ostofmydays_(mp3co.biz)", ofType: "mp3")!))
+            audioPlayer.prepareToPlay()
+            
+            /*let audioSession = AVAudioSession.sharedInstance()
+            do {
+                try audioSession.setCategory(AVAudioSessionCategoryPlayback)
+            }
+            catch {
+                //something
+            } */
+        }
+        catch {
+            //something
+        }
        
+        audioPlayer.play()
+        
         if let view = self.view as! SKView? {
             
             // Load the SKScene from 'PlayScene.sks'
@@ -34,6 +55,7 @@ class PlayViewController: UIViewController {
             view.showsFPS = true
             view.showsNodeCount = true
         }
+        
     }
     
     /*func onEndOfGame() {
