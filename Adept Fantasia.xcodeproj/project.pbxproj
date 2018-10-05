@@ -21,6 +21,8 @@
 		11D88AD0215D0BA90087643D /* Adept_FantasiaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D88ACF215D0BA90087643D /* Adept_FantasiaTests.swift */; };
 		11D88ADB215D0BA90087643D /* Adept_FantasiaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D88ADA215D0BA90087643D /* Adept_FantasiaUITests.swift */; };
 		11EABD79216251B100C6E6A7 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 11EABD78216251B100C6E6A7 /* GameScene.sks */; };
+		11ED28F7216797350053C242 /* StatisticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11ED28F6216797350053C242 /* StatisticsViewController.swift */; };
+		11ED28F9216797490053C242 /* StatisticsScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 11ED28F8216797490053C242 /* StatisticsScene.sks */; };
 		11EF85742166485700B09A15 /* Aaron_Smith_Ft_Luvli_Dancin_Krono_Remix_ostofmydays_(mp3co.biz).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 11EF85732166485700B09A15 /* Aaron_Smith_Ft_Luvli_Dancin_Krono_Remix_ostofmydays_(mp3co.biz).mp3 */; };
 /* End PBXBuildFile section */
 
@@ -62,6 +64,8 @@
 		11D88ADA215D0BA90087643D /* Adept_FantasiaUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Adept_FantasiaUITests.swift; sourceTree = "<group>"; };
 		11D88ADC215D0BA90087643D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		11EABD78216251B100C6E6A7 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
+		11ED28F6216797350053C242 /* StatisticsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsViewController.swift; sourceTree = "<group>"; };
+		11ED28F8216797490053C242 /* StatisticsScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = StatisticsScene.sks; sourceTree = "<group>"; };
 		11EF85732166485700B09A15 /* Aaron_Smith_Ft_Luvli_Dancin_Krono_Remix_ostofmydays_(mp3co.biz).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Aaron_Smith_Ft_Luvli_Dancin_Krono_Remix_ostofmydays_(mp3co.biz).mp3"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -119,6 +123,8 @@
 				11D88ABC215D0BA90087643D /* GameViewController.swift */,
 				11D88ABA215D0BA90087643D /* GameScene.swift */,
 				11D88ABE215D0BA90087643D /* Main.storyboard */,
+				11ED28F6216797350053C242 /* StatisticsViewController.swift */,
+				11ED28F8216797490053C242 /* StatisticsScene.sks */,
 				11A7AB1E2163A8FD0018A4B6 /* EndViewController.swift */,
 				11A7AB1A2163A6A40018A4B6 /* EndScene.sks */,
 				11A7AB1C2163A8B90018A4B6 /* PlayViewController.swift */,
@@ -267,6 +273,7 @@
 				11A7AB1B2163A6A40018A4B6 /* EndScene.sks in Resources */,
 				11A7AB132163A4900018A4B6 /* PlayScene.sks in Resources */,
 				11EF85742166485700B09A15 /* Aaron_Smith_Ft_Luvli_Dancin_Krono_Remix_ostofmydays_(mp3co.biz).mp3 in Resources */,
+				11ED28F9216797490053C242 /* StatisticsScene.sks in Resources */,
 				11EABD79216251B100C6E6A7 /* GameScene.sks in Resources */,
 				11D88AC0215D0BA90087643D /* Main.storyboard in Resources */,
 				117AC3112164F76F00AB9856 /* Assets.xcassets in Resources */,
@@ -301,6 +308,7 @@
 				11D88AB5215D0BA90087643D /* AppDelegate.swift in Sources */,
 				11A7AB1D2163A8B90018A4B6 /* PlayViewController.swift in Sources */,
 				117C477B215D122700E1F40A /* AdeptFantasia.xcdatamodeld in Sources */,
+				11ED28F7216797350053C242 /* StatisticsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

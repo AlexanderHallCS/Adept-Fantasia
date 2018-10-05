@@ -41,6 +41,9 @@ class EndViewController: UIViewController {
         audioPlayer.currentTime = 0;
         audioPlayer.play()
     }
+    @IBAction func goToHomeView(_ sender: Any) {
+        self.performSegue(withIdentifier: "goToHomeViewFromEndView", sender: nil)
+    }
     
     override var shouldAutorotate: Bool {
         return true
