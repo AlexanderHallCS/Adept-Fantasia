@@ -36,7 +36,10 @@ class EndViewController: UIViewController {
         }
     }
     @IBAction func PlayAgainButton(_ sender: Any) {
-        self.performSegue(withIdentifier: "SegueFromEndViewToStartView", sender: nil)
+        self.performSegue(withIdentifier: "SegueFromEndViewtoPlayView", sender: nil)
+        audioPlayer.stop()
+        audioPlayer.currentTime = 0;
+        audioPlayer.play()
     }
     
     override var shouldAutorotate: Bool {

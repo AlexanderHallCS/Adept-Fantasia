@@ -87,7 +87,7 @@
                         <viewLayoutGuide key="safeArea" id="FAL-I8-gn7"/>
                     </view>
                     <connections>
-                        <segue destination="BV1-FR-VrT" kind="show" identifier="SegueFromEndViewToStartView" id="fRi-JJ-2eo"/>
+                        <segue destination="wMm-Eq-4mF" kind="show" identifier="SegueFromEndViewtoPlayView" id="0Y7-pW-iKR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pm0-Go-9bC" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -99,4 +99,7 @@
         <image name="PlayAgainButton" width="744" height="313"/>
         <image name="PlayStartButton" width="569" height="296"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="0Y7-pW-iKR"/>
+    </inferredMetricsTieBreakers>
 </document>

@@ -14,9 +14,6 @@ class GameViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        audioPlayer.stop()
-        audioPlayer.currentTime = 0;
         
         if let view = self.view as! SKView? {
             //NEED a GameScene.SKS file to run vvv!!!!
