@@ -18,20 +18,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES"/>
                         <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NWe-R3-awV">
+                                <rect key="frame" x="112" y="590" width="190" height="126"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button" image="StatisticsButton"/>
+                                <connections>
+                                    <action selector="goToStatisticsView:" destination="BV1-FR-VrT" eventType="touchUpInside" id="eat-Gq-y5T"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4wK-OY-U6q">
                                 <rect key="frame" x="69" y="289" width="277" height="158"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button" image="PlayStartButton"/>
                                 <connections>
                                     <action selector="playButton:" destination="BV1-FR-VrT" eventType="touchUpInside" id="rYa-QT-ZZF"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NWe-R3-awV">
-                                <rect key="frame" x="69" y="486" width="277" height="158"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button" image="StatisticsButton"/>
-                                <connections>
-                                    <action selector="goToStatisticsView:" destination="BV1-FR-VrT" eventType="touchUpInside" id="eat-Gq-y5T"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -56,7 +56,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OYM-S7-06g">
-                                <rect key="frame" x="40" y="446" width="334" height="196"/>
+                                <rect key="frame" x="112" y="590" width="190" height="126"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button" image="BackToHome"/>
                                 <connections>
@@ -111,20 +111,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="chE-0l-NoB">
-                                <rect key="frame" x="112" y="563" width="190" height="126"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button" image="BackToHome"/>
-                                <connections>
-                                    <action selector="goToHomeView:" destination="Idm-Ax-AwT" eventType="touchUpInside" id="2Ec-Ke-zME"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lIG-25-YRd">
-                                <rect key="frame" x="112" y="399" width="190" height="126"/>
+                                <rect key="frame" x="112" y="433" width="190" height="126"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button" image="PlayAgain"/>
                                 <connections>
                                     <action selector="PlayAgainButton:" destination="Idm-Ax-AwT" eventType="touchUpInside" id="sJ2-3o-Pji"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="chE-0l-NoB">
+                                <rect key="frame" x="112" y="590" width="190" height="126"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button" image="BackToHome"/>
+                                <connections>
+                                    <action selector="goToHomeView:" destination="Idm-Ax-AwT" eventType="touchUpInside" id="2Ec-Ke-zME"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -149,6 +149,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Ho0-nT-3d8"/>
-        <segue reference="fgA-6W-og9"/>
+        <segue reference="di2-Ci-QgW"/>
     </inferredMetricsTieBreakers>
 </document>

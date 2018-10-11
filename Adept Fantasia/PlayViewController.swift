@@ -58,6 +58,20 @@ class PlayViewController: UIViewController {
         
     }
     
+    /*func createBackgroundBorder() -> SKNode {
+     let backgroundBorderNode = SKNode()
+     print("ran2!")
+     let node = SKSpriteNode(imageNamed: String("TestBorder.png"))
+     //node.position = CGPoint(x: 0, y: 0)
+     backgroundBorderNode.addChild(node)
+     
+     return backgroundBorderNode
+     } */
+    
+    /*backgroundBorder = createBackgroundBorder()
+    addChild(backgroundBorder) */
+
+    
     /*func onEndOfGame() {
         self.performSegue(withIdentifier: "SegueFromPlayViewToEndView", sender: nil)
     } */

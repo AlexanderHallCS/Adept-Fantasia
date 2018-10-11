@@ -1,35 +1,36 @@
 //
-//  GameScene.swift
+//  EndScene.swift
 //  Adept Fantasia
 //
-//  Created by Alexander Hall on 9/27/18.
+//  Created by Alexander Hall on 10/9/18.
 //  Copyright © 2018 Hall Inc. All rights reserved.
 //
 
 import SpriteKit
 import GameplayKit
 
-class GameScene: SKScene {
+class EndScene: SKScene {
     
     
     override func didMove(to view: SKView) {
-       
+        
     }
     
     /*func touchDown(atPoint pos : CGPoint) {
-       
-    }
-    
-    func touchMoved(toPoint pos : CGPoint) {
-       
-    }
-    
-    func touchUp(atPoint pos : CGPoint) {
-       
-    } */
+     
+     }
+     
+     func touchMoved(toPoint pos : CGPoint) {
+     
+     }
+     
+     func touchUp(atPoint pos : CGPoint) {
+     
+     } */
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         //for t in touches { self.touchDown(atPoint: t.location(in: self)) }
+        
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -52,3 +53,5 @@ class GameScene: SKScene {
         // Called before each frame is rendered
     }
 }
+
+
