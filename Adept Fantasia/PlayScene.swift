@@ -11,8 +11,18 @@ import GameplayKit
 
 class PlayScene: SKScene {
     
+    var characterTexture = SKTexture(imageNamed: "CharacterImage.png")
+    var bossTexture = SKTexture(imageNamed: "BossImage.png")
+    
     override func didMove(to view: SKView) {
+        let character = SKSpriteNode(texture: characterTexture)
+        character.position = CGPoint(x: 0, y: self.size.height/2 * -1 + self.size.height/14)
+        addChild(character)
         
+        let boss = SKSpriteNode(texture: bossTexture)
+        boss.size = CGSize(width: 300, height: 300)
+        boss.position = CGPoint(x: 0, y: self.size.height/4)
+        addChild(boss)
     }
     /*func touchDown(atPoint pos : CGPoint) {
      
