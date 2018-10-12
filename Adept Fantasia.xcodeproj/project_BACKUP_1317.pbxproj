@@ -1,0 +1,636 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		117AC3112164F76F00AB9856 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 11D88AC1215D0BA90087643D /* Assets.xcassets */; };
+		117C477B215D122700E1F40A /* AdeptFantasia.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 117C4779215D122700E1F40A /* AdeptFantasia.xcdatamodeld */; };
+		11A7AB132163A4900018A4B6 /* PlayScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 11A7AB122163A4900018A4B6 /* PlayScene.sks */; };
+		11A7AB1B2163A6A40018A4B6 /* EndScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 11A7AB1A2163A6A40018A4B6 /* EndScene.sks */; };
+		11A7AB1D2163A8B90018A4B6 /* PlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A7AB1C2163A8B90018A4B6 /* PlayViewController.swift */; };
+		11A7AB1F2163A8FD0018A4B6 /* EndViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A7AB1E2163A8FD0018A4B6 /* EndViewController.swift */; };
+		11D88AB5215D0BA90087643D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D88AB4215D0BA90087643D /* AppDelegate.swift */; };
+		11D88ABB215D0BA90087643D /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D88ABA215D0BA90087643D /* GameScene.swift */; };
+		11D88ABD215D0BA90087643D /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D88ABC215D0BA90087643D /* GameViewController.swift */; };
+		11D88AC0215D0BA90087643D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11D88ABE215D0BA90087643D /* Main.storyboard */; };
+		11D88AC5215D0BA90087643D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11D88AC3215D0BA90087643D /* LaunchScreen.storyboard */; };
+		11D88AD0215D0BA90087643D /* Adept_FantasiaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D88ACF215D0BA90087643D /* Adept_FantasiaTests.swift */; };
+		11D88ADB215D0BA90087643D /* Adept_FantasiaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D88ADA215D0BA90087643D /* Adept_FantasiaUITests.swift */; };
+		11EABD79216251B100C6E6A7 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 11EABD78216251B100C6E6A7 /* GameScene.sks */; };
+		11ED28F7216797350053C242 /* StatisticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11ED28F6216797350053C242 /* StatisticsViewController.swift */; };
+		11ED28F9216797490053C242 /* StatisticsScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 11ED28F8216797490053C242 /* StatisticsScene.sks */; };
+		11EF0101216D24CD00CE61AE /* EndScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EF0100216D24CD00CE61AE /* EndScene.swift */; };
+		11EF0103216D24F600CE61AE /* StatisticsScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EF0102216D24F600CE61AE /* StatisticsScene.swift */; };
+		11EF85742166485700B09A15 /* Aaron_Smith_Ft_Luvli_Dancin_Krono_Remix_ostofmydays_(mp3co.biz).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 11EF85732166485700B09A15 /* Aaron_Smith_Ft_Luvli_Dancin_Krono_Remix_ostofmydays_(mp3co.biz).mp3 */; };
+		11F055AD216F7E8A00CA4362 /* PlayScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F055AC216F7E8A00CA4362 /* PlayScene.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		11D88ACC215D0BA90087643D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 11D88AA9215D0BA90087643D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 11D88AB0215D0BA90087643D;
+			remoteInfo = "Adept Fantasia";
+		};
+		11D88AD7215D0BA90087643D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 11D88AA9215D0BA90087643D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 11D88AB0215D0BA90087643D;
+			remoteInfo = "Adept Fantasia";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		117C477A215D122700E1F40A /* AdeptFantasia.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = AdeptFantasia.xcdatamodel; sourceTree = "<group>"; };
+		11A7AB122163A4900018A4B6 /* PlayScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = PlayScene.sks; sourceTree = "<group>"; };
+		11A7AB1A2163A6A40018A4B6 /* EndScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = EndScene.sks; sourceTree = "<group>"; };
+		11A7AB1C2163A8B90018A4B6 /* PlayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayViewController.swift; sourceTree = "<group>"; };
+		11A7AB1E2163A8FD0018A4B6 /* EndViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndViewController.swift; sourceTree = "<group>"; };
+		11D88AB1215D0BA90087643D /* Adept Fantasia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Adept Fantasia.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		11D88AB4215D0BA90087643D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		11D88ABA215D0BA90087643D /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
+		11D88ABC215D0BA90087643D /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
+		11D88ABF215D0BA90087643D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		11D88AC1215D0BA90087643D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		11D88AC4215D0BA90087643D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		11D88AC6215D0BA90087643D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		11D88ACB215D0BA90087643D /* Adept FantasiaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Adept FantasiaTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		11D88ACF215D0BA90087643D /* Adept_FantasiaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Adept_FantasiaTests.swift; sourceTree = "<group>"; };
+		11D88AD1215D0BA90087643D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		11D88AD6215D0BA90087643D /* Adept FantasiaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Adept FantasiaUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		11D88ADA215D0BA90087643D /* Adept_FantasiaUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Adept_FantasiaUITests.swift; sourceTree = "<group>"; };
+		11D88ADC215D0BA90087643D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		11EABD78216251B100C6E6A7 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
+		11ED28F6216797350053C242 /* StatisticsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsViewController.swift; sourceTree = "<group>"; };
+		11ED28F8216797490053C242 /* StatisticsScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = StatisticsScene.sks; sourceTree = "<group>"; };
+		11EF0100216D24CD00CE61AE /* EndScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndScene.swift; sourceTree = "<group>"; };
+		11EF0102216D24F600CE61AE /* StatisticsScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsScene.swift; sourceTree = "<group>"; };
+		11EF85732166485700B09A15 /* Aaron_Smith_Ft_Luvli_Dancin_Krono_Remix_ostofmydays_(mp3co.biz).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Aaron_Smith_Ft_Luvli_Dancin_Krono_Remix_ostofmydays_(mp3co.biz).mp3"; sourceTree = "<group>"; };
+		11F055AC216F7E8A00CA4362 /* PlayScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayScene.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		11D88AAE215D0BA90087643D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		11D88AC8215D0BA90087643D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		11D88AD3215D0BA90087643D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		11D88AA8215D0BA90087643D = {
+			isa = PBXGroup;
+			children = (
+				11D88AB3215D0BA90087643D /* Adept Fantasia */,
+				11D88ACE215D0BA90087643D /* Adept FantasiaTests */,
+				11D88AD9215D0BA90087643D /* Adept FantasiaUITests */,
+				11D88AB2215D0BA90087643D /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		11D88AB2215D0BA90087643D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				11D88AB1215D0BA90087643D /* Adept Fantasia.app */,
+				11D88ACB215D0BA90087643D /* Adept FantasiaTests.xctest */,
+				11D88AD6215D0BA90087643D /* Adept FantasiaUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		11D88AB3215D0BA90087643D /* Adept Fantasia */ = {
+			isa = PBXGroup;
+			children = (
+				11D88AB4215D0BA90087643D /* AppDelegate.swift */,
+				117C4779215D122700E1F40A /* AdeptFantasia.xcdatamodeld */,
+				11D88ABC215D0BA90087643D /* GameViewController.swift */,
+				11D88ABA215D0BA90087643D /* GameScene.swift */,
+				11EABD78216251B100C6E6A7 /* GameScene.sks */,
+				11D88ABE215D0BA90087643D /* Main.storyboard */,
+				11ED28F6216797350053C242 /* StatisticsViewController.swift */,
+				11EF0102216D24F600CE61AE /* StatisticsScene.swift */,
+				11ED28F8216797490053C242 /* StatisticsScene.sks */,
+				11A7AB1E2163A8FD0018A4B6 /* EndViewController.swift */,
+				11EF0100216D24CD00CE61AE /* EndScene.swift */,
+				11A7AB1A2163A6A40018A4B6 /* EndScene.sks */,
+				11A7AB1C2163A8B90018A4B6 /* PlayViewController.swift */,
+				11F055AC216F7E8A00CA4362 /* PlayScene.swift */,
+				11A7AB122163A4900018A4B6 /* PlayScene.sks */,
+				11D88AC1215D0BA90087643D /* Assets.xcassets */,
+				11D88AC3215D0BA90087643D /* LaunchScreen.storyboard */,
+				11D88AC6215D0BA90087643D /* Info.plist */,
+				11EF85722166482000B09A15 /* Music */,
+			);
+			path = "Adept Fantasia";
+			sourceTree = "<group>";
+		};
+		11D88ACE215D0BA90087643D /* Adept FantasiaTests */ = {
+			isa = PBXGroup;
+			children = (
+				11D88ACF215D0BA90087643D /* Adept_FantasiaTests.swift */,
+				11D88AD1215D0BA90087643D /* Info.plist */,
+			);
+			path = "Adept FantasiaTests";
+			sourceTree = "<group>";
+		};
+		11D88AD9215D0BA90087643D /* Adept FantasiaUITests */ = {
+			isa = PBXGroup;
+			children = (
+				11D88ADA215D0BA90087643D /* Adept_FantasiaUITests.swift */,
+				11D88ADC215D0BA90087643D /* Info.plist */,
+			);
+			path = "Adept FantasiaUITests";
+			sourceTree = "<group>";
+		};
+		11EF85722166482000B09A15 /* Music */ = {
+			isa = PBXGroup;
+			children = (
+				11EF85732166485700B09A15 /* Aaron_Smith_Ft_Luvli_Dancin_Krono_Remix_ostofmydays_(mp3co.biz).mp3 */,
+			);
+			path = Music;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		11D88AB0215D0BA90087643D /* Adept Fantasia */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 11D88ADF215D0BA90087643D /* Build configuration list for PBXNativeTarget "Adept Fantasia" */;
+			buildPhases = (
+				11D88AAD215D0BA90087643D /* Sources */,
+				11D88AAE215D0BA90087643D /* Frameworks */,
+				11D88AAF215D0BA90087643D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Adept Fantasia";
+			productName = "Adept Fantasia";
+			productReference = 11D88AB1215D0BA90087643D /* Adept Fantasia.app */;
+			productType = "com.apple.product-type.application";
+		};
+		11D88ACA215D0BA90087643D /* Adept FantasiaTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 11D88AE2215D0BA90087643D /* Build configuration list for PBXNativeTarget "Adept FantasiaTests" */;
+			buildPhases = (
+				11D88AC7215D0BA90087643D /* Sources */,
+				11D88AC8215D0BA90087643D /* Frameworks */,
+				11D88AC9215D0BA90087643D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				11D88ACD215D0BA90087643D /* PBXTargetDependency */,
+			);
+			name = "Adept FantasiaTests";
+			productName = "Adept FantasiaTests";
+			productReference = 11D88ACB215D0BA90087643D /* Adept FantasiaTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		11D88AD5215D0BA90087643D /* Adept FantasiaUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 11D88AE5215D0BA90087643D /* Build configuration list for PBXNativeTarget "Adept FantasiaUITests" */;
+			buildPhases = (
+				11D88AD2215D0BA90087643D /* Sources */,
+				11D88AD3215D0BA90087643D /* Frameworks */,
+				11D88AD4215D0BA90087643D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				11D88AD8215D0BA90087643D /* PBXTargetDependency */,
+			);
+			name = "Adept FantasiaUITests";
+			productName = "Adept FantasiaUITests";
+			productReference = 11D88AD6215D0BA90087643D /* Adept FantasiaUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		11D88AA9215D0BA90087643D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0920;
+				LastUpgradeCheck = 0920;
+				ORGANIZATIONNAME = "Hall Inc.";
+				TargetAttributes = {
+					11D88AB0215D0BA90087643D = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+					};
+					11D88ACA215D0BA90087643D = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 11D88AB0215D0BA90087643D;
+					};
+					11D88AD5215D0BA90087643D = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 11D88AB0215D0BA90087643D;
+					};
+				};
+			};
+			buildConfigurationList = 11D88AAC215D0BA90087643D /* Build configuration list for PBXProject "Adept Fantasia" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 11D88AA8215D0BA90087643D;
+			productRefGroup = 11D88AB2215D0BA90087643D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				11D88AB0215D0BA90087643D /* Adept Fantasia */,
+				11D88ACA215D0BA90087643D /* Adept FantasiaTests */,
+				11D88AD5215D0BA90087643D /* Adept FantasiaUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		11D88AAF215D0BA90087643D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				11A7AB1B2163A6A40018A4B6 /* EndScene.sks in Resources */,
+				11A7AB132163A4900018A4B6 /* PlayScene.sks in Resources */,
+				11EF85742166485700B09A15 /* Aaron_Smith_Ft_Luvli_Dancin_Krono_Remix_ostofmydays_(mp3co.biz).mp3 in Resources */,
+				11ED28F9216797490053C242 /* StatisticsScene.sks in Resources */,
+				11EABD79216251B100C6E6A7 /* GameScene.sks in Resources */,
+				11D88AC0215D0BA90087643D /* Main.storyboard in Resources */,
+				117AC3112164F76F00AB9856 /* Assets.xcassets in Resources */,
+				11D88AC5215D0BA90087643D /* LaunchScreen.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		11D88AC9215D0BA90087643D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		11D88AD4215D0BA90087643D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		11D88AAD215D0BA90087643D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				11A7AB1F2163A8FD0018A4B6 /* EndViewController.swift in Sources */,
+				11EF0103216D24F600CE61AE /* StatisticsScene.swift in Sources */,
+				11D88ABB215D0BA90087643D /* GameScene.swift in Sources */,
+				11D88ABD215D0BA90087643D /* GameViewController.swift in Sources */,
+				11EF0101216D24CD00CE61AE /* EndScene.swift in Sources */,
+				11D88AB5215D0BA90087643D /* AppDelegate.swift in Sources */,
+				11F055AD216F7E8A00CA4362 /* PlayScene.swift in Sources */,
+				11A7AB1D2163A8B90018A4B6 /* PlayViewController.swift in Sources */,
+				117C477B215D122700E1F40A /* AdeptFantasia.xcdatamodeld in Sources */,
+				11ED28F7216797350053C242 /* StatisticsViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		11D88AC7215D0BA90087643D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				11D88AD0215D0BA90087643D /* Adept_FantasiaTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		11D88AD2215D0BA90087643D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				11D88ADB215D0BA90087643D /* Adept_FantasiaUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		11D88ACD215D0BA90087643D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 11D88AB0215D0BA90087643D /* Adept Fantasia */;
+			targetProxy = 11D88ACC215D0BA90087643D /* PBXContainerItemProxy */;
+		};
+		11D88AD8215D0BA90087643D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 11D88AB0215D0BA90087643D /* Adept Fantasia */;
+			targetProxy = 11D88AD7215D0BA90087643D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		11D88ABE215D0BA90087643D /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				11D88ABF215D0BA90087643D /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		11D88AC3215D0BA90087643D /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				11D88AC4215D0BA90087643D /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		11D88ADD215D0BA90087643D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		11D88ADE215D0BA90087643D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		11D88AE0215D0BA90087643D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 57N89A5V72;
+				INFOPLIST_FILE = "Adept Fantasia/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.noivernalchemist.Adept-Fantasia";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		11D88AE1215D0BA90087643D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 57N89A5V72;
+				INFOPLIST_FILE = "Adept Fantasia/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.noivernalchemist.Adept-Fantasia";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		11D88AE3215D0BA90087643D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 57N89A5V72;
+				INFOPLIST_FILE = "Adept FantasiaTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.noivernalchemist.Adept-FantasiaTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Adept Fantasia.app/Adept Fantasia";
+			};
+			name = Debug;
+		};
+		11D88AE4215D0BA90087643D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 57N89A5V72;
+				INFOPLIST_FILE = "Adept FantasiaTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.noivernalchemist.Adept-FantasiaTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Adept Fantasia.app/Adept Fantasia";
+			};
+			name = Release;
+		};
+		11D88AE6215D0BA90087643D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 57N89A5V72;
+				INFOPLIST_FILE = "Adept FantasiaUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.noivernalchemist.Adept-FantasiaUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Adept Fantasia";
+			};
+			name = Debug;
+		};
+		11D88AE7215D0BA90087643D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 57N89A5V72;
+				INFOPLIST_FILE = "Adept FantasiaUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.noivernalchemist.Adept-FantasiaUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Adept Fantasia";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		11D88AAC215D0BA90087643D /* Build configuration list for PBXProject "Adept Fantasia" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				11D88ADD215D0BA90087643D /* Debug */,
+				11D88ADE215D0BA90087643D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		11D88ADF215D0BA90087643D /* Build configuration list for PBXNativeTarget "Adept Fantasia" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				11D88AE0215D0BA90087643D /* Debug */,
+				11D88AE1215D0BA90087643D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		11D88AE2215D0BA90087643D /* Build configuration list for PBXNativeTarget "Adept FantasiaTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				11D88AE3215D0BA90087643D /* Debug */,
+				11D88AE4215D0BA90087643D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		11D88AE5215D0BA90087643D /* Build configuration list for PBXNativeTarget "Adept FantasiaUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				11D88AE6215D0BA90087643D /* Debug */,
+				11D88AE7215D0BA90087643D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		117C4779215D122700E1F40A /* AdeptFantasia.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				117C477A215D122700E1F40A /* AdeptFantasia.xcdatamodel */,
+			);
+			currentVersion = 117C477A215D122700E1F40A /* AdeptFantasia.xcdatamodel */;
+			path = AdeptFantasia.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 11D88AA9215D0BA90087643D /* Project object */;
+}
