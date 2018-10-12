@@ -20,12 +20,10 @@ class GameViewController: UIViewController {
             // Load the SKScene from 'GameScene.sks'
             if let scene = SKScene(fileNamed: "GameScene") {
                 
-               //scene.backgroundColor = SKColor.blue
-                
-                //test hard reset 
-                
                 // Set the scale mode to scale to fit the window
                 scene.scaleMode = .aspectFill
+                
+                //please work
                 
                 // Present the scene
                 view.presentScene(scene)

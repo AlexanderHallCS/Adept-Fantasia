@@ -57,6 +57,7 @@
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OYM-S7-06g">
                                 <rect key="frame" x="112" y="590" width="190" height="126"/>
+                                <rect key="frame" x="40" y="446" width="334" height="196"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button" image="BackToHome"/>
                                 <connections>
@@ -125,8 +126,8 @@
                                 <state key="normal" title="Button" image="BackToHome"/>
                                 <connections>
                                     <action selector="goToHomeView:" destination="Idm-Ax-AwT" eventType="touchUpInside" id="2Ec-Ke-zME"/>
-                                </connections>
-                            </button>
+				</connections>
+			    </button>
                         </subviews>
                         <color key="backgroundColor" red="0.34385064244270325" green="0.80170410871505737" blue="0.81093233823776245" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="FAL-I8-gn7"/>
@@ -150,5 +151,6 @@
     <inferredMetricsTieBreakers>
         <segue reference="Ho0-nT-3d8"/>
         <segue reference="di2-Ci-QgW"/>
+        <segue reference="fgA-6W-og9"/>
     </inferredMetricsTieBreakers>
 </document>

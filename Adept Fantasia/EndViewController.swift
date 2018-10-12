@@ -48,7 +48,6 @@ class EndViewController: UIViewController {
     /*@IBAction func unwindToHomeView(unwindSegue: UIStoryboardSegue) {
         
     } */
-    
     override var shouldAutorotate: Bool {
         return true
     }

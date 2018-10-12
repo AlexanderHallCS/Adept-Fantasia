@@ -23,7 +23,14 @@
 		11EABD79216251B100C6E6A7 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 11EABD78216251B100C6E6A7 /* GameScene.sks */; };
 		11ED28F7216797350053C242 /* StatisticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11ED28F6216797350053C242 /* StatisticsViewController.swift */; };
 		11ED28F9216797490053C242 /* StatisticsScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 11ED28F8216797490053C242 /* StatisticsScene.sks */; };
+<<<<<<< HEAD
+		11EF0101216D24CD00CE61AE /* EndScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EF0100216D24CD00CE61AE /* EndScene.swift */; };
+		11EF0103216D24F600CE61AE /* StatisticsScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EF0102216D24F600CE61AE /* StatisticsScene.swift */; };
 		11EF85742166485700B09A15 /* Aaron_Smith_Ft_Luvli_Dancin_Krono_Remix_ostofmydays_(mp3co.biz).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 11EF85732166485700B09A15 /* Aaron_Smith_Ft_Luvli_Dancin_Krono_Remix_ostofmydays_(mp3co.biz).mp3 */; };
+		11F055AD216F7E8A00CA4362 /* PlayScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F055AC216F7E8A00CA4362 /* PlayScene.swift */; };
+=======
+		11EF85742166485700B09A15 /* Aaron_Smith_Ft_Luvli_Dancin_Krono_Remix_ostofmydays_(mp3co.biz).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 11EF85732166485700B09A15 /* Aaron_Smith_Ft_Luvli_Dancin_Krono_Remix_ostofmydays_(mp3co.biz).mp3 */; };
+>>>>>>> ca18aafdd48092554c02358398624da8c1a8a4df
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,7 +73,14 @@
 		11EABD78216251B100C6E6A7 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
 		11ED28F6216797350053C242 /* StatisticsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsViewController.swift; sourceTree = "<group>"; };
 		11ED28F8216797490053C242 /* StatisticsScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = StatisticsScene.sks; sourceTree = "<group>"; };
+<<<<<<< HEAD
+		11EF0100216D24CD00CE61AE /* EndScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndScene.swift; sourceTree = "<group>"; };
+		11EF0102216D24F600CE61AE /* StatisticsScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsScene.swift; sourceTree = "<group>"; };
 		11EF85732166485700B09A15 /* Aaron_Smith_Ft_Luvli_Dancin_Krono_Remix_ostofmydays_(mp3co.biz).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Aaron_Smith_Ft_Luvli_Dancin_Krono_Remix_ostofmydays_(mp3co.biz).mp3"; sourceTree = "<group>"; };
+		11F055AC216F7E8A00CA4362 /* PlayScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayScene.swift; sourceTree = "<group>"; };
+=======
+		11EF85732166485700B09A15 /* Aaron_Smith_Ft_Luvli_Dancin_Krono_Remix_ostofmydays_(mp3co.biz).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Aaron_Smith_Ft_Luvli_Dancin_Krono_Remix_ostofmydays_(mp3co.biz).mp3"; sourceTree = "<group>"; };
+>>>>>>> ca18aafdd48092554c02358398624da8c1a8a4df
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +132,22 @@
 			isa = PBXGroup;
 			children = (
 				11D88AB4215D0BA90087643D /* AppDelegate.swift */,
+<<<<<<< HEAD
+				117C4779215D122700E1F40A /* AdeptFantasia.xcdatamodeld */,
+				11D88ABC215D0BA90087643D /* GameViewController.swift */,
+				11D88ABA215D0BA90087643D /* GameScene.swift */,
+				11EABD78216251B100C6E6A7 /* GameScene.sks */,
+				11D88ABE215D0BA90087643D /* Main.storyboard */,
+				11A7AB1C2163A8B90018A4B6 /* PlayViewController.swift */,
+				11F055AC216F7E8A00CA4362 /* PlayScene.swift */,
+				11A7AB122163A4900018A4B6 /* PlayScene.sks */,
+				11ED28F6216797350053C242 /* StatisticsViewController.swift */,
+				11EF0102216D24F600CE61AE /* StatisticsScene.swift */,
+				11ED28F8216797490053C242 /* StatisticsScene.sks */,
+				11A7AB1E2163A8FD0018A4B6 /* EndViewController.swift */,
+				11EF0100216D24CD00CE61AE /* EndScene.swift */,
+				11A7AB1A2163A6A40018A4B6 /* EndScene.sks */,
+=======
 				11EABD78216251B100C6E6A7 /* GameScene.sks */,
 				117C4779215D122700E1F40A /* AdeptFantasia.xcdatamodeld */,
 				11D88ABC215D0BA90087643D /* GameViewController.swift */,
@@ -129,6 +159,7 @@
 				11A7AB1A2163A6A40018A4B6 /* EndScene.sks */,
 				11A7AB1C2163A8B90018A4B6 /* PlayViewController.swift */,
 				11A7AB122163A4900018A4B6 /* PlayScene.sks */,
+>>>>>>> ca18aafdd48092554c02358398624da8c1a8a4df
 				11D88AC1215D0BA90087643D /* Assets.xcassets */,
 				11D88AC3215D0BA90087643D /* LaunchScreen.storyboard */,
 				11D88AC6215D0BA90087643D /* Info.plist */,
@@ -303,9 +334,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				11A7AB1F2163A8FD0018A4B6 /* EndViewController.swift in Sources */,
+<<<<<<< HEAD
+				11EF0103216D24F600CE61AE /* StatisticsScene.swift in Sources */,
+				11D88ABB215D0BA90087643D /* GameScene.swift in Sources */,
+				11D88ABD215D0BA90087643D /* GameViewController.swift in Sources */,
+				11EF0101216D24CD00CE61AE /* EndScene.swift in Sources */,
+				11D88AB5215D0BA90087643D /* AppDelegate.swift in Sources */,
+				11F055AD216F7E8A00CA4362 /* PlayScene.swift in Sources */,
+=======
 				11D88ABB215D0BA90087643D /* GameScene.swift in Sources */,
 				11D88ABD215D0BA90087643D /* GameViewController.swift in Sources */,
 				11D88AB5215D0BA90087643D /* AppDelegate.swift in Sources */,
+>>>>>>> ca18aafdd48092554c02358398624da8c1a8a4df
 				11A7AB1D2163A8B90018A4B6 /* PlayViewController.swift in Sources */,
 				117C477B215D122700E1F40A /* AdeptFantasia.xcdatamodeld in Sources */,
 				11ED28F7216797350053C242 /* StatisticsViewController.swift in Sources */,
