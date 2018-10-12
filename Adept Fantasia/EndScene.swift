@@ -2,7 +2,7 @@
 //  EndScene.swift
 //  Adept Fantasia
 //
-//  Created by Alexander Hall on 10/9/18.
+//  Created by Alexander Hall on 10/11/18.
 //  Copyright © 2018 Hall Inc. All rights reserved.
 //
 
@@ -11,11 +11,9 @@ import GameplayKit
 
 class EndScene: SKScene {
     
-    
     override func didMove(to view: SKView) {
         
     }
-    
     /*func touchDown(atPoint pos : CGPoint) {
      
      }
@@ -30,9 +28,7 @@ class EndScene: SKScene {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         //for t in touches { self.touchDown(atPoint: t.location(in: self)) }
-        
     }
-    
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         //for t in touches { self.touchMoved(toPoint: t.location(in: self)) }
         
@@ -53,5 +49,4 @@ class EndScene: SKScene {
         // Called before each frame is rendered
     }
 }
-
 

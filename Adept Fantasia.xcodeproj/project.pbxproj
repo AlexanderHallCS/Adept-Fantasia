@@ -24,6 +24,9 @@
 		11ED28F7216797350053C242 /* StatisticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11ED28F6216797350053C242 /* StatisticsViewController.swift */; };
 		11ED28F9216797490053C242 /* StatisticsScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 11ED28F8216797490053C242 /* StatisticsScene.sks */; };
 		11EF85742166485700B09A15 /* Aaron_Smith_Ft_Luvli_Dancin_Krono_Remix_ostofmydays_(mp3co.biz).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 11EF85732166485700B09A15 /* Aaron_Smith_Ft_Luvli_Dancin_Krono_Remix_ostofmydays_(mp3co.biz).mp3 */; };
+		11F2F21221702D0900E410E7 /* PlayScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F2F21121702D0900E410E7 /* PlayScene.swift */; };
+		11F2F21421702D1B00E410E7 /* StatisticsScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F2F21321702D1B00E410E7 /* StatisticsScene.swift */; };
+		11F2F21621702D2B00E410E7 /* EndScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F2F21521702D2B00E410E7 /* EndScene.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +70,9 @@
 		11ED28F6216797350053C242 /* StatisticsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsViewController.swift; sourceTree = "<group>"; };
 		11ED28F8216797490053C242 /* StatisticsScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = StatisticsScene.sks; sourceTree = "<group>"; };
 		11EF85732166485700B09A15 /* Aaron_Smith_Ft_Luvli_Dancin_Krono_Remix_ostofmydays_(mp3co.biz).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Aaron_Smith_Ft_Luvli_Dancin_Krono_Remix_ostofmydays_(mp3co.biz).mp3"; sourceTree = "<group>"; };
+		11F2F21121702D0900E410E7 /* PlayScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayScene.swift; sourceTree = "<group>"; };
+		11F2F21321702D1B00E410E7 /* StatisticsScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsScene.swift; sourceTree = "<group>"; };
+		11F2F21521702D2B00E410E7 /* EndScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndScene.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,10 +130,13 @@
 				11D88ABA215D0BA90087643D /* GameScene.swift */,
 				11D88ABE215D0BA90087643D /* Main.storyboard */,
 				11ED28F6216797350053C242 /* StatisticsViewController.swift */,
+				11F2F21321702D1B00E410E7 /* StatisticsScene.swift */,
 				11ED28F8216797490053C242 /* StatisticsScene.sks */,
 				11A7AB1E2163A8FD0018A4B6 /* EndViewController.swift */,
+				11F2F21521702D2B00E410E7 /* EndScene.swift */,
 				11A7AB1A2163A6A40018A4B6 /* EndScene.sks */,
 				11A7AB1C2163A8B90018A4B6 /* PlayViewController.swift */,
+				11F2F21121702D0900E410E7 /* PlayScene.swift */,
 				11A7AB122163A4900018A4B6 /* PlayScene.sks */,
 				11D88AC1215D0BA90087643D /* Assets.xcassets */,
 				11D88AC3215D0BA90087643D /* LaunchScreen.storyboard */,
@@ -303,11 +312,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				11A7AB1F2163A8FD0018A4B6 /* EndViewController.swift in Sources */,
+				11F2F21421702D1B00E410E7 /* StatisticsScene.swift in Sources */,
 				11D88ABB215D0BA90087643D /* GameScene.swift in Sources */,
 				11D88ABD215D0BA90087643D /* GameViewController.swift in Sources */,
+				11F2F21621702D2B00E410E7 /* EndScene.swift in Sources */,
 				11D88AB5215D0BA90087643D /* AppDelegate.swift in Sources */,
 				11A7AB1D2163A8B90018A4B6 /* PlayViewController.swift in Sources */,
 				117C477B215D122700E1F40A /* AdeptFantasia.xcdatamodeld in Sources */,
+				11F2F21221702D0900E410E7 /* PlayScene.swift in Sources */,
 				11ED28F7216797350053C242 /* StatisticsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
