@@ -41,8 +41,6 @@ class PlayViewController: UIViewController {
             // Load the SKScene from 'PlayScene.sks'
             if let scene = SKScene(fileNamed: "PlayScene") {
                 
-                scene.backgroundColor = SKColor.red
-                
                 // Set the scale mode to scale to fit the window
                 scene.scaleMode = .aspectFill
                 

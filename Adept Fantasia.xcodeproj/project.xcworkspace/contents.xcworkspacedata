@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:Adept Fantasia.xcodeproj">
+      location = "group:/Users/alexander/Desktop/Adept Fantasia/Adept Fantasia/PlayBackground Image Atlas">
+   </FileRef>
+   <FileRef
+      location = "self:">
    </FileRef>
 </Workspace>
