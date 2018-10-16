@@ -15,14 +15,20 @@ extension PlayScene {
     func createPlayBackground() -> SKNode {
         let backgroundNode = SKNode()
         let spacing = 36 * scaleFactor
-        print("createdPlayBackground!")
-        for index in 0...19 {
-            let node = SKSpriteNode(imageNamed: String(format: "AdeptFantasiaPlayBackground_01d", index+1))
+        //print("createdPlayBackground!")
+       /*for index in 0...0 {
+            let node = SKSpriteNode(imageNamed: String(format: "AdeptFantasiaPlayBackground_%d", index+1))
             node.setScale(scaleFactor)
             node.anchorPoint = CGPoint(x: 0.5, y:0)
             node.position = CGPoint(x: self.size.width / 2, y: spacing * CGFloat(index))
             backgroundNode.addChild(node)
-        }
+        } */
+        let node = SKSpriteNode(imageNamed: "AdeptFantasiaPlayBackground_01")
+        node.setScale(scaleFactor)
+        node.anchorPoint = CGPoint(x: 0.5, y:0)
+        node.position = CGPoint(x: self.size.width / 2, y: spacing)
+        //node.position = CGPoint(x: self.size.width / 2, y: spacing * CGFloat(index))
+        backgroundNode.addChild(node)
         return backgroundNode
     }
     

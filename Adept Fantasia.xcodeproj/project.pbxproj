@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		117AC3112164F76F00AB9856 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 11D88AC1215D0BA90087643D /* Assets.xcassets */; };
 		117C477B215D122700E1F40A /* AdeptFantasia.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 117C4779215D122700E1F40A /* AdeptFantasia.xcdatamodeld */; };
+		1186DD772176207E003E39AE /* PlayBackground Images.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 1186DD762176207E003E39AE /* PlayBackground Images.atlas */; };
 		11A7AB132163A4900018A4B6 /* PlayScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 11A7AB122163A4900018A4B6 /* PlayScene.sks */; };
 		11A7AB1B2163A6A40018A4B6 /* EndScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 11A7AB1A2163A6A40018A4B6 /* EndScene.sks */; };
 		11A7AB1D2163A8B90018A4B6 /* PlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A7AB1C2163A8B90018A4B6 /* PlayViewController.swift */; };
@@ -49,6 +50,7 @@
 
 /* Begin PBXFileReference section */
 		117C477A215D122700E1F40A /* AdeptFantasia.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = AdeptFantasia.xcdatamodel; sourceTree = "<group>"; };
+		1186DD762176207E003E39AE /* PlayBackground Images.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = "PlayBackground Images.atlas"; sourceTree = "<group>"; };
 		11A7AB122163A4900018A4B6 /* PlayScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = PlayScene.sks; sourceTree = "<group>"; };
 		11A7AB1A2163A6A40018A4B6 /* EndScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = EndScene.sks; sourceTree = "<group>"; };
 		11A7AB1C2163A8B90018A4B6 /* PlayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayViewController.swift; sourceTree = "<group>"; };
@@ -69,7 +71,6 @@
 		11D88ADC215D0BA90087643D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		11EABD78216251B100C6E6A7 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
 		11ECEC172174C371007DBC40 /* PlayElements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayElements.swift; sourceTree = "<group>"; };
-		11ECEC1F2174C93D007DBC40 /* PlayBackground Images */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "PlayBackground Images"; path = "/Users/alexander/Desktop/Adept Fantasia/Adept Fantasia/PlayBackground Images"; sourceTree = "<absolute>"; };
 		11ED28F6216797350053C242 /* StatisticsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsViewController.swift; sourceTree = "<group>"; };
 		11ED28F8216797490053C242 /* StatisticsScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = StatisticsScene.sks; sourceTree = "<group>"; };
 		11EF85732166485700B09A15 /* Aaron_Smith_Ft_Luvli_Dancin_Krono_Remix_ostofmydays_(mp3co.biz).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Aaron_Smith_Ft_Luvli_Dancin_Krono_Remix_ostofmydays_(mp3co.biz).mp3"; sourceTree = "<group>"; };
@@ -126,7 +127,7 @@
 		11D88AB3215D0BA90087643D /* Adept Fantasia */ = {
 			isa = PBXGroup;
 			children = (
-				11ECEC1F2174C93D007DBC40 /* PlayBackground Images */,
+				1186DD762176207E003E39AE /* PlayBackground Images.atlas */,
 				11D88AB4215D0BA90087643D /* AppDelegate.swift */,
 				117C4779215D122700E1F40A /* AdeptFantasia.xcdatamodeld */,
 				11D88ABC215D0BA90087643D /* GameViewController.swift */,
@@ -285,6 +286,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				11A7AB1B2163A6A40018A4B6 /* EndScene.sks in Resources */,
+				1186DD772176207E003E39AE /* PlayBackground Images.atlas in Resources */,
 				11A7AB132163A4900018A4B6 /* PlayScene.sks in Resources */,
 				11EF85742166485700B09A15 /* Aaron_Smith_Ft_Luvli_Dancin_Krono_Remix_ostofmydays_(mp3co.biz).mp3 in Resources */,
 				11ED28F9216797490053C242 /* StatisticsScene.sks in Resources */,
