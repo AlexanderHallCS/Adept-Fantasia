@@ -26,9 +26,6 @@ class PlayScene: SKScene {
     var bossLocY: CGFloat = 0;
     
     override func didMove(to view: SKView) {
-        scaleFactor = self.size.width / 320;
-        background = createPlayBackground()
-        addChild(background)
         
         character = SKSpriteNode(texture: characterTexture)
         character.position = CGPoint(x: 0, y: self.size.height/2 * -1 + self.size.height/14)
@@ -37,8 +34,14 @@ class PlayScene: SKScene {
         boss = SKSpriteNode(texture: bossTexture)
         boss.size = CGSize(width: 300, height: 300)
         boss.position = CGPoint(x: 0, y: self.size.height/4)
-        bossLocY = self.size.height/4;
+        bossLocY = self.size.height/4
+        //brings out the boss to the front
+        boss.zPosition = 1
         addChild(boss)
+        
+        //scaleFactor = self.size.width / 320;
+        background = createPlayBackground()
+        addChild(background)
         
         let rect = CGRect(x: 0, y: self.size.height/4 - 200, width: 100, height: 100)
         let circle = UIBezierPath(roundedRect: rect, cornerRadius: 100)
@@ -66,6 +69,7 @@ class PlayScene: SKScene {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         //for t in touches { self.touchDown(atPoint: t.location(in: self)) }
     }
+    
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         //for t in touches { self.touchMoved(toPoint: t.location(in: self)) }
         
@@ -81,13 +85,8 @@ class PlayScene: SKScene {
         
     }
     
-    
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
-       
-       /*bossLocX+=1;
-        bossLocY+=1;
-        boss.position = CGPoint(x: bossLocX, y: bossLocY) */
     }
 }
 
