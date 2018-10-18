@@ -12,7 +12,8 @@ import GameplayKit
 class GameScene: SKScene {
     
     override func didMove(to view: SKView) {
-       
+       let startBackground = SKSpriteNode(imageNamed: "AFStartScreen")
+       addChild(startBackground)
     }
     /*func touchDown(atPoint pos : CGPoint) {
        
