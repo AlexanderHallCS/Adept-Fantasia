@@ -75,6 +75,7 @@ class PlayViewController: UIViewController {
     } */
     
     @IBAction func SegueToEndViewController(_ sender: Any) {
+        
         self.performSegue(withIdentifier: "SegueFromPlayViewToEndView", sender: nil)
     }
     

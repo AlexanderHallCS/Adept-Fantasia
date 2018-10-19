@@ -16,11 +16,11 @@ class StatisticsViewController: UIViewController {
         super.viewDidLoad()
         
         if let view = self.view as! SKView? {
-            //NEED a EndScene.SKS file to run vvv!!!!
+            
             // Load the SKScene from 'EndScene.sks'
             if let scene = SKScene(fileNamed: "StatisticsScene") {
                 
-                scene.backgroundColor = SKColor.magenta
+                scene.backgroundColor = SKColor.black
                 
                 // Set the scale mode to scale to fit the window
                 scene.scaleMode = .aspectFill
