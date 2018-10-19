@@ -18,8 +18,6 @@ class PlayScene: SKScene {
     var boss = SKSpriteNode();
     var background:SKNode!
     
-    var scaleFactor:CGFloat!
-    
     var charLocX: CGFloat = 0;
     var charLocY: CGFloat = 0;
     var bossLocX: CGFloat = 0;

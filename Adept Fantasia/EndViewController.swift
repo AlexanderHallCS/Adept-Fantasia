@@ -12,8 +12,13 @@ import GameplayKit
 
 class EndViewController: UIViewController {
     
+    var someData = "";
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //successfully changes the value of "someData" to "lebronjames" when the segue is performed
+        print(someData)
         
         if let view = self.view as! SKView? {
             //NEED a EndScene.SKS file to run vvv!!!!
