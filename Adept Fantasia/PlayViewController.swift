@@ -10,10 +10,13 @@ import UIKit
 import SpriteKit
 import GameplayKit
 import AVFoundation
+import CoreData
 
 var audioPlayer = AVAudioPlayer()
 
 class PlayViewController: UIViewController {
+    
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,10 +56,19 @@ class PlayViewController: UIViewController {
             view.showsFPS = true
             view.showsNodeCount = true
         }
-        
     }
-    
+
+    //add some functionality to this and call it somewhere
     /*func onEndOfGame() {
+        let context = appDelegate.persistentContainer.viewContext
+        let entity = NSEntityDescription.entity(forEntityName: "Users", in: context)
+        let newUser = NSManagedObject(entity: entity!, insertInto: context)
+        newUser.setValue("Test", forKey: "coreDataTest")
+        do {
+            try context.save()
+        } catch {
+            print("Failed saving")
+        }
         self.performSegue(withIdentifier: "SegueFromPlayViewToEndView", sender: nil)
     } */
     
@@ -66,8 +78,18 @@ class PlayViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let endVC = segue.destination as! EndViewController
-        endVC.someData = "lebronjames"
+        /*let endVC = segue.destination as! EndViewController
+        endVC.someData = "lebronjames" */
+        
+        let context = appDelegate.persistentContainer.viewContext
+        let entity = NSEntityDescription.entity(forEntityName: "Character", in: context)
+        let newUser = NSManagedObject(entity: entity!, insertInto: context)
+        newUser.setValue("Test", forKey: "coreDataTest")
+        do {
+            try context.save()
+        } catch {
+            print("Failed saving")
+        }
     }
     
     override var shouldAutorotate: Bool {

@@ -8,11 +8,24 @@
 
 import SpriteKit
 import GameplayKit
+import CoreData
 
 class StatisticsScene: SKScene {
     
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    
     override func didMove(to view: SKView) {
-        
+        let context = appDelegate.persistentContainer.viewContext
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Character")
+        request.returnsObjectsAsFaults = false
+        do {
+            let result = try context.fetch(request)
+            for data in result as! [NSManagedObject] {
+            print((data.value(forKey: "coreDataTest") as! String) + " is the value in the coreDataTest attribute!")
+            }
+        } catch {
+            print("Failed")
+        }
     }
     /*func touchDown(atPoint pos : CGPoint) {
      
