@@ -15,7 +15,8 @@ class StatisticsScene: SKScene {
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
     override func didMove(to view: SKView) {
-        let context = appDelegate.persistentContainer.viewContext
+        
+        /*let context = appDelegate.persistentContainer.viewContext
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Character")
         request.returnsObjectsAsFaults = false
         do {
@@ -24,8 +25,7 @@ class StatisticsScene: SKScene {
             print((data.value(forKey: "coreDataTest") as! String) + " is the value in the coreDataTest attribute!")
             }
         } catch {
-            print("Failed")
-        }
+            print("Failed")*/
     }
     /*func touchDown(atPoint pos : CGPoint) {
      

@@ -12,13 +12,9 @@ import GameplayKit
 
 class EndViewController: UIViewController {
     
-    var someData = "";
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //successfully changes the value of "someData" to "lebronjames" when the segue is performed
-       // print(someData)
         
         if let view = self.view as! SKView? {
             
@@ -41,13 +37,16 @@ class EndViewController: UIViewController {
         }
     }
     @IBAction func PlayAgainButton(_ sender: Any) {
-        self.performSegue(withIdentifier: "SegueFromEndViewtoPlayView", sender: nil)
+        //self.performSegue(withIdentifier: "SegueFromEndViewtoPlayView", sender: nil)
+        self.navigationController?.popViewController(animated: true)
+        self.dismiss(animated: true, completion: nil)
         audioPlayer.stop()
         audioPlayer.currentTime = 0;
         audioPlayer.play()
     }
     @IBAction func goToHomeView(_ sender: Any) {
         self.performSegue(withIdentifier: "goToHomeViewFromEndView", sender: nil)
+        //self.dismiss(animated: true, completion: nil)
     }
     
     /*@IBAction func unwindToHomeView(unwindSegue: UIStoryboardSegue) {

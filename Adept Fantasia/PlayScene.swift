@@ -23,6 +23,8 @@ class PlayScene: SKScene {
     var bossLocX: CGFloat = 0;
     var bossLocY: CGFloat = 0;
     
+   
+    
     override func didMove(to view: SKView) {
         
         character = SKSpriteNode(texture: characterTexture)
@@ -38,15 +40,25 @@ class PlayScene: SKScene {
         boss.zPosition = 1
         addChild(boss)
         
-        let rect = CGRect(x: 0, y: self.size.height/4 - 200, width: 100, height: 100)
-        let circle = UIBezierPath(roundedRect: rect, cornerRadius: 100)
-        let followCircle = SKAction.follow(circle.cgPath, asOffset: true, orientToPath: false, duration: 5.0)
+        //let rect = CGRect(x: 0, y: self.size.height/4 - 200, width: 100, height: 100)
+        //let circle = UIBezierPath(roundedRect: rect, cornerRadius: 100)
+        //let followCircle = SKAction.follow(circle.cgPath, asOffset: true, orientToPath: false, duration: 5.0)
+        
+        let line = CGRect(x: 0, y: self.size.height/4 - 200, width: 200, height: 1)
+        let linePath = UIBezierPath(roundedRect: line, cornerRadius: 100)
+        let followLinePath = SKAction.follow(linePath.cgPath, asOffset: true, orientToPath: false, speed: 50)
+        
+        UIView.animate(withDuration: 2.0, delay: 0, options: [UIViewAnimationOptions.autoreverse, UIViewAnimationOptions.repeat], animations: {
+            
+            self.boss.run(followLinePath)
+            
+        }, completion: nil)
         
         createPlayBackground()
         
         //while(true) {
          //   if(boss.position.x == 0 && boss.position.y == self.size.height/4) {
-            boss.run(followCircle)
+        
        //     }
      //   }
         
@@ -85,6 +97,7 @@ class PlayScene: SKScene {
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
         goThroughSpace()
+        
     }
 }
 
