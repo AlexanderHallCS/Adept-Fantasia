@@ -8,6 +8,7 @@
 
 import SpriteKit
 import GameplayKit
+import CoreMotion
 
 class PlayScene: SKScene {
     
@@ -18,12 +19,12 @@ class PlayScene: SKScene {
     var boss = SKSpriteNode();
     var background:SKNode!
     
-    var charLocX: CGFloat = 0;
-    var charLocY: CGFloat = 0;
-    var bossLocX: CGFloat = 0;
-    var bossLocY: CGFloat = 0;
+    var charLocX: CGFloat = 0.0;
+    //var charLocY: CGFloat = 0.0;
+    //var bossLocX: CGFloat = 0.0;
+    var bossLocY: CGFloat = 0.0;
     
-   
+    let motionManager: CMMotionManager = CMMotionManager()
     
     override func didMove(to view: SKView) {
         
@@ -49,18 +50,33 @@ class PlayScene: SKScene {
         let followLinePath = SKAction.follow(linePath.cgPath, asOffset: true, orientToPath: false, speed: 50)
         
         UIView.animate(withDuration: 2.0, delay: 0, options: [UIViewAnimationOptions.autoreverse, UIViewAnimationOptions.repeat], animations: {
-            
+            print("It did repeat!")
+            //line = CGRect(x: 0, y: self.size.height/4 - 200, width: 200, height: 1)
             self.boss.run(followLinePath)
             
         }, completion: nil)
         
         createPlayBackground()
         
-        //while(true) {
-         //   if(boss.position.x == 0 && boss.position.y == self.size.height/4) {
+        if motionManager.isAccelerometerAvailable == true {
+            motionManager.startAccelerometerUpdates(to: OperationQueue.current!)  { (data, error) in
+                //print(data?.acceleration.x)
+                let currentX = self.character.position.x
+                
+                if data!.acceleration.x < 0.0 {
+                    self.charLocX = currentX + CGFloat((data?.acceleration.x)! * 100)
+                }
+                    
+                else if data!.acceleration.x > 0.0 {
+                    self.charLocX = currentX + CGFloat((data?.acceleration.x)! * 100)
+                }
+                self.character.physicsBody?.velocity = CGVector(dx: (data?.acceleration.x)! * 7.0, dy: 0)
+            }
+        }
         
-       //     }
-     //   }
+        character.physicsBody?.usesPreciseCollisionDetection = true
+        character.physicsBody = SKPhysicsBody(circleOfRadius: max(character.size.width / 2, character.size.height / 2))
+        physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
         
     }
     /*func touchDown(atPoint pos : CGPoint) {
@@ -96,6 +112,8 @@ class PlayScene: SKScene {
     
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
+        var moveCharX = SKAction.moveTo(x: charLocX, duration: 0.08)
+        self.character.run(moveCharX)
         goThroughSpace()
         
     }
