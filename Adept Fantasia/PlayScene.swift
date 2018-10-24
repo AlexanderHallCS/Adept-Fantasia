@@ -20,10 +20,8 @@ class PlayScene: SKScene {
     var background:SKNode!
     
     var charLocX: CGFloat = 0.0;
-    //var charLocY: CGFloat = 0.0;
-    //var bossLocX: CGFloat = 0.0;
     var bossLocY: CGFloat = 0.0;
-    var negBossAccel = true;
+    var negBossAccel = false;
     
     let motionManager: CMMotionManager = CMMotionManager()
     
@@ -55,12 +53,10 @@ class PlayScene: SKScene {
         let timer = Timer.scheduledTimer(timeInterval: 0.0001, target: self, selector: #selector(PlayScene.moveBossInALine), userInfo: nil, repeats: true)
         timer.fire()
         
-        /*self.boss.run(SKAction.repeatForever(SKAction.sequence([SKAction.run(moveBossInALine), SKAction.wait(forDuration: 1.0)]))) */
         createPlayBackground()
         
         if motionManager.isAccelerometerAvailable == true {
             motionManager.startAccelerometerUpdates(to: OperationQueue.current!)  { (data, error) in
-                //print(data?.acceleration.x)
                 let currentX = self.character.position.x
                 
                 if data!.acceleration.x < 0.0 {
@@ -75,22 +71,22 @@ class PlayScene: SKScene {
         }
         
         character.physicsBody?.usesPreciseCollisionDetection = true
-        character.physicsBody = SKPhysicsBody(circleOfRadius: max(character.size.width / 2, character.size.height / 2))
+        character.physicsBody = SKPhysicsBody(circleOfRadius: max(character.size.width / 4, character.size.height / 4))
         physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
         
     }
     
     @objc func moveBossInALine() {
-        if(boss.position.x <= 320 && negBossAccel == false) {
-    boss.position.x = boss.position.x + 1
+        if(boss.position.x < 310 && negBossAccel == false) {
+            boss.position.x = boss.position.x + 1
+            if(boss.position.x == 309) {
+                negBossAccel = true
+            }
         }
-        
-        if(boss.position.x > 320) {
+        if(boss.position.x < 310 && negBossAccel == true){
             boss.position.x = boss.position.x-1
-            negBossAccel = true
-            if(boss.position.x < 0) {
-            negBossAccel = false
-            moveBossInALine()
+            if(boss.position.x < -280) {
+                negBossAccel = false
             }
         }
         /*let line = CGRect(x: 0, y: self.size.height/4 - 200, width: 200, height: 1)
@@ -131,10 +127,7 @@ class PlayScene: SKScene {
     
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
-        let moveCharX = SKAction.moveTo(x: charLocX, duration: 0.08)
-        self.character.run(moveCharX)
         goThroughSpace()
-        
     }
 }
 
