@@ -23,6 +23,7 @@ class PlayScene: SKScene {
     //var charLocY: CGFloat = 0.0;
     //var bossLocX: CGFloat = 0.0;
     var bossLocY: CGFloat = 0.0;
+    var negBossAccel = true;
     
     let motionManager: CMMotionManager = CMMotionManager()
     
@@ -45,17 +46,16 @@ class PlayScene: SKScene {
         //let circle = UIBezierPath(roundedRect: rect, cornerRadius: 100)
         //let followCircle = SKAction.follow(circle.cgPath, asOffset: true, orientToPath: false, duration: 5.0)
         
-        let line = CGRect(x: 0, y: self.size.height/4 - 200, width: 200, height: 1)
-        let linePath = UIBezierPath(roundedRect: line, cornerRadius: 100)
-        let followLinePath = SKAction.follow(linePath.cgPath, asOffset: true, orientToPath: false, speed: 50)
         
-        UIView.animate(withDuration: 2.0, delay: 0, options: [UIViewAnimationOptions.autoreverse, UIViewAnimationOptions.repeat], animations: {
-            print("It did repeat!")
-            //line = CGRect(x: 0, y: self.size.height/4 - 200, width: 200, height: 1)
-            self.boss.run(followLinePath)
+        
+        /*UIView.animate(withDuration: 2.0, delay: 0.0, options: [UIViewAnimationOptions.autoreverse, UIViewAnimationOptions.repeat], animations: {
             
-        }, completion: nil)
+        }, completion: nil) */
         
+        let timer = Timer.scheduledTimer(timeInterval: 0.0001, target: self, selector: #selector(PlayScene.moveBossInALine), userInfo: nil, repeats: true)
+        timer.fire()
+        
+        /*self.boss.run(SKAction.repeatForever(SKAction.sequence([SKAction.run(moveBossInALine), SKAction.wait(forDuration: 1.0)]))) */
         createPlayBackground()
         
         if motionManager.isAccelerometerAvailable == true {
@@ -78,6 +78,25 @@ class PlayScene: SKScene {
         character.physicsBody = SKPhysicsBody(circleOfRadius: max(character.size.width / 2, character.size.height / 2))
         physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
         
+    }
+    
+    @objc func moveBossInALine() {
+        if(boss.position.x <= 320 && negBossAccel == false) {
+    boss.position.x = boss.position.x + 1
+        }
+        
+        if(boss.position.x > 320) {
+            boss.position.x = boss.position.x-1
+            negBossAccel = true
+            if(boss.position.x < 0) {
+            negBossAccel = false
+            moveBossInALine()
+            }
+        }
+        /*let line = CGRect(x: 0, y: self.size.height/4 - 200, width: 200, height: 1)
+        let linePath = UIBezierPath(roundedRect: line, cornerRadius: 100)
+        let followLinePath = SKAction.follow(linePath.cgPath, asOffset: true, orientToPath: false, speed: 50)
+        self.boss.run(followLinePath) */
     }
     /*func touchDown(atPoint pos : CGPoint) {
      
@@ -112,7 +131,7 @@ class PlayScene: SKScene {
     
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
-        var moveCharX = SKAction.moveTo(x: charLocX, duration: 0.08)
+        let moveCharX = SKAction.moveTo(x: charLocX, duration: 0.08)
         self.character.run(moveCharX)
         goThroughSpace()
         
