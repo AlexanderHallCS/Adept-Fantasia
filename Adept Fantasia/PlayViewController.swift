@@ -74,8 +74,10 @@ class PlayViewController: UIViewController {
     
     @IBAction func SegueToEndViewController(_ sender: Any) {
         
+        //self.dismiss(animated: true, completion: nil)
         self.performSegue(withIdentifier: "SegueFromPlayViewToEndView", sender: nil)
-        self.navigationController?.popViewController(animated: true)
+        
+        //self.navigationController?.popViewController(animated: true)
         
     }
     

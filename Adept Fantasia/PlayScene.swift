@@ -50,7 +50,7 @@ class PlayScene: SKScene {
             
         }, completion: nil) */
         
-        let timer = Timer.scheduledTimer(timeInterval: 0.0001, target: self, selector: #selector(PlayScene.moveBossInALine), userInfo: nil, repeats: true)
+        let timer = Timer.scheduledTimer(timeInterval: 0.007, target: self, selector: #selector(PlayScene.moveBossInALine), userInfo: nil, repeats: true)
         timer.fire()
         
         createPlayBackground()
