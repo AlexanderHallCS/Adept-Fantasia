@@ -140,6 +140,17 @@
                                     <action selector="SegueToEndViewController:" destination="wMm-Eq-4mF" eventType="touchUpInside" id="rMT-Ry-yDn"/>
                                 </connections>
                             </button>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="dO0-dI-t8d" userLabel="bossHealthBar">
+                                <rect key="frame" x="20" y="42" width="374" height="2"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                            </progressView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Boss Health: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BoP-2n-itf">
+                                <rect key="frame" x="157" y="13" width="101" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="lvC-3c-nvs"/>
                     </view>
@@ -196,7 +207,7 @@
         <image name="StatisticsButton" width="314" height="186"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="0Y7-pW-iKR"/>
-        <segue reference="fgA-6W-og9"/>
+        <segue reference="Ho0-nT-3d8"/>
+        <segue reference="di2-Ci-QgW"/>
     </inferredMetricsTieBreakers>
 </document>

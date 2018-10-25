@@ -15,13 +15,20 @@ class PlayScene: SKScene {
     var characterTexture = SKTexture(imageNamed: "CharacterImage.png")
     var bossTexture = SKTexture(imageNamed: "BossImage.png")
     
-    var character = SKSpriteNode();
-    var boss = SKSpriteNode();
+    var character = SKSpriteNode()
+    var boss = SKSpriteNode()
     var background:SKNode!
     
-    var charLocX: CGFloat = 0.0;
-    var bossLocY: CGFloat = 0.0;
-    var negBossAccel = false;
+    var charLocX: CGFloat = 0.0
+    var bossLocY: CGFloat = 0.0
+    var negBossAccel = false
+    
+    var charBullets :[SKSpriteNode] = [SKSpriteNode]()
+    var charBulletTexture = SKTexture(imageNamed: "Bullet1.png")
+
+    @IBOutlet weak var bossHealthBar: UIProgressView!
+    var bossHealthPercentage: Float = 0.0
+    var bossHealth = 258
     
     let motionManager: CMMotionManager = CMMotionManager()
     
@@ -50,7 +57,7 @@ class PlayScene: SKScene {
             
         }, completion: nil) */
         
-        let timer = Timer.scheduledTimer(timeInterval: 0.007, target: self, selector: #selector(PlayScene.moveBossInALine), userInfo: nil, repeats: true)
+        let timer = Timer.scheduledTimer(timeInterval: 0.007, target: self, selector: #selector(moveBossInALine), userInfo: nil, repeats: true)
         timer.fire()
         
         createPlayBackground()
@@ -71,7 +78,7 @@ class PlayScene: SKScene {
         }
         
         character.physicsBody?.usesPreciseCollisionDetection = true
-        character.physicsBody = SKPhysicsBody(circleOfRadius: max(character.size.width / 4, character.size.height / 4))
+        character.physicsBody = SKPhysicsBody(circleOfRadius: max(character.size.width / 2, character.size.height / 2))
         physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
         
     }
@@ -94,20 +101,19 @@ class PlayScene: SKScene {
         let followLinePath = SKAction.follow(linePath.cgPath, asOffset: true, orientToPath: false, speed: 50)
         self.boss.run(followLinePath) */
     }
-    /*func touchDown(atPoint pos : CGPoint) {
-     
-     }
-     
-     func touchMoved(toPoint pos : CGPoint) {
-     
-     }
-     
-     func touchUp(atPoint pos : CGPoint) {
-     
-     } */
+    
+    @objc func updateBossHealthProgressBar() {
+        //bossHealthBar.progress =
+        bossHealthBar.setProgress(bossHealthPercentage, animated: true)
+        perform(#selector(updateBossHealthProgressBar), with: nil)
+    }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        //for t in touches { self.touchDown(atPoint: t.location(in: self)) }
+        /*let charBullet = SKSpriteNode(texture: charBulletTexture)
+        charBullet.physicsBody = SKPhysicsBody(circleOfRadius: charBullet.size.width/2)
+        charBullet.physicsBody?.usesPreciseCollisionDetection = true
+        charBullet.position = CGPoint(x: character.position.x, y: character.position.y + 20)
+        charBullets.append(charBullet) */
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -127,6 +133,8 @@ class PlayScene: SKScene {
     
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
+        let moveCharX = SKAction.moveTo(x: charLocX, duration: 0.08)
+        self.character.run(moveCharX)
         goThroughSpace()
     }
 }
