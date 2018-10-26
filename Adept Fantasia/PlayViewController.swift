@@ -21,6 +21,8 @@ class PlayViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //bossHealthBar.setProgress(0, animated: true)
+        
         do {
             audioPlayer = try AVAudioPlayer(contentsOf: URL.init(fileURLWithPath: Bundle.main.path(forResource: "Aaron_Smith_Ft_Luvli_Dancin_Krono_Remix_ostofmydays_(mp3co.biz)", ofType: "mp3")!))
             audioPlayer.prepareToPlay()
@@ -73,12 +75,7 @@ class PlayViewController: UIViewController {
     } */
     
     @IBAction func SegueToEndViewController(_ sender: Any) {
-        
-        //self.dismiss(animated: true, completion: nil)
         self.performSegue(withIdentifier: "SegueFromPlayViewToEndView", sender: nil)
-        
-        //self.navigationController?.popViewController(animated: true)
-        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
