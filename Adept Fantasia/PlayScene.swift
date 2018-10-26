@@ -35,7 +35,7 @@ class PlayScene: SKScene {
     
     override func didMove(to view: SKView) {
         
-        bossHealthBar = SKSpriteNode(texture: unfilledBossHealthBarTexture)
+        bossHealthBar = SKSpriteNode(texture: filledBossHealthBarTexture)
         bossHealthBar.position = CGPoint(x: 0, y: self.size.height/4 + 240)
         bossHealthBar.size = CGSize(width: self.size.width - 60, height: 40)
         bossHealthBar.zPosition = 1
@@ -75,13 +75,24 @@ class PlayScene: SKScene {
                     self.charLocX = currentX + CGFloat((data?.acceleration.x)! * 100)
                     }
                 }
-                self.character.physicsBody?.velocity = CGVector(dx: (data?.acceleration.x)! * 7.0, dy: 0)
+                self.character.physicsBody?.velocity = CGVector(dx: (data?.acceleration.x)! * 9.0, dy: 0)
             }
         }
         
         character.physicsBody?.usesPreciseCollisionDetection = true
         character.physicsBody = SKPhysicsBody(circleOfRadius: max(character.size.width / 2, character.size.height / 2))
         character.physicsBody?.affectedByGravity = false
+        //0b01
+        character.physicsBody?.collisionBitMask = UInt32(1)
+        //fix this boundary --> character.physicsBody? = SKPhysicsBody(edgeLoopFrom: frame)
+        character.physicsBody? = SKPhysicsBody(edgeLoopFrom: CGRect(x: 0, y: 0, width: self.size.width - 50, height: self.size.height))
+        
+        //i is of type SKSpriteNode(references the values in the array)
+        for i in charBullets {
+            if(i.position.x == boss.position.x) {
+                print("touched")
+            }
+        }
     }
     
     @objc func moveBossInALine() {
@@ -104,7 +115,6 @@ class PlayScene: SKScene {
     }
     
     @objc func updateBossHealthProgressBar() {
-        
        // bossHealthBar.setProgress(bossHealthPercentage, animated: true)
     }
     
@@ -117,7 +127,8 @@ class PlayScene: SKScene {
         charBullet.physicsBody?.isDynamic = true
         charBullet.physicsBody?.affectedByGravity = false
         charBullet.physicsBody?.velocity = CGVector.init(dx: 0, dy: 500)
-        //the y position of the character keeps being pushed down by the bullet --> make the collision not detect it
+        //0b10
+        charBullet.physicsBody?.collisionBitMask = UInt32(2)
         print(character.position.y)
         addChild(charBullet)
         charBullets.append(charBullet)
