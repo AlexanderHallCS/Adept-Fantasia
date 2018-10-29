@@ -37,13 +37,14 @@ class EndViewController: UIViewController {
         }
     }
     @IBAction func PlayAgainButton(_ sender: Any) {
-        //self.performSegue(withIdentifier: "SegueFromEndViewtoPlayView", sender: nil)
-        self.navigationController?.popViewController(animated: true)
-        self.dismiss(animated: true, completion: nil)
+        self.performSegue(withIdentifier: "SegueFromEndViewtoPlayView", sender: nil)
+       // self.navigationController?.popViewController(animated: true)
+       // self.dismiss(animated: true, completion: nil)
         audioPlayer.stop()
         audioPlayer.currentTime = 0;
         audioPlayer.play()
     }
+    
     @IBAction func goToHomeView(_ sender: Any) {
         self.performSegue(withIdentifier: "goToHomeViewFromEndView", sender: nil)
         //self.dismiss(animated: true, completion: nil)

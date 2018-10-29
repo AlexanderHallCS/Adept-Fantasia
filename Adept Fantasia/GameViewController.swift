@@ -37,12 +37,12 @@ class GameViewController: UIViewController {
     @IBAction func playButton(_ sender: Any) {
         //self.dismiss(animated: true, completion: nil)
         self.performSegue(withIdentifier: "SegueToMainView", sender: nil)
-        self.navigationController?.popViewController(animated: true)
+       // self.navigationController?.popViewController(animated: true)
     }
     
     @IBAction func goToStatisticsView(_ sender: Any) {
         self.performSegue(withIdentifier: "SegueToStatisticsView", sender: nil)
-        self.navigationController?.popViewController(animated: true)
+        //self.navigationController?.popViewController(animated: true)
     }
     
     override var shouldAutorotate: Bool {

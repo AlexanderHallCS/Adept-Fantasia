@@ -104,6 +104,28 @@ class PlayScene: SKScene {
         character.physicsBody? = SKPhysicsBody(edgeLoopFrom: CGRect(x: 0, y: 0, width: self.size.width - 50, height: self.size.height))
     }
     
+    /*func didNeedToBeRemoved() -> Bool {
+        //char bullet goes out of bounds
+        for i in 0..<charBullets.count {
+            if(charBullets[i].position.y > self.size.height/4 + 320) {
+                //charBullets[i].removeFromParent()
+                return true
+            }
+        }
+        
+        //char bullet touches boss
+        for i in 0..<charBullets.count {
+            if(charBullets[i].position.y > boss.position.y - 40 && (charBullets[i].position.x < boss.position.x + 60 && charBullets[i].position.x > boss.position.x - 60)) {
+                //charBullets[i].removeFromParent()
+                bossHealth -= 1
+                bossHealthLabel.text = "Boss Health \(bossHealth)"
+                return true
+            }
+        }
+        return false
+    } */
+    
+    //maybe use CONTACTBITMASKS to fix the problem? --> find a way to not rely on timers to check it
     @objc func checkCharBulletPosition() {
         //char bullet goes out of bounds
         for i in 0..<charBullets.count {
@@ -182,6 +204,9 @@ class PlayScene: SKScene {
         let moveCharX = SKAction.moveTo(x: charLocX, duration: 0.08)
         self.character.run(moveCharX)
         goThroughSpace()
+        /*if(didNeedToBeRemoved() == true) {
+            
+        } */
     }
 }
 
