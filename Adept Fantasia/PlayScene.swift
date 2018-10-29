@@ -11,9 +11,10 @@ import GameplayKit
 import CoreMotion
 import UIKit
 
-class PlayScene: SKScene {
+class PlayScene: SKScene, SKPhysicsContactDelegate {
     
-    var crescendoCategory:UInt32 = 0x1 << 0 //1
+    var charBulletCategory:UInt32 = 0x1 << 0 //1
+    var bossCategory:UInt32 = 0x1 << 1 //2
     
     var characterTexture = SKTexture(imageNamed: "CharacterImage.png")
     var bossTexture = SKTexture(imageNamed: "BossImage.png")
@@ -53,14 +54,19 @@ class PlayScene: SKScene {
         bossHealthBar.zPosition = 1
         addChild(bossHealthBar)
         
+        character.name = "player"
         character = SKSpriteNode(texture: characterTexture)
         character.position = CGPoint(x: 0, y: self.size.height/2 * -1 + self.size.height/14)
         character.zPosition = 1
         addChild(character)
         
+        boss.name = "eyb0ss"
         boss = SKSpriteNode(texture: bossTexture)
         boss.size = CGSize(width: 300, height: 300)
         boss.position = CGPoint(x: 0, y: self.size.height/4)
+        boss.physicsBody?.categoryBitMask = bossCategory
+        boss.physicsBody?.collisionBitMask = 0
+        boss.physicsBody?.contactTestBitMask = 0
         //brings out the boss to the front
         boss.zPosition = 1
         addChild(boss)
@@ -71,9 +77,6 @@ class PlayScene: SKScene {
         
         let timer = Timer.scheduledTimer(timeInterval: 0.007, target: self, selector: #selector(moveBossInALine), userInfo: nil, repeats: true)
         timer.fire()
-        
-        let charBulletTimer = Timer.scheduledTimer(timeInterval: 0.9, target: self, selector: #selector(checkCharBulletPosition), userInfo: nil, repeats: true)
-        charBulletTimer.fire()
         
         createPlayBackground()
         
@@ -102,45 +105,29 @@ class PlayScene: SKScene {
         //character.physicsBody?.collisionBitMask = UInt32(1)
         //fix this boundary --> character.physicsBody? = SKPhysicsBody(edgeLoopFrom: frame)
         character.physicsBody? = SKPhysicsBody(edgeLoopFrom: CGRect(x: 0, y: 0, width: self.size.width - 50, height: self.size.height))
+        
+        physicsWorld.contactDelegate = self
     }
     
-    /*func didNeedToBeRemoved() -> Bool {
-        //char bullet goes out of bounds
-        for i in 0..<charBullets.count {
-            if(charBullets[i].position.y > self.size.height/4 + 320) {
-                //charBullets[i].removeFromParent()
-                return true
+    func didBegin(_ contact: SKPhysicsContact) {
+        if(charBullets.count > 0) {
+            print("touched")
+            //print(contact.bodyA.node?.name)
+            //char bullet goes out of bounds
+            /*for i in 0..<charBullets.count {
+                if(charBullets[i].position.y > self.size.height/4 + 320) {
+                    charBullets[i].removeFromParent()
+                }
             }
-        }
-        
-        //char bullet touches boss
-        for i in 0..<charBullets.count {
-            if(charBullets[i].position.y > boss.position.y - 40 && (charBullets[i].position.x < boss.position.x + 60 && charBullets[i].position.x > boss.position.x - 60)) {
-                //charBullets[i].removeFromParent()
-                bossHealth -= 1
-                bossHealthLabel.text = "Boss Health \(bossHealth)"
-                return true
-            }
-        }
-        return false
-    } */
-    
-    //maybe use CONTACTBITMASKS to fix the problem? --> find a way to not rely on timers to check it
-    @objc func checkCharBulletPosition() {
-        //char bullet goes out of bounds
-        for i in 0..<charBullets.count {
-            if(charBullets[i].position.y > self.size.height/4 + 320) {
-                charBullets[i].removeFromParent()
-            }
-        }
-        
-        //char bullet touches boss
-        for i in 0..<charBullets.count {
-            if(charBullets[i].position.y > boss.position.y - 40 && (charBullets[i].position.x < boss.position.x + 60 && charBullets[i].position.x > boss.position.x - 60)) {
-                charBullets[i].removeFromParent()
-                bossHealth -= 1
-                bossHealthLabel.text = "Boss Health \(bossHealth)"
-            }
+            
+            //char bullet touches boss
+            for i in 0..<charBullets.count {
+                if(charBullets[i].position.y > boss.position.y - 40 && (charBullets[i].position.x < boss.position.x + 60 && charBullets[i].position.x > boss.position.x - 60)) {
+                    charBullets[i].removeFromParent()
+                    bossHealth -= 1
+                    bossHealthLabel.text = "Boss Health \(bossHealth)"
+                }
+            } */
         }
     }
     
@@ -168,18 +155,11 @@ class PlayScene: SKScene {
         charBullet.physicsBody = SKPhysicsBody(circleOfRadius: charBullet.size.width/128)
         charBullet.position = CGPoint(x: character.position.x, y: character.position.y + 100)
         charBullet.zPosition = 1
-        //charBullet.physicsBody?.isDynamic = true
         charBullet.physicsBody?.affectedByGravity = false
         charBullet.physicsBody?.velocity = CGVector.init(dx: 0, dy: 500)
-        
-        /*if(!(crescendoCategory == 0x1 << 5)) {
-        crescendoCategory <<= 1
-        } else {
-            crescendoCategory = 0x1 << 0
-        }
-        print(crescendoCategory)
-        charBullet.physicsBody?.categoryBitMask = crescendoCategory */
-        
+        charBullet.physicsBody?.categoryBitMask = charBulletCategory
+        charBullet.physicsBody?.collisionBitMask = 0
+        charBullet.physicsBody?.contactTestBitMask = bossCategory
         addChild(charBullet)
         charBullets.append(charBullet)
     }
@@ -204,9 +184,6 @@ class PlayScene: SKScene {
         let moveCharX = SKAction.moveTo(x: charLocX, duration: 0.08)
         self.character.run(moveCharX)
         goThroughSpace()
-        /*if(didNeedToBeRemoved() == true) {
-            
-        } */
     }
 }
 
