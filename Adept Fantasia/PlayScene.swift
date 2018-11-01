@@ -76,8 +76,23 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         /*let bossLinetimer = Timer.scheduledTimer(timeInterval: 0.007, target: self, selector: #selector(moveBossInALine), userInfo: nil, repeats: true) */
         //bossLinetimer.fire()
         
-        let bossHourglassTimer = Timer.scheduledTimer(timeInterval: 0.002, target: self, selector: #selector(moveBossInHourglassFormation), userInfo: nil, repeats: true)
-        bossHourglassTimer.fire()
+        let bossHourglassPath = UIBezierPath()
+        /*bossHourglassPath.move(to: CGPoint(x: -220, y: -200))
+        bossHourglassPath.addLine(to: CGPoint(x: -220, y: -200))
+        bossHourglassPath.addLine(to: CGPoint(x: -220, y: 100))
+        bossHourglassPath.addLine(to: CGPoint(x: 300, y: -200))
+        bossHourglassPath.addLine(to: CGPoint(x: 300, y: 100))
+        bossHourglassPath.addLine(to: CGPoint(x:-220 , y: -200)) */
+        bossHourglassPath.move(to: CGPoint(x: -220, y: 0))
+        bossHourglassPath.addLine(to: CGPoint(x: -220, y: 0))
+        bossHourglassPath.addLine(to: CGPoint(x: -220, y: 400))
+        bossHourglassPath.addLine(to: CGPoint(x: 300, y: 0))
+        bossHourglassPath.addLine(to: CGPoint(x: 300, y: 400))
+        bossHourglassPath.addLine(to: CGPoint(x:-220 , y: 0))
+        //setting asOffset as false makes the x and y positions literal as opposed to based on an anchor
+        let move = SKAction.follow(bossHourglassPath.cgPath, asOffset: false, orientToPath: false, speed: 200)
+        boss.run(SKAction.repeatForever(move))
+        
         
         createPlayBackground()
         
@@ -114,6 +129,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         if(charBullets.count > 0) {
             //print("touched")
             //print(contact.bodyA.node?.name)
+            
             //char bullet goes out of bounds
             for i in 0..<charBullets.count {
                 if(charBullets[i].position.y > self.size.height/4 + 320) {
@@ -122,7 +138,9 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
             }
             
             for i in 0..<charBullets.count {
-                if(charBullets[i].position.y > boss.position.y - 40 && (charBullets[i].position.x < boss.position.x + 60 && charBullets[i].position.x > boss.position.x - 60)) {
+                //NEED THIS RANGE IN THE IF STATEMENT TO BE BIGGER IN ORDER TO REGISTER HITTING THE BOSS
+                if(charBullets[i].position.y > boss.position.y - 60 && (charBullets[i].position.x < boss.position.x + 70 && charBullets[i].position.x > boss.position.x - 70)) {
+                    print("hit the boss!")
                     charBullets[i].removeFromParent()
                     bossHealth -= 1
                     bossHealthLabel.text = "Boss Health \(bossHealth)"
@@ -146,36 +164,6 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
-    @objc func moveBossInHourglassFormation() {
-        print("Boss's x: \(boss.position.x) \n Boss's y: \(boss.position.y)")
-        if(boss.position.x > -150 && firstHourGlassHalf == true) {
-            print("Boss's x1: \(boss.position.x) \n Boss's y1: \(boss.position.y)")
-           // print("Inside Ran!")
-            boss.position.x = boss.position.x - 1
-            boss.position.y = boss.position.y - 1
-        }
-        if(boss.position.x == -150 && boss.position.y < self.size.height/4 && firstHourGlassHalf == true) {
-            boss.position.y = boss.position.y + 1
-        }
-        
-        if(boss.position.x == -150 && boss.position.y == self.size.height/4) {
-            firstHourGlassHalf = false
-        }
-        
-        if(boss.position.y <= self.size.height/4 && boss.position.x < 0 && firstHourGlassHalf == false) {
-            boss.position.x = boss.position.x + 1
-            boss.position.y = boss.position.y - 1
-        }
-        
-        if(boss.position.x == 0 && boss.position.y < self.size.height/4 && firstHourGlassHalf == false) {
-            boss.position.y = boss.position.y + 1
-        }
-        
-        if(boss.position.x == 0 && boss.position.y == self.size.height/4) {
-            firstHourGlassHalf = true
-        }
-    }
-
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         let charBullet = SKSpriteNode(texture: charBulletTexture)
         charBullet.physicsBody = SKPhysicsBody(circleOfRadius: charBullet.size.width/128)
