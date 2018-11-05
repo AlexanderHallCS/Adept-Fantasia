@@ -9,11 +9,10 @@
 import SpriteKit
 import GameplayKit
 import CoreMotion
-import UIKit
 
-struct ColliderType {
-    static let bulletCategory:UInt32 = 0x1 << 0
-    static let bossCategory:UInt32 = 0x1 << 1
+enum ColliderType:UInt32 {
+    case bulletCategory = 1
+    case bossCategory = 2
 }
 
 class PlayScene: SKScene, SKPhysicsContactDelegate {
@@ -41,6 +40,15 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     
     let motionManager: CMMotionManager = CMMotionManager()
     
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+    
+    override init(size:CGSize) {
+        super.init(size: size)
+        
+    }
+    
     override func didMove(to view: SKView) {
         
         physicsWorld.contactDelegate = self
@@ -59,28 +67,32 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         bossHealthBar.zPosition = 1
         addChild(bossHealthBar)
         
-        //character.name = "player"
         character = SKSpriteNode(texture: characterTexture)
+        character.name = "player"
         character.position = CGPoint(x: 0, y: self.size.height/2 * -1 + self.size.height/14)
         character.zPosition = 1
         addChild(character)
         
-        boss.name = "boss"
         boss = SKSpriteNode(texture: bossTexture)
+        boss.name = "boss"
+        boss.physicsBody = SKPhysicsBody(texture: bossTexture, size: bossTexture.size())
         boss.physicsBody?.usesPreciseCollisionDetection = true
-        //boss.physicsBody?.isDynamic = true
+        boss.physicsBody!.isDynamic = true
+        boss.physicsBody!.affectedByGravity = false
         boss.size = CGSize(width: 300, height: 300)
-        boss.position = CGPoint(x: 0, y: self.size.height/4)
-        boss.physicsBody? = SKPhysicsBody(circleOfRadius: boss.size.width)
-        boss.physicsBody?.categoryBitMask = ColliderType.bossCategory
-        boss.physicsBody?.collisionBitMask = 0
-        boss.physicsBody?.contactTestBitMask = ColliderType.bulletCategory
+        boss.physicsBody!.categoryBitMask = ColliderType.bossCategory.rawValue
+        boss.physicsBody!.collisionBitMask = 0
+        boss.physicsBody!.contactTestBitMask = ColliderType.bulletCategory.rawValue
         boss.zPosition = 1
+        boss.position = CGPoint(x: 0, y: self.size.height/4)
         addChild(boss)
         
         //can't instatiate this timer and the other one at the same time because they conflict
         /*let bossLinetimer = Timer.scheduledTimer(timeInterval: 0.007, target: self, selector: #selector(moveBossInALine), userInfo: nil, repeats: true) */
         //bossLinetimer.fire()
+        
+        let checkOOB = Timer.scheduledTimer(timeInterval: 0.007, target: self, selector: #selector(checkForOOB), userInfo: nil, repeats: true)
+        checkOOB.fire()
         
         let bossHourglassPath = UIBezierPath()
         /*bossHourglassPath.move(to: CGPoint(x: -220, y: -200))
@@ -89,17 +101,17 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         bossHourglassPath.addLine(to: CGPoint(x: 300, y: -200))
         bossHourglassPath.addLine(to: CGPoint(x: 300, y: 100))
         bossHourglassPath.addLine(to: CGPoint(x:-220 , y: -200)) */
+        
         bossHourglassPath.move(to: CGPoint(x: -220, y: 0))
         bossHourglassPath.addLine(to: CGPoint(x: -220, y: 0))
         bossHourglassPath.addLine(to: CGPoint(x: -220, y: 400))
         bossHourglassPath.addLine(to: CGPoint(x: 300, y: 0))
         bossHourglassPath.addLine(to: CGPoint(x: 300, y: 400))
         bossHourglassPath.addLine(to: CGPoint(x:-220 , y: 0))
+        
         //setting asOffset as false makes the x and y positions literal as opposed to based on an anchor
         let move = SKAction.follow(bossHourglassPath.cgPath, asOffset: false, orientToPath: false, speed: 150)
         boss.run(SKAction.repeatForever(move))
-        
-        
         createPlayBackground()
         
         if motionManager.isAccelerometerAvailable == true {
@@ -130,63 +142,30 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         //self.physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
     }
     
+    @objc func checkForOOB() {
+        for i in 0..<charBullets.count {
+            if(charBullets[i].position.y > self.size.height/4 + 320) {
+                charBullets[i].removeFromParent()
+            }
+        }
+    }
+    
     func didBegin(_ contact: SKPhysicsContact) {
-        print("contact!")
+        
         if(charBullets.count > 0) {
             var firstBody = SKPhysicsBody()
             var secondBody = SKPhysicsBody()
             
             if(contact.bodyA.node?.name == "bullet") {
-                print("test1")
                 firstBody = contact.bodyA
                 secondBody = contact.bodyB
             } else {
-                print("test2")
                 firstBody = contact.bodyB
                 secondBody = contact.bodyA
-                print(secondBody)
-            }
-            
-            if(firstBody.node?.name == "bullet") {
-                print("bulletname")
-            }
-            
-            if(firstBody.node?.name == "player") {
-                print("charactername")
-            }
-            
-            if(firstBody.node?.name == "boss") {
-                print("bossname")
-            }
-            
-            if(secondBody.node?.name == "bullet") {
-                print("bulletname2")
-            }
-            
-            if(secondBody.node?.name == "player") {
-                print("charactername2")
-            }
-            
-            if(secondBody.node?.name == "boss") {
-                print("bossname2")
-            }
-            
-            //char bullet goes out of bounds
-            for i in 0..<charBullets.count {
-                if(charBullets[i].position.y > self.size.height/4 + 320) {
-                    charBullets[i].removeFromParent()
-                }
             }
             
             for i in 0..<charBullets.count {
-                //NEED THIS RANGE IN THE IF STATEMENT TO BE BIGGER IN ORDER TO REGISTER HITTING THE BOSS
-                /*if(charBullets[i].position.y > boss.position.y - 60 && (charBullets[i].position.x < boss.position.x + 70 && charBullets[i].position.x > boss.position.x - 70)) {
-                    print("hit the boss!")
-                    charBullets[i].removeFromParent()
-                    bossHealth -= 1
-                    bossHealthLabel.text = "Boss Health \(bossHealth)"
-                } */
-                if(firstBody.node?.name == "bullet" && secondBody.node?.name == "boss") {
+            if(firstBody.node?.name == "bullet" && secondBody.node?.name == "boss") {
                     print("hit the boss!")
                     charBullets[i].removeFromParent()
                     bossHealth -= 1
@@ -214,16 +193,16 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         let charBullet = SKSpriteNode(texture: charBulletTexture)
         charBullet.name = "bullet"
-        charBullet.physicsBody = SKPhysicsBody(circleOfRadius: charBullet.size.width/128)
-        charBullet.position = CGPoint(x: character.position.x, y: character.position.y + 100)
+        charBullet.physicsBody = SKPhysicsBody(texture: charBulletTexture, size: charBulletTexture.size())
         charBullet.zPosition = 1
-        charBullet.physicsBody?.isDynamic = true
-        charBullet.physicsBody?.usesPreciseCollisionDetection = true
-        charBullet.physicsBody?.affectedByGravity = false
-        charBullet.physicsBody?.velocity = CGVector.init(dx: 0, dy: 450)
-        charBullet.physicsBody?.categoryBitMask = ColliderType.bulletCategory
-        charBullet.physicsBody?.collisionBitMask = 0
-        charBullet.physicsBody?.contactTestBitMask = ColliderType.bossCategory
+        charBullet.physicsBody!.isDynamic = true
+        charBullet.physicsBody!.usesPreciseCollisionDetection = true
+        charBullet.physicsBody!.affectedByGravity = false
+        charBullet.physicsBody!.velocity = CGVector.init(dx: 0, dy: 450)
+        charBullet.physicsBody!.categoryBitMask = ColliderType.bulletCategory.rawValue
+        charBullet.physicsBody!.collisionBitMask = 0
+        charBullet.physicsBody!.contactTestBitMask = ColliderType.bossCategory.rawValue
+        charBullet.position = CGPoint(x: character.position.x, y: character.position.y + 100)
         addChild(charBullet)
         charBullets.append(charBullet)
     }
