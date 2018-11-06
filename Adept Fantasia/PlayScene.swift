@@ -11,19 +11,22 @@ import GameplayKit
 import CoreMotion
 
 enum ColliderType:UInt32 {
-    case bulletCategory = 1
-    case bossCategory = 2
+    case bulletCategory = 0b01
+    case bossCategory = 0b10
+    case invulnerabilityCategory = 0b100
 }
 
 class PlayScene: SKScene, SKPhysicsContactDelegate {
     
-    var characterTexture = SKTexture(imageNamed: "CharacterImage.png")
-    var bossTexture = SKTexture(imageNamed: "BossImage.png")
+    
+    var invulnerabilityTexture = SKTexture(imageNamed: "InvulnerabilityPowerup")
+    var characterTexture = SKTexture(imageNamed: "CharacterImage")
+    var bossTexture = SKTexture(imageNamed: "BossImage")
     
     var character = SKSpriteNode()
     var boss = SKSpriteNode()
     var bossHealthBar = SKSpriteNode()
-    var background:SKNode!
+    var invulnerabilityPowerup = SKSpriteNode()
     
     var charLocX: CGFloat = 0.0
     var negBossAccel = false
@@ -37,6 +40,8 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     var unfilledBossHealthBarTexture = SKTexture(imageNamed: "UnfilledBossHealthBar.png")
     var filledBossHealthBarTexture = SKTexture(imageNamed: "FilledBossHealthBar.png")
     let bossHealthLabel = SKLabelNode()
+    
+    var invulnerabilityPowerupHealth = 50
     
     let motionManager: CMMotionManager = CMMotionManager()
     
@@ -86,6 +91,20 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         boss.zPosition = 1
         boss.position = CGPoint(x: 0, y: self.size.height/4)
         addChild(boss)
+        
+        invulnerabilityPowerup = SKSpriteNode(texture: invulnerabilityTexture)
+        invulnerabilityPowerup.name = "invulnerability"
+        invulnerabilityPowerup.physicsBody = SKPhysicsBody(texture: invulnerabilityTexture, size: invulnerabilityPowerup.size)
+        invulnerabilityPowerup.physicsBody!.usesPreciseCollisionDetection = true
+        invulnerabilityPowerup.physicsBody!.isDynamic = true
+        invulnerabilityPowerup.physicsBody!.affectedByGravity = false
+        invulnerabilityPowerup.size = CGSize(width: 250, height:250)
+        invulnerabilityPowerup.position = CGPoint(x: character.position.x, y: character.position.y + 200)
+        invulnerabilityPowerup.zPosition = 1
+        invulnerabilityPowerup.physicsBody!.categoryBitMask = ColliderType.invulnerabilityCategory.rawValue
+        invulnerabilityPowerup.physicsBody!.collisionBitMask = 0
+        invulnerabilityPowerup.physicsBody!.contactTestBitMask = ColliderType.bulletCategory.rawValue
+        addChild(invulnerabilityPowerup)
         
         //can't instatiate this timer and the other one at the same time because they conflict
         /*let bossLinetimer = Timer.scheduledTimer(timeInterval: 0.007, target: self, selector: #selector(moveBossInALine), userInfo: nil, repeats: true) */
@@ -154,10 +173,11 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func didBegin(_ contact: SKPhysicsContact) {
-        
         if(charBullets.count > 0) {
             var firstBody = SKPhysicsBody()
             var secondBody = SKPhysicsBody()
+            var thirdBody = SKPhysicsBody()
+            var fourthBody = SKPhysicsBody()
             
             if(contact.bodyA.node?.name == "bullet") {
                 firstBody = contact.bodyA
@@ -174,6 +194,23 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
                     bossHealthLabel.text = "Boss Health \(bossHealth)"
                 }
             }
+            
+            if(contact.bodyB.node?.name == "invulnerability") {
+                thirdBody = contact.bodyA
+                fourthBody = contact.bodyB
+            } else {
+                thirdBody = contact.bodyB
+                fourthBody = contact.bodyA
+            }
+            
+            for i in 0..<charBullets.count {
+                if(thirdBody.node == charBullets[i] && fourthBody.node?.name == "invulnerability") {
+                    charBullets[i].removeFromParent()
+                    invulnerabilityPowerupHealth -= 1
+                    print("Invulnerability Powerup Health: \(invulnerabilityPowerupHealth)")
+                }
+            }
+            
         }
     }
     
@@ -229,7 +266,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         charBullet.physicsBody!.velocity = CGVector.init(dx: 0, dy: 450)
         charBullet.physicsBody!.categoryBitMask = ColliderType.bulletCategory.rawValue
         charBullet.physicsBody!.collisionBitMask = 0
-        charBullet.physicsBody!.contactTestBitMask = ColliderType.bossCategory.rawValue
+        charBullet.physicsBody!.contactTestBitMask = ColliderType.bossCategory.rawValue | ColliderType.invulnerabilityCategory.rawValue
         charBullet.position = CGPoint(x: character.position.x, y: character.position.y + 100)
         addChild(charBullet)
         charBullets.append(charBullet)
