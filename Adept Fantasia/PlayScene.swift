@@ -76,7 +76,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         boss = SKSpriteNode(texture: bossTexture)
         boss.name = "boss"
         boss.physicsBody = SKPhysicsBody(texture: bossTexture, size: bossTexture.size())
-        boss.physicsBody?.usesPreciseCollisionDetection = true
+        boss.physicsBody!.usesPreciseCollisionDetection = true
         boss.physicsBody!.isDynamic = true
         boss.physicsBody!.affectedByGravity = false
         boss.size = CGSize(width: 300, height: 300)
@@ -112,6 +112,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         //setting asOffset as false makes the x and y positions literal as opposed to based on an anchor
         let move = SKAction.follow(bossHourglassPath.cgPath, asOffset: false, orientToPath: false, speed: 150)
         boss.run(SKAction.repeatForever(move))
+        
         createPlayBackground()
         
         if motionManager.isAccelerometerAvailable == true {
@@ -132,14 +133,16 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
             }
         }
         
-        //character.physicsBody?.usesPreciseCollisionDetection = true
         //character.physicsBody = SKPhysicsBody(circleOfRadius: max(character.size.width / 2, character.size.height / 2))
+        //character.physicsBody!.usesPreciseCollisionDetection = true
         character.physicsBody?.affectedByGravity = false
         //0b01
-        //character.physicsBody?.collisionBitMask = UInt32(1)
+        //character.physicsBody!.collisionBitMask = UInt32(1)
         //fix this boundary --> character.physicsBody? = SKPhysicsBody(edgeLoopFrom: frame)
         character.physicsBody? = SKPhysicsBody(edgeLoopFrom: CGRect(x: 0, y: 0, width: self.size.width - 50, height: self.size.height))
         //self.physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
+        
+        spiralBulletAttack()
     }
     
     @objc func checkForOOB() {
@@ -165,8 +168,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
             }
             
             for i in 0..<charBullets.count {
-            if(firstBody.node?.name == "bullet" && secondBody.node?.name == "boss") {
-                    print("hit the boss!")
+                if(firstBody.node == charBullets[i] && secondBody.node?.name == "boss") {
                     charBullets[i].removeFromParent()
                     bossHealth -= 1
                     bossHealthLabel.text = "Boss Health \(bossHealth)"
@@ -188,6 +190,32 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
                 negBossAccel = false
             }
         }
+    }
+    
+    func sin(degrees: Double) -> Double {
+        return __sinpi(degrees/180.0)
+    }
+    
+    func spiralBulletAttack() {
+        //decrease bosshealthbar with unfilledbosshealthbar
+        //make the game end when the boss's health is 0
+        //change the music to start when the app is opened and end when the game is over
+        
+        /*var x:CGFloat = 1
+        var y:CGFloat = 1
+        var a = 2
+        
+        var iterator:CGFloat = 0.0
+        
+        var arctan = atan(y/x)
+        
+        for i in 0...360 {
+            x = pow((pow(2, 2)*pow((arctan - iterator),2) - pow(y,2)),0.5)
+            y = pow((pow(2, 2)*pow((arctan - iterator),2) - pow(x,2)),0.5)
+            iterator = iterator + 1
+            print("(\(x),\(y))")
+        } */
+        
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
