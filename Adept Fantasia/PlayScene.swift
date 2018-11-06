@@ -99,7 +99,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         invulnerabilityPowerup.physicsBody!.isDynamic = true
         invulnerabilityPowerup.physicsBody!.affectedByGravity = false
         invulnerabilityPowerup.size = CGSize(width: 250, height:250)
-        invulnerabilityPowerup.position = CGPoint(x: character.position.x, y: character.position.y + 200)
+        invulnerabilityPowerup.position = CGPoint(x: character.position.x + 600, y: character.position.y + 350)
         invulnerabilityPowerup.zPosition = 1
         invulnerabilityPowerup.physicsBody!.categoryBitMask = ColliderType.invulnerabilityCategory.rawValue
         invulnerabilityPowerup.physicsBody!.collisionBitMask = 0
@@ -110,7 +110,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         /*let bossLinetimer = Timer.scheduledTimer(timeInterval: 0.007, target: self, selector: #selector(moveBossInALine), userInfo: nil, repeats: true) */
         //bossLinetimer.fire()
         
-        let checkOOB = Timer.scheduledTimer(timeInterval: 0.007, target: self, selector: #selector(checkForOOB), userInfo: nil, repeats: true)
+        let checkOOB = Timer.scheduledTimer(timeInterval: 0.007, target: self, selector: #selector(checkForBulletOOB), userInfo: nil, repeats: true)
         checkOOB.fire()
         
         let bossHourglassPath = UIBezierPath()
@@ -129,8 +129,14 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         bossHourglassPath.addLine(to: CGPoint(x:-220 , y: 0))
         
         //setting asOffset as false makes the x and y positions literal as opposed to based on an anchor
-        let move = SKAction.follow(bossHourglassPath.cgPath, asOffset: false, orientToPath: false, speed: 150)
-        boss.run(SKAction.repeatForever(move))
+        let bossMove = SKAction.follow(bossHourglassPath.cgPath, asOffset: false, orientToPath: false, speed: 150)
+        boss.run(SKAction.repeatForever(bossMove))
+        
+        let invulnerabilityPath = UIBezierPath()
+        invulnerabilityPath.move(to: CGPoint(x: character.position.x + 500, y: character.position.y + 350))
+        invulnerabilityPath.addLine(to: CGPoint(x: -400, y: 420))
+        let invulnerabilityMove = SKAction.follow(invulnerabilityPath.cgPath, asOffset: false, orientToPath: false, speed: 90)
+        invulnerabilityPowerup.run(invulnerabilityMove)
         
         createPlayBackground()
         
@@ -164,7 +170,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         spiralBulletAttack()
     }
     
-    @objc func checkForOOB() {
+    @objc func checkForBulletOOB() {
         for i in 0..<charBullets.count {
             if(charBullets[i].position.y > self.size.height/4 + 320) {
                 charBullets[i].removeFromParent()
@@ -229,9 +235,9 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
-    func sin(degrees: Double) -> Double {
+    /*func sin(degrees: Double) -> Double {
         return __sinpi(degrees/180.0)
-    }
+    } */
     
     func spiralBulletAttack() {
         //decrease bosshealthbar with unfilledbosshealthbar
