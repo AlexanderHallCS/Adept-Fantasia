@@ -14,6 +14,8 @@ enum ColliderType:UInt32 {
     case bulletCategory = 0b01
     case bossCategory = 0b10
     case invulnerabilityCategory = 0b100
+    case characterCategory = 0b1000
+    case bossBulletCategory = 0b10000
 }
 
 class PlayScene: SKScene, SKPhysicsContactDelegate {
@@ -28,6 +30,8 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     var bossHealthBar = SKSpriteNode()
     var invulnerabilityPowerup = SKSpriteNode()
     
+    var invulnerabilityPowerupOn = false
+    
     var charLocX: CGFloat = 0.0
     var negBossAccel = false
     
@@ -36,12 +40,12 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     
     var firstHourGlassHalf = true
     var bossHealthPercentage: Float = 0.0
-    var bossHealth = 50000
+    var bossHealth = 10000
     var unfilledBossHealthBarTexture = SKTexture(imageNamed: "UnfilledBossHealthBar.png")
     var filledBossHealthBarTexture = SKTexture(imageNamed: "FilledBossHealthBar.png")
     let bossHealthLabel = SKLabelNode()
     
-    var invulnerabilityPowerupHealth = 50
+    var invulnerabilityPowerupHealth = 20
     
     let motionManager: CMMotionManager = CMMotionManager()
     
@@ -106,37 +110,22 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         invulnerabilityPowerup.physicsBody!.contactTestBitMask = ColliderType.bulletCategory.rawValue
         addChild(invulnerabilityPowerup)
         
-        //can't instatiate this timer and the other one at the same time because they conflict
-        /*let bossLinetimer = Timer.scheduledTimer(timeInterval: 0.007, target: self, selector: #selector(moveBossInALine), userInfo: nil, repeats: true) */
-        //bossLinetimer.fire()
-        
-        let checkOOB = Timer.scheduledTimer(timeInterval: 0.007, target: self, selector: #selector(checkForBulletOOB), userInfo: nil, repeats: true)
-        checkOOB.fire()
-        
-        let bossHourglassPath = UIBezierPath()
-        /*bossHourglassPath.move(to: CGPoint(x: -220, y: -200))
-        bossHourglassPath.addLine(to: CGPoint(x: -220, y: -200))
-        bossHourglassPath.addLine(to: CGPoint(x: -220, y: 100))
-        bossHourglassPath.addLine(to: CGPoint(x: 300, y: -200))
-        bossHourglassPath.addLine(to: CGPoint(x: 300, y: 100))
-        bossHourglassPath.addLine(to: CGPoint(x:-220 , y: -200)) */
-        
-        bossHourglassPath.move(to: CGPoint(x: -220, y: 0))
-        bossHourglassPath.addLine(to: CGPoint(x: -220, y: 0))
-        bossHourglassPath.addLine(to: CGPoint(x: -220, y: 400))
-        bossHourglassPath.addLine(to: CGPoint(x: 300, y: 0))
-        bossHourglassPath.addLine(to: CGPoint(x: 300, y: 400))
-        bossHourglassPath.addLine(to: CGPoint(x:-220 , y: 0))
-        
-        //setting asOffset as false makes the x and y positions literal as opposed to based on an anchor
-        let bossMove = SKAction.follow(bossHourglassPath.cgPath, asOffset: false, orientToPath: false, speed: 150)
-        boss.run(SKAction.repeatForever(bossMove))
+        let checkBulletOOB = Timer.scheduledTimer(timeInterval: 0.007, target: self, selector: #selector(checkForBulletOOB), userInfo: nil, repeats: true)
+        checkBulletOOB.fire()
         
         let invulnerabilityPath = UIBezierPath()
         invulnerabilityPath.move(to: CGPoint(x: character.position.x + 500, y: character.position.y + 350))
-        invulnerabilityPath.addLine(to: CGPoint(x: -400, y: 420))
+        invulnerabilityPath.addLine(to: CGPoint(x: -500, y: 420))
         let invulnerabilityMove = SKAction.follow(invulnerabilityPath.cgPath, asOffset: false, orientToPath: false, speed: 90)
         invulnerabilityPowerup.run(invulnerabilityMove)
+        
+        let checkInvulnerabilityOOB = Timer.scheduledTimer(timeInterval: 0.007, target: self, selector: #selector(checkInvulnerabilityPowerupOOB), userInfo: nil, repeats: true)
+        checkInvulnerabilityOOB.fire()
+        
+        let checkInvulnerabilityHealth = Timer.scheduledTimer(timeInterval: 0.007, target: self, selector: #selector(checkInvulnerabilityPowerupHealth), userInfo: nil, repeats: true)
+        if(!intersects(invulnerabilityPowerup)) {
+        checkInvulnerabilityHealth.fire()
+        }
         
         createPlayBackground()
         
@@ -158,16 +147,54 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
             }
         }
         
-        //character.physicsBody = SKPhysicsBody(circleOfRadius: max(character.size.width / 2, character.size.height / 2))
-        //character.physicsBody!.usesPreciseCollisionDetection = true
-        character.physicsBody?.affectedByGravity = false
-        //0b01
-        //character.physicsBody!.collisionBitMask = UInt32(1)
-        //fix this boundary --> character.physicsBody? = SKPhysicsBody(edgeLoopFrom: frame)
-        character.physicsBody? = SKPhysicsBody(edgeLoopFrom: CGRect(x: 0, y: 0, width: self.size.width - 50, height: self.size.height))
+        character.physicsBody = SKPhysicsBody(texture: characterTexture, size: characterTexture.size())
+        character.physicsBody!.usesPreciseCollisionDetection = true
+        character.physicsBody!.affectedByGravity = false
+        character.physicsBody!.categoryBitMask = ColliderType.characterCategory.rawValue
+        character.physicsBody!.collisionBitMask = 0
+        character.physicsBody!.contactTestBitMask = ColliderType.bossBulletCategory.rawValue
+        /*character.physicsBody? = SKPhysicsBody(edgeLoopFrom: CGRect(x: 0, y: 0, width: self.size.width - 50, height: self.size.height)) */
         //self.physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
         
-        spiralBulletAttack()
+        //can't instatiate this timer and the other one at the same time because they conflict
+        /*let bossLinetimer = Timer.scheduledTimer(timeInterval: 0.007, target: self, selector: #selector(moveBossInALine), userInfo: nil, repeats: true) */
+        //bossLinetimer.fire()
+        let bossLinearPath = UIBezierPath()
+        bossLinearPath.move(to: CGPoint(x: 0, y: 0))
+        bossLinearPath.addLine(to: CGPoint(x: 310, y:0))
+        bossLinearPath.addLine(to: CGPoint(x: -280, y:0))
+        bossLinearPath.addLine(to: CGPoint(x: 0, y: 0))
+        let bossLinearMove = SKAction.follow(bossLinearPath.cgPath, asOffset: false, orientToPath: false, speed: 150)
+        boss.run(SKAction.repeat(bossLinearMove, count: 3))
+        
+        let bossHourglassPath = UIBezierPath()
+        bossHourglassPath.move(to: CGPoint(x: -220, y: 0))
+        bossHourglassPath.addLine(to: CGPoint(x: -220, y: 0))
+        bossHourglassPath.addLine(to: CGPoint(x: -220, y: 400))
+        bossHourglassPath.addLine(to: CGPoint(x: 300, y: 0))
+        bossHourglassPath.addLine(to: CGPoint(x: 300, y: 400))
+        bossHourglassPath.addLine(to: CGPoint(x:-220 , y: 0))
+        
+        let bossHourglassMove = SKAction.follow(bossHourglassPath.cgPath, asOffset: false, orientToPath: false, speed: 150)
+        //boss.run(SKAction.repeat(bossHourglassMove, count: 3))
+        
+       // spiralBulletAttack()
+    }
+    
+    @objc func checkInvulnerabilityPowerupOOB() {
+        if(invulnerabilityPowerup.position.x < -490) {
+            invulnerabilityPowerup.removeFromParent()
+        }
+    }
+    
+    @objc func checkInvulnerabilityPowerupHealth() {
+        if(invulnerabilityPowerupHealth == 0) {
+            invulnerabilityPowerup.removeFromParent()
+            //----------------------
+            //and give the character invulnerability from boss's bullets
+            //----------------------
+            invulnerabilityPowerupOn = true
+        }
     }
     
     @objc func checkForBulletOOB() {
