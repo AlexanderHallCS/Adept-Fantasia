@@ -38,6 +38,9 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     var charBullets :[SKSpriteNode] = [SKSpriteNode]()
     var charBulletTexture = SKTexture(imageNamed: "Bullet1.png")
     
+    var bossBullets :[SKSpriteNode] = [SKSpriteNode]()
+    var bossBulletTexture = SKTexture(imageNamed: "Bullet2.png")
+    
     var firstHourGlassHalf = true
     var bossHealthPercentage: Float = 0.0
     var bossHealth = 10000
@@ -46,6 +49,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     let bossHealthLabel = SKLabelNode()
     
     var invulnerabilityPowerupHealth = 20
+    var characterHealth = 20
     
     let motionManager: CMMotionManager = CMMotionManager()
     
@@ -77,9 +81,16 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         addChild(bossHealthBar)
         
         character = SKSpriteNode(texture: characterTexture)
-        character.name = "player"
+        character.name = "character"
         character.position = CGPoint(x: 0, y: self.size.height/2 * -1 + self.size.height/14)
         character.zPosition = 1
+        character.physicsBody = SKPhysicsBody(texture: characterTexture, size: characterTexture.size())
+        character.physicsBody!.isDynamic = true
+        character.physicsBody!.usesPreciseCollisionDetection = true
+        character.physicsBody!.affectedByGravity = false
+        character.physicsBody!.categoryBitMask = ColliderType.characterCategory.rawValue
+        character.physicsBody!.collisionBitMask = 0
+        character.physicsBody!.contactTestBitMask = ColliderType.bossBulletCategory.rawValue
         addChild(character)
         
         boss = SKSpriteNode(texture: bossTexture)
@@ -127,6 +138,9 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         checkInvulnerabilityHealth.fire()
         }
         
+        let bossLinearAttack = Timer.scheduledTimer(timeInterval: 0.3, target: self, selector: #selector(bossLinearAttackFire), userInfo: nil, repeats: true)
+        bossLinearAttack.fire()
+        
         createPlayBackground()
         
         if motionManager.isAccelerometerAvailable == true {
@@ -147,33 +161,21 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
             }
         }
         
-        character.physicsBody = SKPhysicsBody(texture: characterTexture, size: characterTexture.size())
-        character.physicsBody!.usesPreciseCollisionDetection = true
-        character.physicsBody!.affectedByGravity = false
-        character.physicsBody!.categoryBitMask = ColliderType.characterCategory.rawValue
-        character.physicsBody!.collisionBitMask = 0
-        character.physicsBody!.contactTestBitMask = ColliderType.bossBulletCategory.rawValue
-        /*character.physicsBody? = SKPhysicsBody(edgeLoopFrom: CGRect(x: 0, y: 0, width: self.size.width - 50, height: self.size.height)) */
-        //self.physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
-        
-        //can't instatiate this timer and the other one at the same time because they conflict
-        /*let bossLinetimer = Timer.scheduledTimer(timeInterval: 0.007, target: self, selector: #selector(moveBossInALine), userInfo: nil, repeats: true) */
-        //bossLinetimer.fire()
         let bossLinearPath = UIBezierPath()
-        bossLinearPath.move(to: CGPoint(x: 0, y: 0))
-        bossLinearPath.addLine(to: CGPoint(x: 310, y:0))
-        bossLinearPath.addLine(to: CGPoint(x: -280, y:0))
-        bossLinearPath.addLine(to: CGPoint(x: 0, y: 0))
+        bossLinearPath.move(to: CGPoint(x: 0, y: self.size.height/4))
+        bossLinearPath.addLine(to: CGPoint(x: 310, y: self.size.height/4))
+        bossLinearPath.addLine(to: CGPoint(x: -280, y: self.size.height/4))
+        bossLinearPath.addLine(to: CGPoint(x: 0, y: self.size.height/4))
         let bossLinearMove = SKAction.follow(bossLinearPath.cgPath, asOffset: false, orientToPath: false, speed: 150)
-        boss.run(SKAction.repeat(bossLinearMove, count: 3))
+        //boss.run(SKAction.repeat(bossLinearMove, count: 3))
         
         let bossHourglassPath = UIBezierPath()
-        bossHourglassPath.move(to: CGPoint(x: -220, y: 0))
-        bossHourglassPath.addLine(to: CGPoint(x: -220, y: 0))
+        bossHourglassPath.move(to: CGPoint(x: -220, y: self.size.height/4 - 100))
+        bossHourglassPath.addLine(to: CGPoint(x: -220, y: self.size.height/4 - 100))
         bossHourglassPath.addLine(to: CGPoint(x: -220, y: 400))
-        bossHourglassPath.addLine(to: CGPoint(x: 300, y: 0))
+        bossHourglassPath.addLine(to: CGPoint(x: 300, y: self.size.height/4 - 100))
         bossHourglassPath.addLine(to: CGPoint(x: 300, y: 400))
-        bossHourglassPath.addLine(to: CGPoint(x:-220 , y: 0))
+        bossHourglassPath.addLine(to: CGPoint(x:-220 , y: self.size.height/4 - 100))
         
         let bossHourglassMove = SKAction.follow(bossHourglassPath.cgPath, asOffset: false, orientToPath: false, speed: 150)
         //boss.run(SKAction.repeat(bossHourglassMove, count: 3))
@@ -203,14 +205,29 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
                 charBullets[i].removeFromParent()
             }
         }
+        
+        for i in 0..<bossBullets.count {
+            if(bossBullets[i].position.y < -700) {
+                bossBullets[i].removeFromParent()
+            }
+        }
+        
     }
     
     func didBegin(_ contact: SKPhysicsContact) {
+        //print("contact!")
         if(charBullets.count > 0) {
+            //collision between boss and charbullets
             var firstBody = SKPhysicsBody()
             var secondBody = SKPhysicsBody()
+            
+            //collision between invulnerability powerup and charbullets
             var thirdBody = SKPhysicsBody()
             var fourthBody = SKPhysicsBody()
+            
+            //collision between character and bossbullets
+            var fifthBody = SKPhysicsBody()
+            var sixthBody = SKPhysicsBody()
             
             if(contact.bodyA.node?.name == "bullet") {
                 firstBody = contact.bodyA
@@ -244,21 +261,24 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
                 }
             }
             
-        }
-    }
-    
-    @objc func moveBossInALine() {
-        if(boss.position.x < 310 && negBossAccel == false) {
-            boss.position.x = boss.position.x + 1
-            if(boss.position.x == 309) {
-                negBossAccel = true
+            if(contact.bodyB.node?.name == "character") {
+                print("test1")
+                fifthBody = contact.bodyA
+                sixthBody = contact.bodyB
+            } else {
+                print("test2")
+                fifthBody = contact.bodyB
+                sixthBody = contact.bodyA
             }
-        }
-        if(boss.position.x < 310 && negBossAccel == true){
-            boss.position.x = boss.position.x-1
-            if(boss.position.x < -280) {
-                negBossAccel = false
+            
+            for i in 0..<bossBullets.count {
+                if(fifthBody.node == bossBullets[i] && sixthBody.node?.name == "character") {
+                    bossBullets[i].removeFromParent()
+                    characterHealth = characterHealth - 1
+                    print("collision hit character!")
+                }
             }
+            
         }
     }
     
@@ -286,6 +306,23 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
             print("(\(x),\(y))")
         } */
         
+    }
+    
+    @objc func bossLinearAttackFire() {
+        let bossBullet = SKSpriteNode(texture: bossBulletTexture)
+        bossBullet.name = "bossbullet"
+        bossBullet.physicsBody = SKPhysicsBody(texture: bossBulletTexture, size: bossBulletTexture.size())
+        bossBullet.zPosition = 1
+        bossBullet.physicsBody!.isDynamic = true
+        bossBullet.physicsBody!.usesPreciseCollisionDetection = true
+        bossBullet.physicsBody!.affectedByGravity = false
+        bossBullet.physicsBody!.velocity = CGVector.init(dx: 0, dy: -400)
+        bossBullet.physicsBody!.categoryBitMask = ColliderType.bossBulletCategory.rawValue
+        bossBullet.physicsBody!.collisionBitMask = 0
+        bossBullet.physicsBody!.contactTestBitMask = ColliderType.characterCategory.rawValue
+        bossBullet.position = CGPoint(x: boss.position.x, y: boss.position.y - 100)
+        addChild(bossBullet)
+        bossBullets.append(bossBullet)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
