@@ -247,6 +247,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
             let context = appDelegate.persistentContainer.viewContext
             let entity = NSEntityDescription.entity(forEntityName: "Character", in: context)
             let newUser = NSManagedObject(entity: entity!, insertInto: context)
+            //CHECK TO SEE IF THIS IS ADDING TO THE KEY
             newUser.setValue(bulletsDodgedThisGame, forKey: "totalBulletsDodged")
             
         }
@@ -274,6 +275,11 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
             }
         }
         
+    }
+    
+    func spiralAttack() {
+        /*make the bullets come out frmo the left, right, top, bottom, topright, topleft, bottomleft, bottomright
+        of the boss */
     }
     
     func didBegin(_ contact: SKPhysicsContact) {
