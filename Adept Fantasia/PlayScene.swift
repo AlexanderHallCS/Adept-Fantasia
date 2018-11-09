@@ -16,11 +16,14 @@ enum ColliderType:UInt32 {
     case invulnerabilityCategory = 0b100
     case characterCategory = 0b1000
     case bossBulletCategory = 0b10000
+    case clearBulletCategory = 0b100000
 }
 
 class PlayScene: SKScene, SKPhysicsContactDelegate {
     
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
+    var clearBulletTexture = SKTexture(imageNamed: "ClearBulletsPowerup")
     var invulnerabilityTexture = SKTexture(imageNamed: "InvulnerabilityPowerup")
     var characterTexture = SKTexture(imageNamed: "CharacterImage")
     var bossTexture = SKTexture(imageNamed: "BossImage")
@@ -29,6 +32,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     var boss = SKSpriteNode()
     var bossHealthBar = SKSpriteNode()
     var invulnerabilityPowerup = SKSpriteNode()
+    var clearBulletsPowerup = SKSpriteNode()
     
     var invulnerabilityPowerupOn = false
     
@@ -50,6 +54,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     
     var invulnerabilityPowerupHealth = 20
     var characterHealth = 20
+    var clearBulletsHealth = 20
     
     let motionManager: CMMotionManager = CMMotionManager()
     
@@ -59,7 +64,6 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     
     override init(size:CGSize) {
         super.init(size: size)
-        
     }
     
     override func didMove(to view: SKView) {
@@ -121,6 +125,20 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         invulnerabilityPowerup.physicsBody!.contactTestBitMask = ColliderType.bulletCategory.rawValue
         addChild(invulnerabilityPowerup)
         
+        clearBulletsPowerup = SKSpriteNode(texture: clearBulletTexture)
+        clearBulletsPowerup.name = "clearbullets"
+        clearBulletsPowerup.physicsBody = SKPhysicsBody(texture: clearBulletTexture, size: clearBulletsPowerup.size)
+        clearBulletsPowerup.physicsBody!.usesPreciseCollisionDetection = true
+        clearBulletsPowerup.physicsBody!.isDynamic = true
+        clearBulletsPowerup.physicsBody!.affectedByGravity = false
+        clearBulletsPowerup.size = CGSize(width: 250, height:250)
+        clearBulletsPowerup.position = CGPoint(x: character.position.x - 600, y: character.position.y + 350)
+        clearBulletsPowerup.zPosition = 1
+        clearBulletsPowerup.physicsBody!.categoryBitMask = ColliderType.clearBulletCategory.rawValue
+        clearBulletsPowerup.physicsBody!.collisionBitMask = 0
+        clearBulletsPowerup.physicsBody!.contactTestBitMask = ColliderType.bulletCategory.rawValue
+        addChild(clearBulletsPowerup)
+        
         let checkBulletOOB = Timer.scheduledTimer(timeInterval: 0.007, target: self, selector: #selector(checkForBulletOOB), userInfo: nil, repeats: true)
         checkBulletOOB.fire()
         
@@ -133,13 +151,29 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         let checkInvulnerabilityOOB = Timer.scheduledTimer(timeInterval: 0.007, target: self, selector: #selector(checkInvulnerabilityPowerupOOB), userInfo: nil, repeats: true)
         checkInvulnerabilityOOB.fire()
         
-        let checkInvulnerabilityHealth = Timer.scheduledTimer(timeInterval: 0.007, target: self, selector: #selector(checkInvulnerabilityPowerupHealth), userInfo: nil, repeats: true)
+        let checkInvulnerabilityHealth = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(checkInvulnerabilityPowerupHealth), userInfo: nil, repeats: true)
         if(!intersects(invulnerabilityPowerup)) {
         checkInvulnerabilityHealth.fire()
         }
         
+        let clearBulletsPath = UIBezierPath()
+        clearBulletsPath.move(to: CGPoint(x: character.position.x - 600, y: character.position.y + 350))
+        clearBulletsPath.addLine(to: CGPoint(x: 600, y: 420))
+        let clearBulletsMove = SKAction.follow(clearBulletsPath.cgPath, asOffset: false, orientToPath: false, speed: 90)
+        clearBulletsPowerup.run(clearBulletsMove)
+        
+        let checkClearBulletsOOB = Timer.scheduledTimer(timeInterval: 0.007, target: self, selector: #selector(checkClearBulletsPowerupOOB), userInfo: nil, repeats: true)
+        checkClearBulletsOOB.fire()
+        
+        let checkClearBulletsHealth = Timer.scheduledTimer(timeInterval: 0.007, target: self, selector: #selector(checkClearBulletsPowerupHealth), userInfo: nil, repeats: true)
+        if(!intersects(clearBulletsPowerup)) {
+            checkClearBulletsHealth.fire()
+        } /*else {
+            checkClearBulletsHealth.invalidate()
+        } */
+        
+        //fire at the completion of the hourglass path
         let bossLinearAttack = Timer.scheduledTimer(timeInterval: 0.3, target: self, selector: #selector(bossLinearAttackFire), userInfo: nil, repeats: true)
-        bossLinearAttack.fire()
         
         createPlayBackground()
         
@@ -156,18 +190,9 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
                     self.charLocX = currentX + CGFloat((data?.acceleration.x)! * 100)
                     }
                 }
-                //accelerating too fast causes the character to fuse with the screen boundaries --> set a min/max x better
                 self.character.physicsBody?.velocity = CGVector(dx: (data?.acceleration.x)! * 9.0, dy: 0)
             }
         }
-        
-        let bossLinearPath = UIBezierPath()
-        bossLinearPath.move(to: CGPoint(x: 0, y: self.size.height/4))
-        bossLinearPath.addLine(to: CGPoint(x: 310, y: self.size.height/4))
-        bossLinearPath.addLine(to: CGPoint(x: -280, y: self.size.height/4))
-        bossLinearPath.addLine(to: CGPoint(x: 0, y: self.size.height/4))
-        let bossLinearMove = SKAction.follow(bossLinearPath.cgPath, asOffset: false, orientToPath: false, speed: 150)
-        //boss.run(SKAction.repeat(bossLinearMove, count: 3))
         
         let bossHourglassPath = UIBezierPath()
         bossHourglassPath.move(to: CGPoint(x: -220, y: self.size.height/4 - 100))
@@ -178,9 +203,21 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         bossHourglassPath.addLine(to: CGPoint(x:-220 , y: self.size.height/4 - 100))
         
         let bossHourglassMove = SKAction.follow(bossHourglassPath.cgPath, asOffset: false, orientToPath: false, speed: 150)
-        //boss.run(SKAction.repeat(bossHourglassMove, count: 3))
         
-       // spiralBulletAttack()
+        let bossLinearPath = UIBezierPath()
+        bossLinearPath.move(to: CGPoint(x: 0, y: self.size.height/4))
+        bossLinearPath.addLine(to: CGPoint(x: 310, y: self.size.height/4))
+        bossLinearPath.addLine(to: CGPoint(x: -280, y: self.size.height/4))
+        bossLinearPath.addLine(to: CGPoint(x: 0, y: self.size.height/4))
+        let bossLinearMove = SKAction.follow(bossLinearPath.cgPath, asOffset: false, orientToPath: false, speed: 150)
+        boss.run(SKAction.repeat(bossLinearMove, count: 2),
+                 completion: {
+                    self.boss.run(SKAction.repeat(bossHourglassMove, count: 3),
+                        completion: {
+                          //  bossLinearAttack.fire()
+                            print("completed!")
+                    })
+                })
     }
     
     @objc func checkInvulnerabilityPowerupOOB() {
@@ -196,6 +233,21 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
             //and give the character invulnerability from boss's bullets
             //----------------------
             invulnerabilityPowerupOn = true
+        }
+    }
+    
+    @objc func checkClearBulletsPowerupOOB() {
+        if(invulnerabilityPowerup.position.x < -490) {
+            invulnerabilityPowerup.removeFromParent()
+        }
+    }
+    
+    @objc func checkClearBulletsPowerupHealth() {
+        if(clearBulletsHealth == 0) {
+            clearBulletsPowerup.removeFromParent()
+            for i in bossBullets {
+                i.removeFromParent()
+            }
         }
     }
     
@@ -228,6 +280,10 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
             //collision between character and bossbullets
             var fifthBody = SKPhysicsBody()
             var sixthBody = SKPhysicsBody()
+            
+            //collision between clearbulletspowerup and charbullets
+            var seventhBody = SKPhysicsBody()
+            var eightBody = SKPhysicsBody()
             
             if(contact.bodyA.node?.name == "bullet") {
                 firstBody = contact.bodyA
@@ -262,11 +318,9 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
             }
             
             if(contact.bodyB.node?.name == "character") {
-                print("test1")
                 fifthBody = contact.bodyA
                 sixthBody = contact.bodyB
             } else {
-                print("test2")
                 fifthBody = contact.bodyB
                 sixthBody = contact.bodyA
             }
@@ -275,37 +329,28 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
                 if(fifthBody.node == bossBullets[i] && sixthBody.node?.name == "character") {
                     bossBullets[i].removeFromParent()
                     characterHealth = characterHealth - 1
-                    print("collision hit character!")
+                   // print("collision hit character!")
+                }
+            }
+            
+            if(contact.bodyA.categoryBitMask == ColliderType.clearBulletCategory.rawValue) {
+                print("test1")
+                seventhBody = contact.bodyA
+                eightBody = contact.bodyB
+            } else if (contact.bodyB.categoryBitMask == ColliderType.clearBulletCategory.rawValue){
+                print("test2")
+                seventhBody = contact.bodyB
+                eightBody = contact.bodyA
+            }
+            
+            for i in 0..<charBullets.count {
+                if(eightBody.node == charBullets[i] && seventhBody.node?.name == "clearbullets") {
+                    charBullets[i].removeFromParent()
+                    clearBulletsHealth = clearBulletsHealth - 1
                 }
             }
             
         }
-    }
-    
-    /*func sin(degrees: Double) -> Double {
-        return __sinpi(degrees/180.0)
-    } */
-    
-    func spiralBulletAttack() {
-        //decrease bosshealthbar with unfilledbosshealthbar
-        //make the game end when the boss's health is 0
-        //change the music to start when the app is opened and end when the game is over
-        
-        /*var x:CGFloat = 1
-        var y:CGFloat = 1
-        var a = 2
-        
-        var iterator:CGFloat = 0.0
-        
-        var arctan = atan(y/x)
-        
-        for i in 0...360 {
-            x = pow((pow(2, 2)*pow((arctan - iterator),2) - pow(y,2)),0.5)
-            y = pow((pow(2, 2)*pow((arctan - iterator),2) - pow(x,2)),0.5)
-            iterator = iterator + 1
-            print("(\(x),\(y))")
-        } */
-        
     }
     
     @objc func bossLinearAttackFire() {
