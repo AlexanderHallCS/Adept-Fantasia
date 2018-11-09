@@ -47,7 +47,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     
     var firstHourGlassHalf = true
     var bossHealthPercentage: Float = 0.0
-    var bossHealth = 10000
+    var bossHealth = 200
     var unfilledBossHealthBarTexture = SKTexture(imageNamed: "UnfilledBossHealthBar.png")
     var filledBossHealthBarTexture = SKTexture(imageNamed: "FilledBossHealthBar.png")
     let bossHealthLabel = SKLabelNode()
@@ -151,7 +151,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         let checkInvulnerabilityOOB = Timer.scheduledTimer(timeInterval: 0.007, target: self, selector: #selector(checkInvulnerabilityPowerupOOB), userInfo: nil, repeats: true)
         checkInvulnerabilityOOB.fire()
         
-        let checkInvulnerabilityHealth = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(checkInvulnerabilityPowerupHealth), userInfo: nil, repeats: true)
+        let checkInvulnerabilityHealth = Timer.scheduledTimer(timeInterval: 0.007, target: self, selector: #selector(checkInvulnerabilityPowerupHealth), userInfo: nil, repeats: true)
         if(!intersects(invulnerabilityPowerup)) {
         checkInvulnerabilityHealth.fire()
         }
@@ -229,9 +229,6 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     @objc func checkInvulnerabilityPowerupHealth() {
         if(invulnerabilityPowerupHealth == 0) {
             invulnerabilityPowerup.removeFromParent()
-            //----------------------
-            //and give the character invulnerability from boss's bullets
-            //----------------------
             invulnerabilityPowerupOn = true
         }
     }
@@ -325,11 +322,13 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
                 sixthBody = contact.bodyA
             }
             
+            if(invulnerabilityPowerupOn == false) {
             for i in 0..<bossBullets.count {
                 if(fifthBody.node == bossBullets[i] && sixthBody.node?.name == "character") {
                     bossBullets[i].removeFromParent()
                     characterHealth = characterHealth - 1
                    // print("collision hit character!")
+                    }
                 }
             }
             
