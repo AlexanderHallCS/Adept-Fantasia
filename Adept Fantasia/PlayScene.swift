@@ -9,6 +9,7 @@
 import SpriteKit
 import GameplayKit
 import CoreMotion
+import CoreData
 
 enum ColliderType:UInt32 {
     case bulletCategory = 0b01
@@ -56,6 +57,8 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     var characterHealth = 20
     var clearBulletsHealth = 20
     
+    var bulletsDodgedThisGame = 0
+    
     let motionManager: CMMotionManager = CMMotionManager()
     
     required init?(coder aDecoder: NSCoder) {
@@ -67,6 +70,8 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func didMove(to view: SKView) {
+        
+        bulletsDodgedThisGame = 0
         
         physicsWorld.contactDelegate = self
         
@@ -148,6 +153,8 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         let invulnerabilityMove = SKAction.follow(invulnerabilityPath.cgPath, asOffset: false, orientToPath: false, speed: 90)
         invulnerabilityPowerup.run(invulnerabilityMove)
         
+        
+        //don't use timers because they don't stop and can't restart
         let checkInvulnerabilityOOB = Timer.scheduledTimer(timeInterval: 0.007, target: self, selector: #selector(checkInvulnerabilityPowerupOOB), userInfo: nil, repeats: true)
         checkInvulnerabilityOOB.fire()
         
@@ -236,6 +243,12 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     @objc func checkClearBulletsPowerupOOB() {
         if(invulnerabilityPowerup.position.x < -490) {
             invulnerabilityPowerup.removeFromParent()
+            bulletsDodgedThisGame = bulletsDodgedThisGame + 1
+            let context = appDelegate.persistentContainer.viewContext
+            let entity = NSEntityDescription.entity(forEntityName: "Character", in: context)
+            let newUser = NSManagedObject(entity: entity!, insertInto: context)
+            newUser.setValue(bulletsDodgedThisGame, forKey: "totalBulletsDodged")
+            
         }
     }
     

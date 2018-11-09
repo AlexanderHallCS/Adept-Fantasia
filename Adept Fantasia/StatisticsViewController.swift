@@ -9,8 +9,11 @@
 import UIKit
 import SpriteKit
 import GameplayKit
+import CoreData
 
 class StatisticsViewController: UIViewController {
+    
+    @IBOutlet weak var totalBulletsDodged: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +36,24 @@ class StatisticsViewController: UIViewController {
             
             view.showsFPS = true
             view.showsNodeCount = true
+            
+            
+            do {
+                let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                let context = appDelegate.persistentContainer.viewContext
+                let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Character")
+                request.returnsObjectsAsFaults = false
+                let result = try context.fetch(request)
+                for data in result as! [NSManagedObject] {
+                    totalBulletsDodged.textColor = UIColor.green
+                    totalBulletsDodged.text = "Total Bullets Dodged: \(data.value(forKey: "totalBulletsDodged") as! String)"
+                    print(data.value(forKey: "totalBulletsDodged") as! String)
+                    print("OK")
+                }
+            } catch {
+                print("Failed")
+            }
+            
         }
     }
     
