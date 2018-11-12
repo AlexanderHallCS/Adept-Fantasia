@@ -34,10 +34,6 @@ class StatisticsViewController: UIViewController {
             
             view.ignoresSiblingOrder = true
             
-            view.showsFPS = true
-            view.showsNodeCount = true
-            
-            
             do {
                 let appDelegate = UIApplication.shared.delegate as! AppDelegate
                 let context = appDelegate.persistentContainer.viewContext
@@ -45,10 +41,10 @@ class StatisticsViewController: UIViewController {
                 request.returnsObjectsAsFaults = false
                 let result = try context.fetch(request)
                 for data in result as! [NSManagedObject] {
-                    totalBulletsDodged.textColor = UIColor.green
-                    totalBulletsDodged.text = "Total Bullets Dodged: \(data.value(forKey: "totalBulletsDodged") as! String)"
-                    print(data.value(forKey: "totalBulletsDodged") as! String)
-                    print("OK")
+                    totalBulletsDodged.textColor = UIColor.cyan
+                    totalBulletsDodged.text = "Total Bullets Dodged: \(data.value(forKey: "totalBulletsDodged"))"
+                    print(data.value(forKey: "totalBulletsDodged"))
+                   // print("OK")
                 }
             } catch {
                 print("Failed")
@@ -58,9 +54,9 @@ class StatisticsViewController: UIViewController {
     }
     
     @IBAction func goToHomeView(_ sender: Any) {
-        //self.performSegue(withIdentifier: "SegueToHomeView", sender: nil)
-        self.navigationController?.popViewController(animated: true)
-        self.dismiss(animated: true, completion: nil)
+        self.performSegue(withIdentifier: "SegueToHomeView", sender: nil)
+        //self.navigationController?.popViewController(animated: true)
+        //self.dismiss(animated: true, completion: nil)
     }
     
     override var shouldAutorotate: Bool {

@@ -252,6 +252,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
+    //this is called way too often which causes the core data to add more bullets dodged than necessesary
     @objc func checkClearBulletsPowerupOOB() {
         if(invulnerabilityPowerup.position.x < -490) {
             invulnerabilityPowerup.removeFromParent()
@@ -259,7 +260,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
             let context = appDelegate.persistentContainer.viewContext
             let entity = NSEntityDescription.entity(forEntityName: "Character", in: context)
             let newUser = NSManagedObject(entity: entity!, insertInto: context)
-            //CHECK TO SEE IF THIS IS ADDING TO THE KEY
+           
             newUser.setValue(bulletsDodgedThisGame, forKey: "totalBulletsDodged")
             
         }
