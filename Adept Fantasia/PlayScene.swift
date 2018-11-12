@@ -179,9 +179,6 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
             checkClearBulletsHealth.invalidate()
         } */
         
-        //fire at the completion of the hourglass path
-        let bossLinearAttack = Timer.scheduledTimer(timeInterval: 0.3, target: self, selector: #selector(bossLinearAttackFire), userInfo: nil, repeats: true)
-        
         createPlayBackground()
         
         if motionManager.isAccelerometerAvailable == true {
@@ -202,12 +199,12 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         }
         
         let bossHourglassPath = UIBezierPath()
-        bossHourglassPath.move(to: CGPoint(x: -220, y: self.size.height/4 - 100))
+        bossHourglassPath.move(to: CGPoint(x: 0, y: self.size.height/4))
         bossHourglassPath.addLine(to: CGPoint(x: -220, y: self.size.height/4 - 100))
         bossHourglassPath.addLine(to: CGPoint(x: -220, y: 400))
         bossHourglassPath.addLine(to: CGPoint(x: 300, y: self.size.height/4 - 100))
         bossHourglassPath.addLine(to: CGPoint(x: 300, y: 400))
-        bossHourglassPath.addLine(to: CGPoint(x:-220 , y: self.size.height/4 - 100))
+        bossHourglassPath.addLine(to: CGPoint(x:0 , y: self.size.height/4))
         
         let bossHourglassMove = SKAction.follow(bossHourglassPath.cgPath, asOffset: false, orientToPath: false, speed: 150)
         
@@ -217,14 +214,29 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         bossLinearPath.addLine(to: CGPoint(x: -280, y: self.size.height/4))
         bossLinearPath.addLine(to: CGPoint(x: 0, y: self.size.height/4))
         let bossLinearMove = SKAction.follow(bossLinearPath.cgPath, asOffset: false, orientToPath: false, speed: 150)
-        boss.run(SKAction.repeat(bossLinearMove, count: 2),
+        /*let linearAndHourglassSequence = SKAction.sequence([SKAction.repeat(bossLinearMove, count: 2), SKAction.repeat(bossHourglassMove, count: 3)])
+        boss.run(SKAction.repeatForever(linearAndHourglassSequence)) */
+        
+        /*boss.run(linearAndHourglassSequence,
+                 completion: {
+            let bossLinearAttack = Timer.scheduledTimer(timeInterval: 0.3, target: self, selector: #selector(self.bossLinearAttackFire), userInfo: nil, repeats: true)
+        }) */
+        
+        
+        
+        let bossLinearAttack = Timer.scheduledTimer(timeInterval: 0.3, target: self, selector: #selector(self.bossLinearAttackFire), userInfo: nil, repeats: true)
+        
+        //uncomment when done testing boss bullet collision
+        /*boss.run(SKAction.repeat(bossLinearMove, count: 2),
                  completion: {
                     self.boss.run(SKAction.repeat(bossHourglassMove, count: 3),
                         completion: {
+                            //fire at the completion of the hourglass path
+                            let bossLinearAttack = Timer.scheduledTimer(timeInterval: 0.3, target: self, selector: #selector(self.bossLinearAttackFire), userInfo: nil, repeats: true)
                           //  bossLinearAttack.fire()
                             print("completed!")
                     })
-                })
+                }) */
     }
     
     @objc func checkInvulnerabilityPowerupOOB() {
@@ -283,7 +295,6 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func didBegin(_ contact: SKPhysicsContact) {
-        //print("contact!")
         if(charBullets.count > 0) {
             //collision between boss and charbullets
             var firstBody = SKPhysicsBody()
@@ -293,20 +304,19 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
             var thirdBody = SKPhysicsBody()
             var fourthBody = SKPhysicsBody()
             
-            //collision between character and bossbullets
-            var fifthBody = SKPhysicsBody()
-            var sixthBody = SKPhysicsBody()
-            
             //collision between clearbulletspowerup and charbullets
             var seventhBody = SKPhysicsBody()
             var eightBody = SKPhysicsBody()
             
+            //CHANGE TO ELSE IF
             if(contact.bodyA.node?.name == "bullet") {
                 firstBody = contact.bodyA
                 secondBody = contact.bodyB
+                print("TEST4")
             } else {
                 firstBody = contact.bodyB
                 secondBody = contact.bodyA
+                print("TEST5")
             }
             
             for i in 0..<charBullets.count {
@@ -316,13 +326,15 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
                     bossHealthLabel.text = "Boss Health \(bossHealth)"
                 }
             }
-            
+            //CHANGE TO ELSE IF
             if(contact.bodyB.node?.name == "invulnerability") {
                 thirdBody = contact.bodyA
                 fourthBody = contact.bodyB
+                print("TEST6")
             } else {
                 thirdBody = contact.bodyB
                 fourthBody = contact.bodyA
+                print("TEST7")
             }
             
             for i in 0..<charBullets.count {
@@ -333,32 +345,14 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
                 }
             }
             
-            if(contact.bodyB.node?.name == "character") {
-                fifthBody = contact.bodyA
-                sixthBody = contact.bodyB
-            } else {
-                fifthBody = contact.bodyB
-                sixthBody = contact.bodyA
-            }
-            
-            if(invulnerabilityPowerupOn == false) {
-            for i in 0..<bossBullets.count {
-                if(fifthBody.node == bossBullets[i] && sixthBody.node?.name == "character") {
-                    bossBullets[i].removeFromParent()
-                    characterHealth = characterHealth - 1
-                   // print("collision hit character!")
-                    }
-                }
-            }
-            
             if(contact.bodyA.categoryBitMask == ColliderType.clearBulletCategory.rawValue) {
-                print("test1")
                 seventhBody = contact.bodyA
                 eightBody = contact.bodyB
+                print("TEST9")
             } else if (contact.bodyB.categoryBitMask == ColliderType.clearBulletCategory.rawValue){
-                print("test2")
                 seventhBody = contact.bodyB
                 eightBody = contact.bodyA
+                print("TEST10")
             }
             
             for i in 0..<charBullets.count {
@@ -367,7 +361,29 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
                     clearBulletsHealth = clearBulletsHealth - 1
                 }
             }
+        }
+        if(bossBullets.count > 0) {
             
+            //collision between character and bossbullets
+            var fifthBody = SKPhysicsBody()
+            var sixthBody = SKPhysicsBody()
+            
+            if(contact.bodyA.categoryBitMask == ColliderType.bossBulletCategory.rawValue) {
+                fifthBody = contact.bodyA
+                sixthBody = contact.bodyB
+            } else if(contact.bodyB.categoryBitMask == ColliderType.bossBulletCategory.rawValue){
+                fifthBody = contact.bodyB
+                sixthBody = contact.bodyA
+            }
+            
+            if(invulnerabilityPowerupOn == false) {
+                for i in 0..<bossBullets.count {
+                    if(fifthBody.node == bossBullets[i] && sixthBody.node?.name == "character") {
+                        bossBullets[i].removeFromParent()
+                        characterHealth = characterHealth - 1
+                    }
+                }
+            }
         }
     }
     
