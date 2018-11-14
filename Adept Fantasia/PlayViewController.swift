@@ -59,20 +59,6 @@ class PlayViewController: UIViewController {
             view.showsNodeCount = true
         }
     }
-
-    //add some functionality to this and call it somewhere
-    /*func onEndOfGame() {
-        let context = appDelegate.persistentContainer.viewContext
-        let entity = NSEntityDescription.entity(forEntityName: "Users", in: context)
-        let newUser = NSManagedObject(entity: entity!, insertInto: context)
-        newUser.setValue("Test", forKey: "coreDataTest")
-        do {
-            try context.save()
-        } catch {
-            print("Failed saving")
-        }
-        self.performSegue(withIdentifier: "SegueFromPlayViewToEndView", sender: nil)
-    } */
     
     @IBAction func SegueToEndViewController(_ sender: Any) {
         self.performSegue(withIdentifier: "SegueFromPlayViewToEndView", sender: nil)

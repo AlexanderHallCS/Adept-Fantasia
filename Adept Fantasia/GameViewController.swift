@@ -16,7 +16,7 @@ class GameViewController: UIViewController {
         super.viewDidLoad()
         
         if let view = self.view as! SKView? {
-            //NEED a GameScene.SKS file to run vvv!!!!
+            
             // Load the SKScene from 'GameScene.sks'
             if let scene = GameScene(fileNamed: "GameScene") {
                 
@@ -35,14 +35,11 @@ class GameViewController: UIViewController {
     }
     
     @IBAction func playButton(_ sender: Any) {
-        //self.dismiss(animated: true, completion: nil)
         self.performSegue(withIdentifier: "SegueToMainView", sender: nil)
-       // self.navigationController?.popViewController(animated: true)
     }
     
     @IBAction func goToStatisticsView(_ sender: Any) {
         self.performSegue(withIdentifier: "SegueToStatisticsView", sender: nil)
-        //self.navigationController?.popViewController(animated: true)
     }
     
     override var shouldAutorotate: Bool {

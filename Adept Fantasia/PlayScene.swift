@@ -71,6 +71,17 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     
     override func didMove(to view: SKView) {
         
+        let context = appDelegate.persistentContainer.viewContext
+        let entity = NSEntityDescription.entity(forEntityName: "Character", in: context)
+        let newUser = NSManagedObject(entity: entity!, insertInto: context)
+        //change the set value to add 1
+        newUser.setValue(0, forKey: "timesPlayed")
+        do {
+            try context.save()
+        } catch {
+            print("Failed saving")
+        }
+        
         bulletsDodgedThisGame = 0
         
         physicsWorld.contactDelegate = self
@@ -249,6 +260,9 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
                             print("completed!")
                     })
                 }) */
+        
+        //FIX THE CLEAR BULLETS AND INVULNERABILITY POWERUPS
+        let gameEndChecker = Timer.scheduledTimer(timeInterval: 0.07, target: self, selector: #selector(didEndGame(_:)), userInfo: nil, repeats: true)
     }
     
     @objc func checkInvulnerabilityPowerupOOB() {
@@ -256,6 +270,14 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
             invulnerabilityPowerup.removeFromParent()
         }
     }
+    
+    //recursive bossSnowflakeAttack <-- to be called in the didMove(to: view) with a parameter
+    /*
+     func bossSnowflakeAttack(i: Int){
+        while(i > 0) {
+            return bossSnowflakeAttack(i: i - 1)
+        }
+    } */
     
     @objc func checkInvulnerabilityPowerupHealth() {
         if(invulnerabilityPowerupHealth == 0) {
@@ -278,6 +300,39 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
+    //have to just call this when bossHealth == 0 or charHealth == 0 --> otherwise there are multiple segues called so it crashes when charHealth is 0
+    @objc func didEndGame(_ sender: Any) {
+        if(bossHealth == 0) {
+            let context = appDelegate.persistentContainer.viewContext
+            let entity = NSEntityDescription.entity(forEntityName: "Character", in: context)
+            let newUser = NSManagedObject(entity: entity!, insertInto: context)
+            //change the set value to add 1
+            newUser.setValue(0, forKey: "totalWins")
+            do {
+                try context.save()
+            } catch {
+                print("Failed saving")
+            }
+            self.view!.window!.rootViewController?.performSegue(withIdentifier: "SegueFromPlayViewToEndView", sender: nil)
+        } else if(characterHealth == 0) {
+            let context = appDelegate.persistentContainer.viewContext
+            let entity = NSEntityDescription.entity(forEntityName: "Character", in: context)
+            let newUser = NSManagedObject(entity: entity!, insertInto: context)
+            //change the set value to add one
+            newUser.setValue(0, forKey: "totalLosses")
+            do {
+                try context.save()
+            } catch {
+                print("Failed saving")
+            }
+            self.view!.window!.rootViewController?.performSegue(withIdentifier: "SegueFromPlayViewToEndView", sender: nil)
+        } 
+    }
+    
+    /*func sendAction(_ action: Selector, to target: Any?, for event: UIEvent?) {
+        
+    } */
+    
     @objc func checkClearBulletsPowerupHealth() {
         if(clearBulletsHealth == 0) {
             clearBulletsPowerup.removeFromParent()
@@ -298,13 +353,13 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
             if(bossBullets[i].position.y < -700) {
                 bossBullets[i].removeFromParent()
             }
+            if(bossBullets[i].position.x > 700) {
+                bossBullets[i].removeFromParent()
+            }
+            if(bossBullets[i].position.x < -400) {
+                bossBullets[i].removeFromParent()
+            }
         }
-        
-    }
-    
-    func spiralAttack() {
-        /*make the bullets come out frmo the left, right, top, bottom, topright, topleft, bottomleft, bottomright
-        of the boss */
     }
     
     func didBegin(_ contact: SKPhysicsContact) {

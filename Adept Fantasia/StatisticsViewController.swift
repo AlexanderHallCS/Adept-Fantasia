@@ -34,6 +34,7 @@ class StatisticsViewController: UIViewController {
             
             view.ignoresSiblingOrder = true
             
+            //displayed total bullets dodged
             do {
                 let appDelegate = UIApplication.shared.delegate as! AppDelegate
                 let context = appDelegate.persistentContainer.viewContext
@@ -43,8 +44,57 @@ class StatisticsViewController: UIViewController {
                 for data in result as! [NSManagedObject] {
                     totalBulletsDodged.textColor = UIColor.cyan
                     totalBulletsDodged.text = "Total Bullets Dodged: \(data.value(forKey: "totalBulletsDodged"))"
-                    print(data.value(forKey: "totalBulletsDodged"))
+                    //print(data.value(forKey: "totalBulletsDodged"))
                    // print("OK")
+                }
+            } catch {
+                print("Failed")
+            }
+            
+            //display times played
+            do {
+                let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                let context = appDelegate.persistentContainer.viewContext
+                let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Character")
+                request.returnsObjectsAsFaults = false
+                let result = try context.fetch(request)
+                for data in result as! [NSManagedObject] {
+                    totalBulletsDodged.textColor = UIColor.cyan
+                    totalBulletsDodged.text = "Times Played: \(data.value(forKey: "timesPlayed"))"
+                    //print(data.value(forKey: "timesPlayed"))
+                    // print("OK")
+                }
+            } catch {
+                print("Failed")
+            }
+            
+            //display total wins
+            do {
+                let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                let context = appDelegate.persistentContainer.viewContext
+                let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Character")
+                request.returnsObjectsAsFaults = false
+                let result = try context.fetch(request)
+                for data in result as! [NSManagedObject] {
+                    totalBulletsDodged.textColor = UIColor.cyan
+                    totalBulletsDodged.text = "Total Wins: \(data.value(forKey: "totalWins"))"
+                    // print("OK")
+                }
+            } catch {
+                print("Failed")
+            }
+            
+            //displayed total losses
+            do {
+                let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                let context = appDelegate.persistentContainer.viewContext
+                let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Character")
+                request.returnsObjectsAsFaults = false
+                let result = try context.fetch(request)
+                for data in result as! [NSManagedObject] {
+                    totalBulletsDodged.textColor = UIColor.cyan
+                    totalBulletsDodged.text = "Total Losses: \(data.value(forKey: "totalLosses"))"
+                    // print("OK")
                 }
             } catch {
                 print("Failed")
@@ -55,7 +105,6 @@ class StatisticsViewController: UIViewController {
     
     @IBAction func goToHomeView(_ sender: Any) {
         self.performSegue(withIdentifier: "SegueToHomeView", sender: nil)
-        //self.navigationController?.popViewController(animated: true)
         //self.dismiss(animated: true, completion: nil)
     }
     
