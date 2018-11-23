@@ -35,7 +35,7 @@ class StatisticsViewController: UIViewController {
             view.ignoresSiblingOrder = true
             
             //displayed total bullets dodged
-            do {
+           /* do {
                 let appDelegate = UIApplication.shared.delegate as! AppDelegate
                 let context = appDelegate.persistentContainer.viewContext
                 let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Character")
@@ -51,7 +51,7 @@ class StatisticsViewController: UIViewController {
                 print("Failed")
             }
             
-            //display times played
+            //display total bullets fired
             do {
                 let appDelegate = UIApplication.shared.delegate as! AppDelegate
                 let context = appDelegate.persistentContainer.viewContext
@@ -60,8 +60,8 @@ class StatisticsViewController: UIViewController {
                 let result = try context.fetch(request)
                 for data in result as! [NSManagedObject] {
                     totalBulletsDodged.textColor = UIColor.cyan
-                    totalBulletsDodged.text = "Times Played: \(data.value(forKey: "timesPlayed"))"
-                    //print(data.value(forKey: "timesPlayed"))
+                    totalBulletsDodged.text = "Bullets Fired: \(data.value(forKey: "totalBulletsFired"))"
+                    //print(data.value(forKey: "totalBulletsFired"))
                     // print("OK")
                 }
             } catch {
@@ -98,7 +98,7 @@ class StatisticsViewController: UIViewController {
                 }
             } catch {
                 print("Failed")
-            }
+            } */
             
         }
     }

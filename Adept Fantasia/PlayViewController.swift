@@ -16,11 +16,11 @@ var audioPlayer = AVAudioPlayer()
 
 class PlayViewController: UIViewController {
     
+    
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         //bossHealthBar.setProgress(0, animated: true)
         
         do {

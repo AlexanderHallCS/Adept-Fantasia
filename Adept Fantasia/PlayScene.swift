@@ -22,7 +22,7 @@ enum ColliderType:UInt32 {
 
 class PlayScene: SKScene, SKPhysicsContactDelegate {
     
-    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    //let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
     var clearBulletTexture = SKTexture(imageNamed: "ClearBulletsPowerup")
     var invulnerabilityTexture = SKTexture(imageNamed: "InvulnerabilityPowerup")
@@ -71,6 +71,8 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     
     override func didMove(to view: SKView) {
         
+        /*NotificationCenter.default.post(name: Notification.Name("bulletnotification"), object: nil)
+        
         let context = appDelegate.persistentContainer.viewContext
         let entity = NSEntityDescription.entity(forEntityName: "Character", in: context)
         let newUser = NSManagedObject(entity: entity!, insertInto: context)
@@ -80,7 +82,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
             try context.save()
         } catch {
             print("Failed saving")
-        }
+        } */
         
         bulletsDodgedThisGame = 0
         
@@ -155,8 +157,9 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         clearBulletsPowerup.physicsBody!.contactTestBitMask = ColliderType.bulletCategory.rawValue
         addChild(clearBulletsPowerup)
         
-        let checkBulletOOB = Timer.scheduledTimer(timeInterval: 0.007, target: self, selector: #selector(checkForBulletOOB), userInfo: nil, repeats: true)
-        checkBulletOOB.fire()
+        //CHECK BULLET OOB COMMENETED
+        /*let checkBulletOOB = Timer.scheduledTimer(timeInterval: 0.007, target: self, selector: #selector(checkForBulletOOB), userInfo: nil, repeats: true)
+       checkBulletOOB.fire() */
         
         let invulnerabilityPath = UIBezierPath()
         invulnerabilityPath.move(to: CGPoint(x: character.position.x + 500, y: character.position.y + 350))
@@ -245,9 +248,11 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         }) */
         
         
-        /*let bossLinearAttack = Timer.scheduledTimer(timeInterval: 0.3, target: self, selector: #selector(self.bossLinearAttackFire), userInfo: nil, repeats: true) */
+        let bossLinearAttack = Timer.scheduledTimer(timeInterval: 0.3, target: self, selector: #selector(self.bossLinearAttackFire), userInfo: nil, repeats: true)
         
-        let bossSnowflakeAttack = Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(bossSnowflakeAttackFire), userInfo: nil, repeats: true)
+        
+        //BOSS SNOWFLAKE ATTACK COMMENTED
+        /*let bossSnowflakeAttack = Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(bossSnowflakeAttackFire), userInfo: nil, repeats: true) */
         
         //uncomment when done testing boss bullet collision
         /*boss.run(SKAction.repeat(bossLinearMove, count: 2),
@@ -262,7 +267,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
                 }) */
         
         //FIX THE CLEAR BULLETS AND INVULNERABILITY POWERUPS
-        let gameEndChecker = Timer.scheduledTimer(timeInterval: 0.07, target: self, selector: #selector(didEndGame(_:)), userInfo: nil, repeats: true)
+        /*let gameEndChecker = Timer.scheduledTimer(timeInterval: 0.07, target: self, selector: #selector(didEndGame(_:)), userInfo: nil, repeats: true) */
     }
     
     @objc func checkInvulnerabilityPowerupOOB() {
@@ -271,6 +276,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
+    //make it recursive then call another recursive function
     //recursive bossSnowflakeAttack <-- to be called in the didMove(to: view) with a parameter
     /*
      func bossSnowflakeAttack(i: Int){
@@ -290,18 +296,16 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     @objc func checkClearBulletsPowerupOOB() {
         if(invulnerabilityPowerup.position.x < -490) {
             invulnerabilityPowerup.removeFromParent()
-            bulletsDodgedThisGame = bulletsDodgedThisGame + 1
-            let context = appDelegate.persistentContainer.viewContext
+            /*let context = appDelegate.persistentContainer.viewContext
             let entity = NSEntityDescription.entity(forEntityName: "Character", in: context)
             let newUser = NSManagedObject(entity: entity!, insertInto: context)
-           
-            newUser.setValue(bulletsDodgedThisGame, forKey: "totalBulletsDodged")
+            newUser.setValue(bulletsDodgedThisGame, forKey: "totalBulletsDodged") */
             
         }
     }
     
     //have to just call this when bossHealth == 0 or charHealth == 0 --> otherwise there are multiple segues called so it crashes when charHealth is 0
-    @objc func didEndGame(_ sender: Any) {
+    /*@objc func didEndGame(_ sender: Any) {
         if(bossHealth == 0) {
             let context = appDelegate.persistentContainer.viewContext
             let entity = NSEntityDescription.entity(forEntityName: "Character", in: context)
@@ -327,18 +331,18 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
             }
             self.view!.window!.rootViewController?.performSegue(withIdentifier: "SegueFromPlayViewToEndView", sender: nil)
         } 
-    }
-    
-    /*func sendAction(_ action: Selector, to target: Any?, for event: UIEvent?) {
-        
     } */
     
     @objc func checkClearBulletsPowerupHealth() {
         if(clearBulletsHealth == 0) {
             clearBulletsPowerup.removeFromParent()
+            //this is supposed to immediately remove all bullets from the scene(BUT JUST ONCE)
             for i in bossBullets {
                 i.removeFromParent()
+                //REMOVE THE SPOT IN THE ARRAY
+                //bossBullets.remove(at: i)
             }
+            //set clearbulletspoweruphealth to 20 again so that the if statement isn't always true <---------- important
         }
     }
     
@@ -346,18 +350,32 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         for i in 0..<charBullets.count {
             if(charBullets[i].position.y > self.size.height/4 + 320) {
                 charBullets[i].removeFromParent()
+                //REMOVE THE SPOT IN THE ARRAY
+                //charBullets.remove(at: i)
             }
         }
         
         for i in 0..<bossBullets.count {
             if(bossBullets[i].position.y < -700) {
                 bossBullets[i].removeFromParent()
+                //REMOVE THE SPOT IN THE ARRAY
+                //bossBullets.remove(at: i)
+                bulletsDodgedThisGame = bulletsDodgedThisGame + 1
+                print("Bullets Dodged This Game: \(bulletsDodgedThisGame)")
             }
             if(bossBullets[i].position.x > 700) {
                 bossBullets[i].removeFromParent()
+                //REMOVE THE SPOT IN THE ARRAY
+                //bossBullets.remove(at: i)
+                bulletsDodgedThisGame = bulletsDodgedThisGame + 1
+                print("Bullets Dodged This Game: \(bulletsDodgedThisGame)")
             }
             if(bossBullets[i].position.x < -400) {
                 bossBullets[i].removeFromParent()
+                //REMOVE THE SPOT IN THE ARRAY
+                //bossBullets.remove(at: i)
+                bulletsDodgedThisGame = bulletsDodgedThisGame + 1
+                print("Bullets Dodged This Game: \(bulletsDodgedThisGame)")
             }
         }
     }
@@ -387,6 +405,8 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
             for i in 0..<charBullets.count {
                 if(firstBody.node == charBullets[i] && secondBody.node?.name == "boss") {
                     charBullets[i].removeFromParent()
+                    //REMOVE THE SPOT IN THE ARRAY
+                    //charBullets.remove(at: i)
                     bossHealth -= 1
                     bossHealthLabel.text = "Boss Health \(bossHealth)"
                 }
@@ -403,6 +423,8 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
             for i in 0..<charBullets.count {
                 if(thirdBody.node == charBullets[i] && fourthBody.node?.name == "invulnerability") {
                     charBullets[i].removeFromParent()
+                    //REMOVE THE SPOT IN THE ARRAY
+                    //charBullets.remove(at: i)
                     invulnerabilityPowerupHealth -= 1
                     print("Invulnerability Powerup Health: \(invulnerabilityPowerupHealth)")
                 }
@@ -419,6 +441,8 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
             for i in 0..<charBullets.count {
                 if(eightBody.node == charBullets[i] && seventhBody.node?.name == "clearbullets") {
                     charBullets[i].removeFromParent()
+                    //REMOVE THE SPOT IN THE ARRAY
+                    //charBullets.remove(at: i)
                     clearBulletsHealth = clearBulletsHealth - 1
                 }
             }
@@ -441,6 +465,8 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
                 for i in 0..<bossBullets.count {
                     if(fifthBody.node == bossBullets[i] && sixthBody.node?.name == "character") {
                         bossBullets[i].removeFromParent()
+                        //REMOVE THE SPOT IN THE ARRAY
+                        //bossBullets.remove(at: i)
                         characterHealth = characterHealth - 1
                     }
                 }
@@ -595,8 +621,35 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         bossBullets.append(bossBullet8)
     }
     
+    /*@objc func checkForBulletOOB2(notification: Notification) {
+       // UIControlEvents.valueChanged
+        for i in 0..<charBullets.count {
+            if(charBullets[i].position.y > self.size.height/4 + 320) {
+                charBullets[i].removeFromParent()
+            }
+        }
+        
+        for i in 0..<bossBullets.count {
+            if(bossBullets[i].position.y < -700) {
+                bossBullets[i].removeFromParent()
+            }
+            if(bossBullets[i].position.x > 700) {
+                bossBullets[i].removeFromParent()
+            }
+            if(bossBullets[i].position.x < -400) {
+                bossBullets[i].removeFromParent()
+            }
+        }
+        
+    } */
+    
+    /*func sendAction(_ action: Selector, to target: Any?, for event: UIEvent?) {
+     
+     } */
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         let charBullet = SKSpriteNode(texture: charBulletTexture)
+        /*NotificationCenter.default.addObserver(self, selector: #selector(checkForBulletOOB2(notification:)), name: Notification.Name("bulletnotification"), object: charBullet) */
         charBullet.name = "bullet"
         charBullet.physicsBody = SKPhysicsBody(texture: charBulletTexture, size: charBulletTexture.size())
         charBullet.zPosition = 1
@@ -632,6 +685,58 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         let moveCharX = SKAction.moveTo(x: charLocX, duration: 0.08)
         self.character.run(moveCharX)
         goThroughSpace()
+        
+        /*for var i in 0..<bossBullets.count {
+            print("Array Size: \(bossBullets.count)")
+            print(i)
+            if(bossBullets[i].position.y < -700) {
+                print("Inner \(i)")
+                print("Test1")
+                bossBullets[i].removeFromParent()
+                bossBullets.remove(at: i)
+                //i = i - 1
+                //print(i)
+                bulletsDodgedThisGame = bulletsDodgedThisGame + 1
+                print("Bullets Dodged This Game: \(bulletsDodgedThisGame)")
+            }
+            //doesnt do i++
+        } */
+        
+        var iterator = 0
+        //out of bounds at the bottom
+        while(iterator < bossBullets.count) {
+            if(bossBullets[iterator].position.y < -700) {
+                bossBullets[iterator].removeFromParent()
+                bossBullets.remove(at: iterator)
+                iterator = iterator - 1
+                bulletsDodgedThisGame = bulletsDodgedThisGame + 1
+                //ADD CORE DATA SAVE
+            }
+            iterator = iterator + 1
+        }
+        //out of bounds at the right
+        while(iterator < bossBullets.count) {
+            if(bossBullets[iterator].position.x > 700) {
+                bossBullets[iterator].removeFromParent()
+                bossBullets.remove(at: iterator)
+                iterator = iterator - 1
+                bulletsDodgedThisGame = bulletsDodgedThisGame + 1
+                //ADD CORE DATA SAVE
+            }
+            iterator = iterator + 1
+        }
+        //out of bounds at the left
+        while(iterator < bossBullets.count) {
+            if(bossBullets[iterator].position.x < -400) {
+                bossBullets[iterator].removeFromParent()
+                bossBullets.remove(at: iterator)
+                iterator = iterator - 1
+                bulletsDodgedThisGame = bulletsDodgedThisGame + 1
+                //ADD CORE DATA SAVE
+            }
+            iterator = iterator + 1
+        }
+        
     }
 }
 
