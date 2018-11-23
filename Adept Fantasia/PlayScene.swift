@@ -276,15 +276,6 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
-    //make it recursive then call another recursive function
-    //recursive bossSnowflakeAttack <-- to be called in the didMove(to: view) with a parameter
-    /*
-     func bossSnowflakeAttack(i: Int){
-        while(i > 0) {
-            return bossSnowflakeAttack(i: i - 1)
-        }
-    } */
-    
     @objc func checkInvulnerabilityPowerupHealth() {
         if(invulnerabilityPowerupHealth == 0) {
             invulnerabilityPowerup.removeFromParent()
@@ -447,8 +438,8 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
                 }
             }
         }
+        
         if(bossBullets.count > 0) {
-            
             //collision between character and bossbullets
             var fifthBody = SKPhysicsBody()
             var sixthBody = SKPhysicsBody()
@@ -621,35 +612,8 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         bossBullets.append(bossBullet8)
     }
     
-    /*@objc func checkForBulletOOB2(notification: Notification) {
-       // UIControlEvents.valueChanged
-        for i in 0..<charBullets.count {
-            if(charBullets[i].position.y > self.size.height/4 + 320) {
-                charBullets[i].removeFromParent()
-            }
-        }
-        
-        for i in 0..<bossBullets.count {
-            if(bossBullets[i].position.y < -700) {
-                bossBullets[i].removeFromParent()
-            }
-            if(bossBullets[i].position.x > 700) {
-                bossBullets[i].removeFromParent()
-            }
-            if(bossBullets[i].position.x < -400) {
-                bossBullets[i].removeFromParent()
-            }
-        }
-        
-    } */
-    
-    /*func sendAction(_ action: Selector, to target: Any?, for event: UIEvent?) {
-     
-     } */
-    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         let charBullet = SKSpriteNode(texture: charBulletTexture)
-        /*NotificationCenter.default.addObserver(self, selector: #selector(checkForBulletOOB2(notification:)), name: Notification.Name("bulletnotification"), object: charBullet) */
         charBullet.name = "bullet"
         charBullet.physicsBody = SKPhysicsBody(texture: charBulletTexture, size: charBulletTexture.size())
         charBullet.zPosition = 1
@@ -686,22 +650,6 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         self.character.run(moveCharX)
         goThroughSpace()
         
-        /*for var i in 0..<bossBullets.count {
-            print("Array Size: \(bossBullets.count)")
-            print(i)
-            if(bossBullets[i].position.y < -700) {
-                print("Inner \(i)")
-                print("Test1")
-                bossBullets[i].removeFromParent()
-                bossBullets.remove(at: i)
-                //i = i - 1
-                //print(i)
-                bulletsDodgedThisGame = bulletsDodgedThisGame + 1
-                print("Bullets Dodged This Game: \(bulletsDodgedThisGame)")
-            }
-            //doesnt do i++
-        } */
-        
         var iterator = 0
         //out of bounds at the bottom
         while(iterator < bossBullets.count) {
@@ -715,26 +663,28 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
             iterator = iterator + 1
         }
         //out of bounds at the right
-        while(iterator < bossBullets.count) {
-            if(bossBullets[iterator].position.x > 700) {
-                bossBullets[iterator].removeFromParent()
-                bossBullets.remove(at: iterator)
-                iterator = iterator - 1
+        var iterator2 = 0
+        while(iterator2 < bossBullets.count) {
+            if(bossBullets[iterator2].position.x > 700) {
+                bossBullets[iterator2].removeFromParent()
+                bossBullets.remove(at: iterator2)
+                iterator2 = iterator2 - 1
                 bulletsDodgedThisGame = bulletsDodgedThisGame + 1
                 //ADD CORE DATA SAVE
             }
-            iterator = iterator + 1
+            iterator2 = iterator2 + 1
         }
         //out of bounds at the left
-        while(iterator < bossBullets.count) {
-            if(bossBullets[iterator].position.x < -400) {
-                bossBullets[iterator].removeFromParent()
-                bossBullets.remove(at: iterator)
-                iterator = iterator - 1
+        var iterator3 = 0
+        while(iterator3 < bossBullets.count) {
+            if(bossBullets[iterator3].position.x < -400) {
+                bossBullets[iterator3].removeFromParent()
+                bossBullets.remove(at: iterator3)
+                iterator3 = iterator3 - 1
                 bulletsDodgedThisGame = bulletsDodgedThisGame + 1
                 //ADD CORE DATA SAVE
             }
-            iterator = iterator + 1
+            iterator3 = iterator3 + 1
         }
         
     }
