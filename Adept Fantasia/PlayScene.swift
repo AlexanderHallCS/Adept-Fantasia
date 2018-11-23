@@ -393,14 +393,16 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
                 secondBody = contact.bodyA
             }
             
-            for i in 0..<charBullets.count {
-                if(firstBody.node == charBullets[i] && secondBody.node?.name == "boss") {
-                    charBullets[i].removeFromParent()
-                    //REMOVE THE SPOT IN THE ARRAY
-                    //charBullets.remove(at: i)
+            var bossAndCharBulletsIterator = 0
+            while(bossAndCharBulletsIterator < charBullets.count) {
+                if(firstBody.node == charBullets[bossAndCharBulletsIterator] && secondBody.node?.name == "boss") {
+                    charBullets[bossAndCharBulletsIterator].removeFromParent()
+                    charBullets.remove(at: bossAndCharBulletsIterator)
+                    bossAndCharBulletsIterator = bossAndCharBulletsIterator - 1
                     bossHealth -= 1
                     bossHealthLabel.text = "Boss Health \(bossHealth)"
                 }
+                bossAndCharBulletsIterator = bossAndCharBulletsIterator + 1
             }
             
             if(contact.bodyB.node?.name == "invulnerability") {
@@ -411,14 +413,15 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
                 fourthBody = contact.bodyA
             }
             
-            for i in 0..<charBullets.count {
-                if(thirdBody.node == charBullets[i] && fourthBody.node?.name == "invulnerability") {
-                    charBullets[i].removeFromParent()
-                    //REMOVE THE SPOT IN THE ARRAY
-                    //charBullets.remove(at: i)
+            var invulnerabilityAndCharBulletIterator = 0
+            while(invulnerabilityAndCharBulletIterator < charBullets.count) {
+                if(thirdBody.node == charBullets[invulnerabilityAndCharBulletIterator] && fourthBody.node?.name == "invulnerability") {
+                    charBullets[invulnerabilityAndCharBulletIterator].removeFromParent()
+                    charBullets.remove(at: invulnerabilityAndCharBulletIterator)
+                    invulnerabilityAndCharBulletIterator = invulnerabilityAndCharBulletIterator - 1
                     invulnerabilityPowerupHealth -= 1
-                    print("Invulnerability Powerup Health: \(invulnerabilityPowerupHealth)")
                 }
+                invulnerabilityAndCharBulletIterator = invulnerabilityAndCharBulletIterator + 1
             }
             
             if(contact.bodyA.categoryBitMask == ColliderType.clearBulletCategory.rawValue) {
@@ -429,13 +432,15 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
                 eightBody = contact.bodyA
             }
             
-            for i in 0..<charBullets.count {
-                if(eightBody.node == charBullets[i] && seventhBody.node?.name == "clearbullets") {
-                    charBullets[i].removeFromParent()
-                    //REMOVE THE SPOT IN THE ARRAY
-                    //charBullets.remove(at: i)
+            var clearBulletsAndCharBulletIterator = 0
+            while(clearBulletsAndCharBulletIterator < charBullets.count) {
+                if(eightBody.node == charBullets[clearBulletsAndCharBulletIterator] && seventhBody.node?.name == "clearbullets") {
+                    charBullets[clearBulletsAndCharBulletIterator].removeFromParent()
+                    charBullets.remove(at: clearBulletsAndCharBulletIterator)
+                    clearBulletsAndCharBulletIterator = clearBulletsAndCharBulletIterator - 1
                     clearBulletsHealth = clearBulletsHealth - 1
                 }
+                clearBulletsAndCharBulletIterator = clearBulletsAndCharBulletIterator + 1
             }
         }
         
@@ -453,13 +458,15 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
             }
             
             if(invulnerabilityPowerupOn == false) {
-                for i in 0..<bossBullets.count {
-                    if(fifthBody.node == bossBullets[i] && sixthBody.node?.name == "character") {
-                        bossBullets[i].removeFromParent()
-                        //REMOVE THE SPOT IN THE ARRAY
-                        //bossBullets.remove(at: i)
+                var charAndBossBulletIterator = 0
+                while(charAndBossBulletIterator < bossBullets.count) {
+                    if(fifthBody.node == bossBullets[charAndBossBulletIterator] && sixthBody.node?.name == "character") {
+                        bossBullets[charAndBossBulletIterator].removeFromParent()
+                        bossBullets.remove(at: charAndBossBulletIterator)
+                        charAndBossBulletIterator = charAndBossBulletIterator - 1
                         characterHealth = characterHealth - 1
                     }
+                    charAndBossBulletIterator = charAndBossBulletIterator + 1
                 }
             }
         }
