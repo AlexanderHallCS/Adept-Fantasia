@@ -231,8 +231,8 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         }) */
         
         
-        let bossLinearAttack = Timer.scheduledTimer(timeInterval: 0.3, target: self, selector: #selector(self.bossLinearAttackFire), userInfo: nil, repeats: true)
-        
+        /*let bossLinearAttack = Timer.scheduledTimer(timeInterval: 0.3, target: self, selector: #selector(self.bossLinearAttackFire), userInfo: nil, repeats: true) */
+        let bossCrossAttack = Timer.scheduledTimer(timeInterval: 0.3, target: self, selector: #selector(self.crossAttack), userInfo: nil, repeats: true)
         
         //BOSS SNOWFLAKE ATTACK COMMENTED
         /*let bossSnowflakeAttack = Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(bossSnowflakeAttackFire), userInfo: nil, repeats: true) */
@@ -254,11 +254,20 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func winGame() {
-        print("You won!")
+        print("Total Bullets Dodged This Game \(bulletsDodgedThisGame)")
+        let context = appDelegate.persistentContainer.viewContext
+        let entity = NSEntityDescription.entity(forEntityName: "Character", in: context)
+        let newUser = NSManagedObject(entity: entity!, insertInto: context)
+        newUser.setValue(bulletsDodgedThisGame, forKey: "totalBulletsDodged")
+        viewController?.performSegue(withIdentifier: "SegueFromPlayViewToEndView", sender: nil)
     }
     
     func loseGame() {
-        print("You lost!")
+        print("Total Bullets Dodged This Game \(bulletsDodgedThisGame)")
+        let context = appDelegate.persistentContainer.viewContext
+        let entity = NSEntityDescription.entity(forEntityName: "Character", in: context)
+        let newUser = NSManagedObject(entity: entity!, insertInto: context)
+        newUser.setValue(bulletsDodgedThisGame, forKey: "totalBulletsDodged")
         viewController?.performSegue(withIdentifier: "SegueFromPlayViewToEndView", sender: nil)
     }
     
@@ -275,7 +284,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
             } catch {
                 print("Failed saving")
             }
-            self.view!.window!.rootViewController?.performSegue(withIdentifier: "SegueFromPlayViewToEndView", sender: nil)
+            viewController?.performSegue(withIdentifier: "SegueFromPlayViewToEndView", sender: nil)
         } else if(characterHealth == 0) {
             let context = appDelegate.persistentContainer.viewContext
             let entity = NSEntityDescription.entity(forEntityName: "Character", in: context)
@@ -287,7 +296,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
             } catch {
                 print("Failed saving")
             }
-            self.view!.window!.rootViewController?.performSegue(withIdentifier: "SegueFromPlayViewToEndView", sender: nil)
+            viewController?.performSegue(withIdentifier: "SegueFromPlayViewToEndView", sender: nil)
         } 
     } */
     
@@ -557,10 +566,6 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
                 bossBullets.remove(at: iterator)
                 iterator = iterator - 1
                 bulletsDodgedThisGame = bulletsDodgedThisGame + 1
-                /*let context = appDelegate.persistentContainer.viewContext
-                let entity = NSEntityDescription.entity(forEntityName: "Character", in: context)
-                let newUser = NSManagedObject(entity: entity!, insertInto: context)
-                newUser.setValue(bulletsDodgedThisGame, forKey: "totalBulletsDodged") */
             }
             iterator = iterator + 1
         }
@@ -572,10 +577,6 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
                 bossBullets.remove(at: iterator2)
                 iterator2 = iterator2 - 1
                 bulletsDodgedThisGame = bulletsDodgedThisGame + 1
-                /*let context = appDelegate.persistentContainer.viewContext
-                let entity = NSEntityDescription.entity(forEntityName: "Character", in: context)
-                let newUser = NSManagedObject(entity: entity!, insertInto: context)
-                newUser.setValue(bulletsDodgedThisGame, forKey: "totalBulletsDodged") */
             }
             iterator2 = iterator2 + 1
         }
@@ -587,10 +588,6 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
                 bossBullets.remove(at: iterator3)
                 iterator3 = iterator3 - 1
                 bulletsDodgedThisGame = bulletsDodgedThisGame + 1
-                /*let context = appDelegate.persistentContainer.viewContext
-                let entity = NSEntityDescription.entity(forEntityName: "Character", in: context)
-                let newUser = NSManagedObject(entity: entity!, insertInto: context)
-                newUser.setValue(bulletsDodgedThisGame, forKey: "totalBulletsDodged") */
             }
             iterator3 = iterator3 + 1
         }
@@ -641,6 +638,72 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
             invulnerabilityPowerup.removeFromParent()
             isInvulnerabilityOnScreen = false
         }
+    }
+    
+   @objc func crossAttack() {
+        //top middle
+        let bossBullet1 = SKSpriteNode(texture: bossBulletTexture)
+        bossBullet1.name = "bossbullet"
+        bossBullet1.physicsBody = SKPhysicsBody(texture: bossBulletTexture, size: bossBulletTexture.size())
+        bossBullet1.zPosition = 1
+        bossBullet1.physicsBody!.isDynamic = true
+        bossBullet1.physicsBody!.usesPreciseCollisionDetection = true
+        bossBullet1.physicsBody!.affectedByGravity = false
+        bossBullet1.physicsBody!.velocity = CGVector.init(dx: 0, dy: 400)
+        bossBullet1.physicsBody!.categoryBitMask = ColliderType.bossBulletCategory.rawValue
+        bossBullet1.physicsBody!.collisionBitMask = 0
+        bossBullet1.physicsBody!.contactTestBitMask = ColliderType.characterCategory.rawValue
+        bossBullet1.position = CGPoint(x: boss.position.x, y: boss.position.y - 100)
+        addChild(bossBullet1)
+        bossBullets.append(bossBullet1)
+        
+        //right middle
+        let bossBullet2 = SKSpriteNode(texture: bossBulletTexture)
+        bossBullet2.name = "bossbullet"
+        bossBullet2.physicsBody = SKPhysicsBody(texture: bossBulletTexture, size: bossBulletTexture.size())
+        bossBullet2.zPosition = 1
+        bossBullet2.physicsBody!.isDynamic = true
+        bossBullet2.physicsBody!.usesPreciseCollisionDetection = true
+        bossBullet2.physicsBody!.affectedByGravity = false
+        bossBullet2.physicsBody!.velocity = CGVector.init(dx: 400, dy: 0)
+        bossBullet2.physicsBody!.categoryBitMask = ColliderType.bossBulletCategory.rawValue
+        bossBullet2.physicsBody!.collisionBitMask = 0
+        bossBullet2.physicsBody!.contactTestBitMask = ColliderType.characterCategory.rawValue
+        bossBullet2.position = CGPoint(x: boss.position.x, y: boss.position.y)
+        addChild(bossBullet2)
+        bossBullets.append(bossBullet2)
+        
+        //bottom middle
+        let bossBullet3 = SKSpriteNode(texture: bossBulletTexture)
+        bossBullet3.name = "bossbullet"
+        bossBullet3.physicsBody = SKPhysicsBody(texture: bossBulletTexture, size: bossBulletTexture.size())
+        bossBullet3.zPosition = 1
+        bossBullet3.physicsBody!.isDynamic = true
+        bossBullet3.physicsBody!.usesPreciseCollisionDetection = true
+        bossBullet3.physicsBody!.affectedByGravity = false
+        bossBullet3.physicsBody!.velocity = CGVector.init(dx: 0, dy: -400)
+        bossBullet3.physicsBody!.categoryBitMask = ColliderType.bossBulletCategory.rawValue
+        bossBullet3.physicsBody!.collisionBitMask = 0
+        bossBullet3.physicsBody!.contactTestBitMask = ColliderType.characterCategory.rawValue
+        bossBullet3.position = CGPoint(x: boss.position.x, y: boss.position.y)
+        addChild(bossBullet3)
+        bossBullets.append(bossBullet3)
+        
+        //left middle
+        let bossBullet4 = SKSpriteNode(texture: bossBulletTexture)
+        bossBullet4.name = "bossbullet"
+        bossBullet4.physicsBody = SKPhysicsBody(texture: bossBulletTexture, size: bossBulletTexture.size())
+        bossBullet4.zPosition = 1
+        bossBullet4.physicsBody!.isDynamic = true
+        bossBullet4.physicsBody!.usesPreciseCollisionDetection = true
+        bossBullet4.physicsBody!.affectedByGravity = false
+        bossBullet4.physicsBody!.velocity = CGVector.init(dx: -400, dy: 0)
+        bossBullet4.physicsBody!.categoryBitMask = ColliderType.bossBulletCategory.rawValue
+        bossBullet4.physicsBody!.collisionBitMask = 0
+        bossBullet4.physicsBody!.contactTestBitMask = ColliderType.characterCategory.rawValue
+        bossBullet4.position = CGPoint(x: boss.position.x, y: boss.position.y)
+        addChild(bossBullet4)
+        bossBullets.append(bossBullet4)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
