@@ -21,19 +21,10 @@ class PlayViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //bossHealthBar.setProgress(0, animated: true)
         
         do {
             audioPlayer = try AVAudioPlayer(contentsOf: URL.init(fileURLWithPath: Bundle.main.path(forResource: "Aaron_Smith_Ft_Luvli_Dancin_Krono_Remix_ostofmydays_(mp3co.biz)", ofType: "mp3")!))
             audioPlayer.prepareToPlay()
-            
-            /*let audioSession = AVAudioSession.sharedInstance()
-            do {
-                try audioSession.setCategory(AVAudioSessionCategoryPlayback)
-            }
-            catch {
-                //something
-            } */
         }
         catch {
             print("The audio file was not found!")
@@ -48,6 +39,8 @@ class PlayViewController: UIViewController {
                 
                 // Set the scale mode to scale to fit the window
                 scene.scaleMode = .aspectFill
+            
+                viewController = self
                 
                 // Present the scene
                 view.presentScene(scene)

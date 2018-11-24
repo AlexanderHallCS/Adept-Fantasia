@@ -20,6 +20,8 @@ enum ColliderType:UInt32 {
     case clearBulletCategory = 0b100000
 }
 
+var viewController: UIViewController?
+
 class PlayScene: SKScene, SKPhysicsContactDelegate {
     
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -63,6 +65,8 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     var isClearBulletsOnScreen = true
     
     let motionManager: CMMotionManager = CMMotionManager()
+    
+    var gameOver = false
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -247,6 +251,15 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         
         //FIX THE CLEAR BULLETS AND INVULNERABILITY POWERUPS
         /*let gameEndChecker = Timer.scheduledTimer(timeInterval: 0.07, target: self, selector: #selector(didEndGame(_:)), userInfo: nil, repeats: true) */
+    }
+    
+    func winGame() {
+        print("You won!")
+    }
+    
+    func loseGame() {
+        print("You lost!")
+        viewController?.performSegue(withIdentifier: "SegueFromPlayViewToEndView", sender: nil)
     }
     
     //have to just call this when bossHealth == 0 or charHealth == 0 --> otherwise there are multiple segues called so it crashes when charHealth is 0
@@ -526,6 +539,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         bossBullets.append(bossBullet8)
     }
     
+    //ADD FUNCTIONALITY TO THESE
     func spawnInvulnerabilityPowerup() {
         
     }
@@ -543,10 +557,10 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
                 bossBullets.remove(at: iterator)
                 iterator = iterator - 1
                 bulletsDodgedThisGame = bulletsDodgedThisGame + 1
-                let context = appDelegate.persistentContainer.viewContext
+                /*let context = appDelegate.persistentContainer.viewContext
                 let entity = NSEntityDescription.entity(forEntityName: "Character", in: context)
                 let newUser = NSManagedObject(entity: entity!, insertInto: context)
-                newUser.setValue(bulletsDodgedThisGame, forKey: "totalBulletsDodged")
+                newUser.setValue(bulletsDodgedThisGame, forKey: "totalBulletsDodged") */
             }
             iterator = iterator + 1
         }
@@ -558,10 +572,10 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
                 bossBullets.remove(at: iterator2)
                 iterator2 = iterator2 - 1
                 bulletsDodgedThisGame = bulletsDodgedThisGame + 1
-                let context = appDelegate.persistentContainer.viewContext
+                /*let context = appDelegate.persistentContainer.viewContext
                 let entity = NSEntityDescription.entity(forEntityName: "Character", in: context)
                 let newUser = NSManagedObject(entity: entity!, insertInto: context)
-                newUser.setValue(bulletsDodgedThisGame, forKey: "totalBulletsDodged")
+                newUser.setValue(bulletsDodgedThisGame, forKey: "totalBulletsDodged") */
             }
             iterator2 = iterator2 + 1
         }
@@ -573,10 +587,10 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
                 bossBullets.remove(at: iterator3)
                 iterator3 = iterator3 - 1
                 bulletsDodgedThisGame = bulletsDodgedThisGame + 1
-                let context = appDelegate.persistentContainer.viewContext
+                /*let context = appDelegate.persistentContainer.viewContext
                 let entity = NSEntityDescription.entity(forEntityName: "Character", in: context)
                 let newUser = NSManagedObject(entity: entity!, insertInto: context)
-                newUser.setValue(bulletsDodgedThisGame, forKey: "totalBulletsDodged")
+                newUser.setValue(bulletsDodgedThisGame, forKey: "totalBulletsDodged") */
             }
             iterator3 = iterator3 + 1
         }
@@ -672,9 +686,14 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         checkClearBulletsPowerupOOB()
         checkInvulnerabilityPowerupHealth()
         checkInvulnerabilityPowerupOOB()
-       /*if(characterHealth == 0) {
-            //call the end game function
-        } */
+       if(characterHealth == 0 && gameOver == false) {
+            gameOver = true
+            loseGame()
+        }
+        if(bossHealth == 0 && gameOver == false) {
+            gameOver = true
+            winGame()
+        }
     }
 }
 
