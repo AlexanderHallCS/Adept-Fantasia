@@ -60,6 +60,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     var clearBulletsHealth = 20
     
     var bulletsDodgedThisGame = 0
+    var bulletsFiredThisGame = 0
     
     var isInvulnerabilityOnScreen = true
     var isClearBulletsOnScreen = true
@@ -78,18 +79,8 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     
     override func didMove(to view: SKView) {
         
-        /*let context = appDelegate.persistentContainer.viewContext
-        let entity = NSEntityDescription.entity(forEntityName: "Character", in: context)
-        let newUser = NSManagedObject(entity: entity!, insertInto: context)
-        //change the set value to add 1
-        newUser.setValue(0, forKey: "timesPlayed")
-        do {
-            try context.save()
-        } catch {
-            print("Failed saving")
-        } */
-        
         bulletsDodgedThisGame = 0
+        bulletsFiredThisGame = 0
         
         physicsWorld.contactDelegate = self
         
@@ -251,24 +242,6 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         
         //FIX THE CLEAR BULLETS AND INVULNERABILITY POWERUPS
         /*let gameEndChecker = Timer.scheduledTimer(timeInterval: 0.07, target: self, selector: #selector(didEndGame(_:)), userInfo: nil, repeats: true) */
-    }
-    
-    func winGame() {
-        print("Total Bullets Dodged This Game \(bulletsDodgedThisGame)")
-        let context = appDelegate.persistentContainer.viewContext
-        let entity = NSEntityDescription.entity(forEntityName: "Character", in: context)
-        let newUser = NSManagedObject(entity: entity!, insertInto: context)
-        newUser.setValue(bulletsDodgedThisGame, forKey: "totalBulletsDodged")
-        viewController?.performSegue(withIdentifier: "SegueFromPlayViewToEndView", sender: nil)
-    }
-    
-    func loseGame() {
-        print("Total Bullets Dodged This Game \(bulletsDodgedThisGame)")
-        let context = appDelegate.persistentContainer.viewContext
-        let entity = NSEntityDescription.entity(forEntityName: "Character", in: context)
-        let newUser = NSManagedObject(entity: entity!, insertInto: context)
-        newUser.setValue(bulletsDodgedThisGame, forKey: "totalBulletsDodged")
-        viewController?.performSegue(withIdentifier: "SegueFromPlayViewToEndView", sender: nil)
     }
     
     //have to just call this when bossHealth == 0 or charHealth == 0 --> otherwise there are multiple segues called so it crashes when charHealth is 0
@@ -706,6 +679,26 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         bossBullets.append(bossBullet4)
     }
     
+    func winGame() {
+        let context = appDelegate.persistentContainer.viewContext
+        let entity = NSEntityDescription.entity(forEntityName: "Character", in: context)
+        let newUser = NSManagedObject(entity: entity!, insertInto: context)
+        newUser.setValue(bulletsDodgedThisGame, forKey: "totalBulletsDodged")
+        newUser.setValue(bulletsFiredThisGame, forKey: "totalBulletsFired")
+        //add one to totalWins in Core Data
+        viewController?.performSegue(withIdentifier: "SegueFromPlayViewToEndView", sender: nil)
+    }
+    
+    func loseGame() {
+        let context = appDelegate.persistentContainer.viewContext
+        let entity = NSEntityDescription.entity(forEntityName: "Character", in: context)
+        let newUser = NSManagedObject(entity: entity!, insertInto: context)
+        newUser.setValue(bulletsDodgedThisGame, forKey: "totalBulletsDodged")
+        newUser.setValue(bulletsFiredThisGame, forKey: "totalBulletsFired")
+        //add one to totalLosses in Core Data
+        viewController?.performSegue(withIdentifier: "SegueFromPlayViewToEndView", sender: nil)
+    }
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         let charBullet = SKSpriteNode(texture: charBulletTexture)
         charBullet.name = "bullet"
@@ -719,6 +712,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         charBullet.physicsBody!.collisionBitMask = 0
         charBullet.physicsBody!.contactTestBitMask = ColliderType.bossCategory.rawValue | ColliderType.invulnerabilityCategory.rawValue
         charBullet.position = CGPoint(x: character.position.x, y: character.position.y + 100)
+        bulletsFiredThisGame = bulletsFiredThisGame + 1
         addChild(charBullet)
         charBullets.append(charBullet)
     }
