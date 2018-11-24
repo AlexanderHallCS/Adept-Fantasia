@@ -34,6 +34,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     var character = SKSpriteNode()
     var boss = SKSpriteNode()
     var bossHealthBar = SKSpriteNode()
+    var unfilledBossHealthBar = SKSpriteNode()
     var invulnerabilityPowerup = SKSpriteNode()
     var clearBulletsPowerup = SKSpriteNode()
     
@@ -65,6 +66,8 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     var isInvulnerabilityOnScreen = true
     var isClearBulletsOnScreen = true
     
+    var charBulletsThatHitTheBoss = 0
+    
     let motionManager: CMMotionManager = CMMotionManager()
     
     var gameOver = false
@@ -81,6 +84,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         
         bulletsDodgedThisGame = 0
         bulletsFiredThisGame = 0
+        charBulletsThatHitTheBoss = 0
         
         physicsWorld.contactDelegate = self
         
@@ -223,7 +227,8 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         
         
         /*let bossLinearAttack = Timer.scheduledTimer(timeInterval: 0.3, target: self, selector: #selector(self.bossLinearAttackFire), userInfo: nil, repeats: true) */
-        let bossCrossAttack = Timer.scheduledTimer(timeInterval: 0.3, target: self, selector: #selector(self.crossAttack), userInfo: nil, repeats: true)
+        
+        /*let bossCrossAttack = Timer.scheduledTimer(timeInterval: 0.3, target: self, selector: #selector(self.crossAttack), userInfo: nil, repeats: true) */
         
         //BOSS SNOWFLAKE ATTACK COMMENTED
         /*let bossSnowflakeAttack = Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(bossSnowflakeAttackFire), userInfo: nil, repeats: true) */
@@ -298,14 +303,22 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
             var bossAndCharBulletsIterator = 0
             while(bossAndCharBulletsIterator < charBullets.count) {
                 if(firstBody.node == charBullets[bossAndCharBulletsIterator] && secondBody.node?.name == "boss") {
+                    charBulletsThatHitTheBoss = charBulletsThatHitTheBoss + 1
                     charBullets[bossAndCharBulletsIterator].removeFromParent()
                     charBullets.remove(at: bossAndCharBulletsIterator)
                     bossAndCharBulletsIterator = bossAndCharBulletsIterator - 1
+                    if(bossHealth > 0) {
                     bossHealth -= 1
                     bossHealthLabel.text = "Boss Health \(bossHealth)"
+                    }
+                    unfilledBossHealthBar = SKSpriteNode(texture: unfilledBossHealthBarTexture)
+                    unfilledBossHealthBar.position = CGPoint(x: CGFloat(347 - (3.45*Double(charBulletsThatHitTheBoss))), y: self.size.height/4 + 240)
+                    unfilledBossHealthBar.size = CGSize(width: 3.45, height: 40)
+                    unfilledBossHealthBar.zPosition = 2
+                    addChild(unfilledBossHealthBar)
                 }
                 bossAndCharBulletsIterator = bossAndCharBulletsIterator + 1
-            }
+                }
             
             if(contact.bodyB.node?.name == "invulnerability") {
                 thirdBody = contact.bodyA
