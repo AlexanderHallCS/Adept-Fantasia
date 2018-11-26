@@ -58,7 +58,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     
     var invulnerabilityPowerupHealth = 20
     var characterHealth = 20
-    var clearBulletsHealth = 20
+    var clearBulletsHealth = 7
     
     var bulletsDodgedThisGame = 0
     var bulletsFiredThisGame = 0
@@ -169,6 +169,27 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         let invulnerabilityMove = SKAction.follow(invulnerabilityPath.cgPath, asOffset: false, orientToPath: false, speed: 90)
         invulnerabilityPowerup.run(invulnerabilityMove)
         
+        clearBulletsPowerup = SKSpriteNode(texture: clearBulletTexture)
+        clearBulletsPowerup.name = "clearbullets"
+        clearBulletsPowerup.physicsBody = SKPhysicsBody(texture: clearBulletTexture, size: clearBulletsPowerup.size)
+        clearBulletsPowerup.physicsBody!.usesPreciseCollisionDetection = true
+        clearBulletsPowerup.physicsBody!.isDynamic = true
+        clearBulletsPowerup.physicsBody!.affectedByGravity = false
+        clearBulletsPowerup.size = CGSize(width: 250, height:250)
+        clearBulletsPowerup.position = CGPoint(x: character.position.x - 600, y: character.position.y + 350)
+        clearBulletsPowerup.zPosition = 1
+        clearBulletsPowerup.physicsBody!.categoryBitMask = ColliderType.clearBulletCategory.rawValue
+        clearBulletsPowerup.physicsBody!.collisionBitMask = 0
+        clearBulletsPowerup.physicsBody!.contactTestBitMask = ColliderType.bulletCategory.rawValue
+        isClearBulletsOnScreen = true
+        addChild(clearBulletsPowerup)
+        
+        let clearBulletsPath = UIBezierPath()
+        clearBulletsPath.move(to: CGPoint(x: character.position.x - 600, y: character.position.y + 350))
+        clearBulletsPath.addLine(to: CGPoint(x: 600, y: 420))
+        let clearBulletsMove = SKAction.follow(clearBulletsPath.cgPath, asOffset: false, orientToPath: false, speed: 90)
+        clearBulletsPowerup.run(clearBulletsMove)
+        
         /*let linearAndHourglassSequence = SKAction.sequence([SKAction.repeat(bossLinearMove, count: 2), SKAction.repeat(bossHourglassMove, count: 3)])
         boss.run(SKAction.repeatForever(linearAndHourglassSequence)) */
         
@@ -197,7 +218,14 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
                     })
                 }) */
         
-        //FIX THE CLEAR BULLETS AND INVULNERABILITY POWERUPS
+        //VVVVVVVVVVVVVVVVVVVVVVVVVVVVV
+        //FIX THE CLEAR BULLETS POWERUP
+        //SPAWN THE POWERUPS AT RANDOM TIMES AFTER DELAYS
+        //MAKE THE BOSS FIRE ATTACKS AT CERTAIN TIMES
+        //MAKE THE BOSS MOVE IN CERTAIN PATTERNS AT CERTAIN TIMES
+        //TRACK DATA WITH CORE DATA
+        //FIX MUSIC TO REPLAY AND START WHEN THE APP OPENS
+        //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
     }
     
     func didBegin(_ contact: SKPhysicsContact) {
@@ -313,6 +341,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     
     @objc func haveInvulnerability() {
         self.invulnerabilityPowerupOn = false
+        invulnerabilityPowerupHealth = 20
     }
     
     @objc func bossLinearAttackFire() {
@@ -559,12 +588,14 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     func checkClearBulletsPowerupHealth() {
         if(clearBulletsHealth == 0 && isClearBulletsOnScreen == true) {
             clearBulletsPowerup.removeFromParent()
-            var iterator = 0
+            let iterator = 0
             while(iterator < bossBullets.count) {
+                print("Iterator: \(iterator)")
+                print("BossBullets Size: \(bossBullets.count)")
                 bossBullets[iterator].removeFromParent()
                 bossBullets.remove(at: iterator)
-                iterator = iterator + 1
             }
+            clearBulletsHealth = 7
             isClearBulletsOnScreen = false
         }
     }
