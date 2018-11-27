@@ -65,9 +65,10 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     
     var isInvulnerabilityOnScreen = true
     var isClearBulletsOnScreen = true
+    
     var isLinearPathOn = false
+    var isLinearOnePathOn = false
     var isHourGlassPathOn = false
-    var isMiniCirclePathOn = false
     
     var charBulletsThatHitTheBoss = 0
     
@@ -691,47 +692,31 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     }
     
     @objc func doLinearPath() {
-        isLinearPathOn = true
         let bossLinearPath = UIBezierPath()
         bossLinearPath.move(to: CGPoint(x: 0, y: self.size.height/4))
         bossLinearPath.addLine(to: CGPoint(x: 250, y: self.size.height/4))
         bossLinearPath.addLine(to: CGPoint(x: -200, y: self.size.height/4))
         bossLinearPath.addLine(to: CGPoint(x: 0, y: self.size.height/4))
         let bossLinearMove = SKAction.follow(bossLinearPath.cgPath, asOffset: false, orientToPath: false, speed: 150)
-        //NEED COMPLETION BLOCKS ON ALL OF THE PATHS
         boss.run(SKAction.repeat(bossLinearMove, count: 3), completion: {
             self.isHourGlassPathOn = true
         })
     }
     
     @objc func doHourGlassPath() {
-        isLinearPathOn = false
         let bossHourglassPath = UIBezierPath()
         bossHourglassPath.move(to: CGPoint(x: 0, y: self.size.height/4))
         bossHourglassPath.addLine(to: CGPoint(x: -190, y: self.size.height/4 - 350))
         bossHourglassPath.addLine(to: CGPoint(x: -190, y: 400))
         bossHourglassPath.addLine(to: CGPoint(x: 300, y: self.size.height/4 - 350))
         bossHourglassPath.addLine(to: CGPoint(x: 300, y: 400))
-        bossHourglassPath.addLine(to: CGPoint(x:0 , y: self.size.height/4))
+        bossHourglassPath.addLine(to: CGPoint(x: 0 , y: self.size.height/4))
         let bossHourglassMove = SKAction.follow(bossHourglassPath.cgPath, asOffset: false, orientToPath: false, speed: 150)
-        boss.run(SKAction.repeat(bossHourglassMove, count: 3))
-        //self.perform(#selector(doMiniCirclePath), with: nil, afterDelay: 6.0)
-        isMiniCirclePathOn = true
+        boss.run(SKAction.repeat(bossHourglassMove, count: 3), completion: {
+            self.isLinearPathOn = true
+        })
     }
     
-    @objc func doMiniCirclePath() {
-        isHourGlassPathOn = false
-        let bossMiniCirclePath = UIBezierPath()
-        bossMiniCirclePath.move(to: CGPoint(x: 0, y: self.size.height/4 - 100))
-        bossMiniCirclePath.addLine(to: CGPoint(x: 200, y: self.size.height/4 - 100))
-        bossMiniCirclePath.addLine(to: CGPoint(x: -100, y: self.size.height/4 - 100))
-        bossMiniCirclePath.addLine(to: CGPoint(x: 0, y: self.size.height/4 - 100))
-        bossMiniCirclePath.addArc(withCenter: CGPoint(x: 0, y: self.size.height/4 - 100), radius: 80, startAngle: 0.0, endAngle: 360, clockwise: true)
-        let bossMiniCircleMove = SKAction.follow(bossMiniCirclePath.cgPath, asOffset: false, orientToPath: false, speed: 150)
-        boss.run(SKAction.repeat(bossMiniCircleMove, count: 3))
-        //self.perform(#selector(doLinearPath), with: nil, afterDelay: 6.0)
-        isLinearPathOn = true
-    }
     
     func winGame() {
         let context = appDelegate.persistentContainer.viewContext
@@ -806,20 +791,18 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
             winGame()
         }
         
-        if(boss.position.x == 0 && boss.position.y == self.size.height/4 && isLinearPathOn == false && isHourGlassPathOn == false && isMiniCirclePathOn == false) {
+        if(boss.position.x == 0 && boss.position.y == self.size.height/4 && isLinearOnePathOn == false && isHourGlassPathOn == false) {
+            isLinearOnePathOn = true
             doLinearPath()
-            
-            //self.perform(#selector(doHourGlassPath), with: nil, afterDelay: 6.0)
-            /*if(boss.position.x == 0 && boss.position.y == self.size.height/4) {
-                
-            } */
         }
         if(isHourGlassPathOn == true) {
             isHourGlassPathOn = false
             self.perform(#selector(doHourGlassPath), with: nil, afterDelay: 6.0)
         }
-        
-        //self.perform(#selector(spawnClearBulletsPowerup), with: nil, afterDelay: 2.0)
+        if(isLinearPathOn == true) {
+            isLinearPathOn = false
+            self.perform(#selector(doLinearPath), with: nil, afterDelay: 6.0)
+        }
     }
 }
 
