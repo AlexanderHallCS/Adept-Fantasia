@@ -56,20 +56,21 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     var filledBossHealthBarTexture = SKTexture(imageNamed: "FilledBossHealthBar.png")
     let bossHealthLabel = SKLabelNode()
     
-    var invulnerabilityPowerupHealth = 20
+    var invulnerabilityPowerupHealth = 5
     var characterHealth = 20
-    var clearBulletsHealth = 7
+    var clearBulletsHealth = 5
     
     var bulletsDodgedThisGame = 0
     var bulletsFiredThisGame = 0
     
-    var isInvulnerabilityOnScreen = true
-    var isClearBulletsOnScreen = true
+    var isInvulnerabilityOnScreen = false
+    var isClearBulletsOnScreen = false
     
     var isLinearPathOn = false
     var isLinearOnePathOn = false
     var isHourGlassPathOn = false
     var timetoAttack = false;
+    var timeToSpawn = false;
     
     var bossCrossAttack = Timer()
     var bossSnowflakeAttack = Timer()
@@ -157,52 +158,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
             }
         }
         
-        invulnerabilityPowerup = SKSpriteNode(texture: invulnerabilityTexture)
-        invulnerabilityPowerup.name = "invulnerability"
-        invulnerabilityPowerup.physicsBody = SKPhysicsBody(texture: invulnerabilityTexture, size: invulnerabilityPowerup.size)
-        invulnerabilityPowerup.physicsBody!.usesPreciseCollisionDetection = true
-        invulnerabilityPowerup.physicsBody!.isDynamic = true
-        invulnerabilityPowerup.physicsBody!.affectedByGravity = false
-        invulnerabilityPowerup.size = CGSize(width: 250, height:250)
-        invulnerabilityPowerup.position = CGPoint(x: character.position.x + 600, y: character.position.y + 350)
-        invulnerabilityPowerup.zPosition = 1
-        invulnerabilityPowerup.physicsBody!.categoryBitMask = ColliderType.invulnerabilityCategory.rawValue
-        invulnerabilityPowerup.physicsBody!.collisionBitMask = 0
-        invulnerabilityPowerup.physicsBody!.contactTestBitMask = ColliderType.bulletCategory.rawValue
-        isInvulnerabilityOnScreen = true
-        addChild(invulnerabilityPowerup)
-        
-        let invulnerabilityPath = UIBezierPath()
-        invulnerabilityPath.move(to: CGPoint(x: character.position.x + 500, y: character.position.y + 350))
-        invulnerabilityPath.addLine(to: CGPoint(x: -500, y: 420))
-        let invulnerabilityMove = SKAction.follow(invulnerabilityPath.cgPath, asOffset: false, orientToPath: false, speed: 90)
-        invulnerabilityPowerup.run(invulnerabilityMove)
-        
-        clearBulletsPowerup = SKSpriteNode(texture: clearBulletTexture)
-        clearBulletsPowerup.name = "clearbullets"
-        clearBulletsPowerup.physicsBody = SKPhysicsBody(texture: clearBulletTexture, size: clearBulletsPowerup.size)
-        clearBulletsPowerup.physicsBody!.usesPreciseCollisionDetection = true
-        clearBulletsPowerup.physicsBody!.isDynamic = true
-        clearBulletsPowerup.physicsBody!.affectedByGravity = false
-        clearBulletsPowerup.size = CGSize(width: 250, height:250)
-        clearBulletsPowerup.position = CGPoint(x: character.position.x - 600, y: character.position.y + 350)
-        clearBulletsPowerup.zPosition = 1
-        clearBulletsPowerup.physicsBody!.categoryBitMask = ColliderType.clearBulletCategory.rawValue
-        clearBulletsPowerup.physicsBody!.collisionBitMask = 0
-        clearBulletsPowerup.physicsBody!.contactTestBitMask = ColliderType.bulletCategory.rawValue
-        isClearBulletsOnScreen = true
-        addChild(clearBulletsPowerup)
-        
-        let clearBulletsPath = UIBezierPath()
-        clearBulletsPath.move(to: CGPoint(x: character.position.x - 600, y: character.position.y + 350))
-        clearBulletsPath.addLine(to: CGPoint(x: 600, y: 420))
-        let clearBulletsMove = SKAction.follow(clearBulletsPath.cgPath, asOffset: false, orientToPath: false, speed: 90)
-        clearBulletsPowerup.run(clearBulletsMove)
-        
         //VVVVVVVVVVVVVVVVVVVVVVVVVVVVV
-        //SPAWN THE POWERUPS AT RANDOM TIMES AFTER DELAYS
-        //MAKE THE BOSS FIRE ATTACKS AT CERTAIN TIMES
-        //MAKE THE BOSS MOVE IN CERTAIN PATTERNS AT CERTAIN TIMES
         //TRACK DATA WITH CORE DATA
         //FIX MUSIC TO REPLAY AND START WHEN THE APP OPENS
         //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -314,7 +270,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
                     charAndBossBulletIterator = charAndBossBulletIterator + 1
                 }
             } else {
-                perform(#selector(haveInvulnerability), with: nil, afterDelay: 4.0)
+                perform(#selector(haveInvulnerability), with: nil, afterDelay: 6.0)
             }
         }
     }
@@ -651,6 +607,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     }
     
    @objc func spawnInvulnerabilityPowerup() {
+        isInvulnerabilityOnScreen = true
         invulnerabilityPowerup = SKSpriteNode(texture: invulnerabilityTexture)
         invulnerabilityPowerup.name = "invulnerability"
         invulnerabilityPowerup.physicsBody = SKPhysicsBody(texture: invulnerabilityTexture, size: invulnerabilityPowerup.size)
@@ -663,7 +620,6 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         invulnerabilityPowerup.physicsBody!.categoryBitMask = ColliderType.invulnerabilityCategory.rawValue
         invulnerabilityPowerup.physicsBody!.collisionBitMask = 0
         invulnerabilityPowerup.physicsBody!.contactTestBitMask = ColliderType.bulletCategory.rawValue
-        isInvulnerabilityOnScreen = true
         addChild(invulnerabilityPowerup)
         
         let invulnerabilityPath = UIBezierPath()
@@ -674,6 +630,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     }
     
     @objc func spawnClearBulletsPowerup() {
+        isClearBulletsOnScreen = true
         clearBulletsPowerup = SKSpriteNode(texture: clearBulletTexture)
         clearBulletsPowerup.name = "clearbullets"
         clearBulletsPowerup.physicsBody = SKPhysicsBody(texture: clearBulletTexture, size: clearBulletsPowerup.size)
@@ -686,11 +643,10 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         clearBulletsPowerup.physicsBody!.categoryBitMask = ColliderType.clearBulletCategory.rawValue
         clearBulletsPowerup.physicsBody!.collisionBitMask = 0
         clearBulletsPowerup.physicsBody!.contactTestBitMask = ColliderType.bulletCategory.rawValue
-        isClearBulletsOnScreen = true
         addChild(clearBulletsPowerup)
         
         let clearBulletsPath = UIBezierPath()
-        clearBulletsPath.move(to: CGPoint(x: character.position.x - 600, y: character.position.y + 350))
+        clearBulletsPath.move(to: CGPoint(x: character.position.x - 200, y: character.position.y + 350))
         clearBulletsPath.addLine(to: CGPoint(x: 600, y: 420))
         let clearBulletsMove = SKAction.follow(clearBulletsPath.cgPath, asOffset: false, orientToPath: false, speed: 90)
         clearBulletsPowerup.run(clearBulletsMove)
@@ -749,8 +705,6 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
             clearBulletsPowerup.removeFromParent()
             let iterator = 0
             while(iterator < bossBullets.count) {
-                print("Iterator: \(iterator)")
-                print("BossBullets Size: \(bossBullets.count)")
                 bossBullets[iterator].removeFromParent()
                 bossBullets.remove(at: iterator)
             }
@@ -896,12 +850,12 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         if(isHourGlassPathOn == true) {
             isHourGlassPathOn = false
             timetoAttack = true
-            self.perform(#selector(doHourGlassPath), with: nil, afterDelay: 6.0)
+            self.perform(#selector(doHourGlassPath), with: nil, afterDelay: 10.0)
         }
         if(isLinearPathOn == true) {
             isLinearPathOn = false
             timetoAttack = true
-            self.perform(#selector(doLinearPath), with: nil, afterDelay: 6.0)
+            self.perform(#selector(doLinearPath), with: nil, afterDelay: 10.0)
         }
         
         if(timetoAttack == true) {
@@ -910,13 +864,23 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
             switch random {
                 case 0:
                     bossCrossAttack = Timer.scheduledTimer(timeInterval: 0.3, target: self, selector: #selector(self.crossAttack), userInfo: nil, repeats: true)
-                //bossCrossAttack.invalidate()
+                        timeToSpawn = true
                 case 1:
                     bossSnowflakeAttack = Timer.scheduledTimer(timeInterval: 0.3, target: self, selector: #selector(self.bossSnowflakeAttackFire), userInfo: nil, repeats: true)
-                //bossSnowflakeAttack.invalidate()
+                    timeToSpawn = true
                 default:
                     bossGridAttack = Timer.scheduledTimer(timeInterval: 0.3, target: self, selector: #selector(self.gridAttackFire), userInfo: nil, repeats: true)
-                //bossGridAttack.invalidate()
+                    timeToSpawn = true
+            }
+        }
+        if(isClearBulletsOnScreen == false && isInvulnerabilityOnScreen == false && timeToSpawn == true) {
+            timeToSpawn = false
+            let random = arc4random_uniform(2)
+            switch random {
+            case 0: spawnClearBulletsPowerup()
+                    isClearBulletsOnScreen = true
+            default: spawnInvulnerabilityPowerup()
+                     isInvulnerabilityOnScreen = true
             }
         }
     }
