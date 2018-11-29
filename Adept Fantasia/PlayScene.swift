@@ -337,7 +337,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         bossBullet1.physicsBody!.categoryBitMask = ColliderType.bossBulletCategory.rawValue
         bossBullet1.physicsBody!.collisionBitMask = 0
         bossBullet1.physicsBody!.contactTestBitMask = ColliderType.characterCategory.rawValue
-        bossBullet1.position = CGPoint(x: -300, y: self.size.height/4)
+        bossBullet1.position = CGPoint(x: -300, y: self.size.height/4 + 100)
         addChild(bossBullet1)
         bossBullets.append(bossBullet1)
         
@@ -353,7 +353,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         bossBullet2.physicsBody!.categoryBitMask = ColliderType.bossBulletCategory.rawValue
         bossBullet2.physicsBody!.collisionBitMask = 0
         bossBullet2.physicsBody!.contactTestBitMask = ColliderType.characterCategory.rawValue
-        bossBullet2.position = CGPoint(x: -300, y: self.size.height/4 - 200)
+        bossBullet2.position = CGPoint(x: -300, y: self.size.height/4 - 100)
         addChild(bossBullet2)
         bossBullets.append(bossBullet2)
         
@@ -369,7 +369,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         bossBullet3.physicsBody!.categoryBitMask = ColliderType.bossBulletCategory.rawValue
         bossBullet3.physicsBody!.collisionBitMask = 0
         bossBullet3.physicsBody!.contactTestBitMask = ColliderType.characterCategory.rawValue
-        bossBullet3.position = CGPoint(x: -300, y: self.size.height/4 - 400)
+        bossBullet3.position = CGPoint(x: -300, y: self.size.height/4 - 300)
         addChild(bossBullet3)
         bossBullets.append(bossBullet3)
         
@@ -385,9 +385,25 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         bossBullet7.physicsBody!.categoryBitMask = ColliderType.bossBulletCategory.rawValue
         bossBullet7.physicsBody!.collisionBitMask = 0
         bossBullet7.physicsBody!.contactTestBitMask = ColliderType.characterCategory.rawValue
-        bossBullet7.position = CGPoint(x: -300, y: self.size.height/4 - 600)
+        bossBullet7.position = CGPoint(x: -300, y: self.size.height/4 - 500)
         addChild(bossBullet7)
         bossBullets.append(bossBullet7)
+        
+        //horizontal bottom-bottom-bottom line
+        let bossBullet8 = SKSpriteNode(texture: bossBulletTexture)
+        bossBullet8.name = "bossbullet"
+        bossBullet8.physicsBody = SKPhysicsBody(texture: bossBulletTexture, size: bossBulletTexture.size())
+        bossBullet8.zPosition = 1
+        bossBullet8.physicsBody!.isDynamic = true
+        bossBullet8.physicsBody!.usesPreciseCollisionDetection = true
+        bossBullet8.physicsBody!.affectedByGravity = false
+        bossBullet8.physicsBody!.velocity = CGVector.init(dx: 400, dy: 0)
+        bossBullet8.physicsBody!.categoryBitMask = ColliderType.bossBulletCategory.rawValue
+        bossBullet8.physicsBody!.collisionBitMask = 0
+        bossBullet8.physicsBody!.contactTestBitMask = ColliderType.characterCategory.rawValue
+        bossBullet8.position = CGPoint(x: -300, y: self.size.height/4 - 700)
+        addChild(bossBullet8)
+        bossBullets.append(bossBullet8)
         
         //vertical left line
         let bossBullet4 = SKSpriteNode(texture: bossBulletTexture)
