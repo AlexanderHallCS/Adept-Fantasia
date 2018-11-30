@@ -14,6 +14,9 @@ import CoreData
 class StatisticsViewController: UIViewController {
     
     @IBOutlet weak var totalBulletsDodged: UILabel!
+    @IBOutlet weak var totalBulletsFired: UILabel!
+    @IBOutlet weak var totalWins: UILabel!
+    @IBOutlet weak var totalLosses: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,7 +38,7 @@ class StatisticsViewController: UIViewController {
             view.ignoresSiblingOrder = true
             
             //displayed total bullets dodged
-           /* do {
+           do {
                 let appDelegate = UIApplication.shared.delegate as! AppDelegate
                 let context = appDelegate.persistentContainer.viewContext
                 let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Character")
@@ -43,9 +46,8 @@ class StatisticsViewController: UIViewController {
                 let result = try context.fetch(request)
                 for data in result as! [NSManagedObject] {
                     totalBulletsDodged.textColor = UIColor.cyan
-                    totalBulletsDodged.text = "Total Bullets Dodged: \(data.value(forKey: "totalBulletsDodged"))"
-                    //print(data.value(forKey: "totalBulletsDodged"))
-                   // print("OK")
+                    totalBulletsDodged.text = "Total Bullets Dodged: \(data.value(forKey: "totalBulletsDodged") as! UInt32)"
+                    print(data.value(forKey: "totalBulletsDodged"))
                 }
             } catch {
                 print("Failed")
@@ -59,10 +61,9 @@ class StatisticsViewController: UIViewController {
                 request.returnsObjectsAsFaults = false
                 let result = try context.fetch(request)
                 for data in result as! [NSManagedObject] {
-                    totalBulletsDodged.textColor = UIColor.cyan
-                    totalBulletsDodged.text = "Bullets Fired: \(data.value(forKey: "totalBulletsFired"))"
-                    //print(data.value(forKey: "totalBulletsFired"))
-                    // print("OK")
+                    totalBulletsFired.textColor = UIColor.cyan
+                    totalBulletsFired.text = "Bullets Fired: \(data.value(forKey: "totalBulletsFired") as! UInt32)"
+                    print(data.value(forKey: "totalBulletsFired"))
                 }
             } catch {
                 print("Failed")
@@ -76,9 +77,9 @@ class StatisticsViewController: UIViewController {
                 request.returnsObjectsAsFaults = false
                 let result = try context.fetch(request)
                 for data in result as! [NSManagedObject] {
-                    totalBulletsDodged.textColor = UIColor.cyan
-                    totalBulletsDodged.text = "Total Wins: \(data.value(forKey: "totalWins"))"
-                    // print("OK")
+                    totalWins.textColor = UIColor.cyan
+                    totalWins.text = "Total Wins: \(data.value(forKey: "totalWins") as! UInt32)"
+                    print(data.value(forKey: "totalWins"))
                 }
             } catch {
                 print("Failed")
@@ -92,13 +93,13 @@ class StatisticsViewController: UIViewController {
                 request.returnsObjectsAsFaults = false
                 let result = try context.fetch(request)
                 for data in result as! [NSManagedObject] {
-                    totalBulletsDodged.textColor = UIColor.cyan
-                    totalBulletsDodged.text = "Total Losses: \(data.value(forKey: "totalLosses"))"
-                    // print("OK")
+                    totalLosses.textColor = UIColor.cyan
+                    totalLosses.text = "Total Losses: \(data.value(forKey: "totalLosses") as! UInt32)"
+                    print(data.value(forKey: "totalLosses"))
                 }
             } catch {
                 print("Failed")
-            } */
+            }
             
         }
     }

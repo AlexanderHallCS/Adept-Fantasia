@@ -15,17 +15,6 @@ class StatisticsScene: SKScene {
     override func didMove(to view: SKView) {
         
     }
-    /*func touchDown(atPoint pos : CGPoint) {
-     
-     }
-     
-     func touchMoved(toPoint pos : CGPoint) {
-     
-     }
-     
-     func touchUp(atPoint pos : CGPoint) {
-     
-     } */
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         //for t in touches { self.touchDown(atPoint: t.location(in: self)) }

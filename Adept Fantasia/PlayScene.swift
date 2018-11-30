@@ -72,6 +72,13 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     var timetoAttack = false;
     var timeToSpawn = false;
     
+    var totalBulletsDodged = 0
+    
+    var totalTotalBulletsDodged: UInt32 = 0
+    var totalTotalBulletsFired: UInt32 = 0
+    var totalTotalWins: UInt32 = 0
+    var totalTotalLosses: UInt32 = 0
+    
     var bossCrossAttack = Timer()
     var bossSnowflakeAttack = Timer()
     var bossGridAttack = Timer()
@@ -776,17 +783,44 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         let newUser = NSManagedObject(entity: entity!, insertInto: context)
         newUser.setValue(bulletsDodgedThisGame, forKey: "totalBulletsDodged")
         newUser.setValue(bulletsFiredThisGame, forKey: "totalBulletsFired")
-        //add one to totalWins in Core Data
+        newUser.setValue(1, forKey: "totalWins")
+        do {
+            try context.save()
+        } catch {
+            print("Couldn't save the context!")
+        }
         viewController?.performSegue(withIdentifier: "SegueFromPlayViewToEndView", sender: nil)
     }
     
     func loseGame() {
+        
+        /*do {
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            let context = appDelegate.persistentContainer.viewContext
+            let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Character")
+            request.returnsObjectsAsFaults = false
+            let result = try context.fetch(request)
+            for data in result as! [NSManagedObject] {
+                
+                /*totalTotalBulletsDodged = (data.value(forKey: "totalBulletsDodged") as! UInt32)
+                totalTotalBulletsFired = (data.value(forKey: "totalBulletsFired") as! UInt32)
+                totalTotalLosses = (data.value(forKey: "totalLosses") as! UInt32) */
+            }
+        } catch {
+            print("Failed")
+        } */
+        //totalTotalBulletsDodged = totalTotalBulletsDodged.advanced(by: totalBulletsDodged)
         let context = appDelegate.persistentContainer.viewContext
         let entity = NSEntityDescription.entity(forEntityName: "Character", in: context)
         let newUser = NSManagedObject(entity: entity!, insertInto: context)
         newUser.setValue(bulletsDodgedThisGame, forKey: "totalBulletsDodged")
         newUser.setValue(bulletsFiredThisGame, forKey: "totalBulletsFired")
-        //add one to totalLosses in Core Data
+        newUser.setValue(1, forKey: "totalLosses")
+        do {
+            try context.save()
+        } catch {
+            print("Couldn't save the context!")
+        }
         viewController?.performSegue(withIdentifier: "SegueFromPlayViewToEndView", sender: nil)
     }
     
