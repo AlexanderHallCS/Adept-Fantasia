@@ -47,7 +47,6 @@ class StatisticsViewController: UIViewController {
                 for data in result as! [NSManagedObject] {
                     totalBulletsDodged.textColor = UIColor.cyan
                     totalBulletsDodged.text = "Total Bullets Dodged: \(data.value(forKey: "totalBulletsDodged") as! UInt32)"
-                    print(data.value(forKey: "totalBulletsDodged"))
                 }
             } catch {
                 print("Failed")
@@ -63,7 +62,6 @@ class StatisticsViewController: UIViewController {
                 for data in result as! [NSManagedObject] {
                     totalBulletsFired.textColor = UIColor.cyan
                     totalBulletsFired.text = "Bullets Fired: \(data.value(forKey: "totalBulletsFired") as! UInt32)"
-                    print(data.value(forKey: "totalBulletsFired"))
                 }
             } catch {
                 print("Failed")
@@ -79,7 +77,6 @@ class StatisticsViewController: UIViewController {
                 for data in result as! [NSManagedObject] {
                     totalWins.textColor = UIColor.cyan
                     totalWins.text = "Total Wins: \(data.value(forKey: "totalWins") as! UInt32)"
-                    print(data.value(forKey: "totalWins"))
                 }
             } catch {
                 print("Failed")
@@ -95,7 +92,6 @@ class StatisticsViewController: UIViewController {
                 for data in result as! [NSManagedObject] {
                     totalLosses.textColor = UIColor.cyan
                     totalLosses.text = "Total Losses: \(data.value(forKey: "totalLosses") as! UInt32)"
-                    print(data.value(forKey: "totalLosses"))
                 }
             } catch {
                 print("Failed")

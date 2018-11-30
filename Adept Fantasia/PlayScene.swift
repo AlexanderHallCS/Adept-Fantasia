@@ -72,8 +72,6 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     var timetoAttack = false;
     var timeToSpawn = false;
     
-    var totalBulletsDodged = 0
-    
     var totalTotalBulletsDodged: UInt32 = 0
     var totalTotalBulletsFired: UInt32 = 0
     var totalTotalWins: UInt32 = 0
@@ -778,12 +776,29 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     
     
     func winGame() {
+        do {
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            let context = appDelegate.persistentContainer.viewContext
+            let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Character")
+            request.returnsObjectsAsFaults = false
+            let result = try context.fetch(request)
+            for data in result as! [NSManagedObject] {
+                totalTotalBulletsDodged = (data.value(forKey: "totalBulletsDodged") as! UInt32)
+                totalTotalBulletsFired = (data.value(forKey: "totalBulletsFired") as! UInt32)
+                totalTotalWins = (data.value(forKey: "totalWins") as! UInt32)
+            }
+        } catch {
+            print("Failed")
+        }
+        totalTotalBulletsDodged = totalTotalBulletsDodged.advanced(by: bulletsDodgedThisGame)
+        totalTotalBulletsFired = totalTotalBulletsFired.advanced(by: bulletsFiredThisGame)
+        totalTotalWins = totalTotalWins.advanced(by: 1)
         let context = appDelegate.persistentContainer.viewContext
         let entity = NSEntityDescription.entity(forEntityName: "Character", in: context)
         let newUser = NSManagedObject(entity: entity!, insertInto: context)
-        newUser.setValue(bulletsDodgedThisGame, forKey: "totalBulletsDodged")
-        newUser.setValue(bulletsFiredThisGame, forKey: "totalBulletsFired")
-        newUser.setValue(1, forKey: "totalWins")
+        newUser.setValue(totalTotalBulletsDodged, forKey: "totalBulletsDodged")
+        newUser.setValue(totalTotalBulletsFired, forKey: "totalBulletsFired")
+        newUser.setValue(totalTotalWins, forKey: "totalWins")
         do {
             try context.save()
         } catch {
@@ -794,28 +809,29 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     
     func loseGame() {
         
-        /*do {
+        do {
             let appDelegate = UIApplication.shared.delegate as! AppDelegate
             let context = appDelegate.persistentContainer.viewContext
             let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Character")
             request.returnsObjectsAsFaults = false
             let result = try context.fetch(request)
             for data in result as! [NSManagedObject] {
-                
-                /*totalTotalBulletsDodged = (data.value(forKey: "totalBulletsDodged") as! UInt32)
+                totalTotalBulletsDodged = (data.value(forKey: "totalBulletsDodged") as! UInt32)
                 totalTotalBulletsFired = (data.value(forKey: "totalBulletsFired") as! UInt32)
-                totalTotalLosses = (data.value(forKey: "totalLosses") as! UInt32) */
+                totalTotalLosses = (data.value(forKey: "totalLosses") as! UInt32)
             }
         } catch {
             print("Failed")
-        } */
-        //totalTotalBulletsDodged = totalTotalBulletsDodged.advanced(by: totalBulletsDodged)
+        }
+        totalTotalBulletsDodged = totalTotalBulletsDodged.advanced(by: bulletsDodgedThisGame)
+        totalTotalBulletsFired = totalTotalBulletsFired.advanced(by: bulletsFiredThisGame)
+        totalTotalLosses = totalTotalLosses.advanced(by: 1)
         let context = appDelegate.persistentContainer.viewContext
         let entity = NSEntityDescription.entity(forEntityName: "Character", in: context)
         let newUser = NSManagedObject(entity: entity!, insertInto: context)
-        newUser.setValue(bulletsDodgedThisGame, forKey: "totalBulletsDodged")
-        newUser.setValue(bulletsFiredThisGame, forKey: "totalBulletsFired")
-        newUser.setValue(1, forKey: "totalLosses")
+        newUser.setValue(totalTotalBulletsDodged, forKey: "totalBulletsDodged")
+        newUser.setValue(totalTotalBulletsFired, forKey: "totalBulletsFired")
+        newUser.setValue(totalTotalLosses, forKey: "totalLosses")
         do {
             try context.save()
         } catch {
