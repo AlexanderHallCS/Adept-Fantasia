@@ -121,16 +121,6 @@
                     <view key="view" contentMode="scaleToFill" id="JNe-tl-4Kk" customClass="SKView">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yyL-YP-p9k">
-                                <rect key="frame" x="138" y="341" width="138" height="55"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Sample Button"/>
-                                <connections>
-                                    <action selector="SegueToEndViewController:" destination="wMm-Eq-4mF" eventType="touchUpInside" id="rMT-Ry-yDn"/>
-                                </connections>
-                            </button>
-                        </subviews>
                         <viewLayoutGuide key="safeArea" id="lvC-3c-nvs"/>
                     </view>
                     <connections>

@@ -52,7 +52,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     
     var firstHourGlassHalf = true
     var bossHealthPercentage: Float = 0.0
-    var bossHealth = 20
+    var bossHealth = 200
     var unfilledBossHealthBarTexture = SKTexture(imageNamed: "UnfilledBossHealthBar.png")
     var filledBossHealthBarTexture = SKTexture(imageNamed: "FilledBossHealthBar.png")
     let bossHealthLabel = SKLabelNode()

@@ -53,25 +53,6 @@ class PlayViewController: UIViewController {
         }
     }
     
-    @IBAction func SegueToEndViewController(_ sender: Any) {
-        self.performSegue(withIdentifier: "SegueFromPlayViewToEndView", sender: nil)
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        /*let endVC = segue.destination as! EndViewController
-        endVC.someData = "lebronjames" */
-        
-        /*let context = appDelegate.persistentContainer.viewContext
-        let entity = NSEntityDescription.entity(forEntityName: "Character", in: context)
-        let newUser = NSManagedObject(entity: entity!, insertInto: context)
-        newUser.setValue("Test", forKey: "coreDataTest")
-        do {
-            try context.save()
-        } catch {
-            print("Failed saving")
-        } */
-    }
-    
     override var shouldAutorotate: Bool {
         return true
     }
