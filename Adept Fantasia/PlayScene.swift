@@ -147,6 +147,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         
         createPlayBackground()
         
+        motionManager.accelerometerUpdateInterval = 1.0/20.0
         if motionManager.isAccelerometerAvailable == true {
             motionManager.startAccelerometerUpdates(to: OperationQueue.current!)  { (data, error) in
                 let currentX = self.character.position.x

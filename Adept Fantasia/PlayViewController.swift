@@ -31,6 +31,8 @@ class PlayViewController: UIViewController {
         }
        
         audioPlayer.play()
+        //may make the sound loop forever <-- make sure
+        audioPlayer.numberOfLoops = -1
         
         if let view = self.view as! SKView? {
             
