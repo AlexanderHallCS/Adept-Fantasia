@@ -102,7 +102,6 @@ class StatisticsViewController: UIViewController {
     
     @IBAction func goToHomeView(_ sender: Any) {
         self.performSegue(withIdentifier: "SegueToHomeView", sender: nil)
-        //self.dismiss(animated: true, completion: nil)
     }
     
     override var shouldAutorotate: Bool {

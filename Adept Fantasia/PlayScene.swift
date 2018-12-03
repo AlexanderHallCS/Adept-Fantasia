@@ -21,6 +21,7 @@ enum ColliderType:UInt32 {
 }
 
 var viewController: UIViewController?
+var didWin = false
 
 class PlayScene: SKScene, SKPhysicsContactDelegate {
     
@@ -51,7 +52,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     
     var firstHourGlassHalf = true
     var bossHealthPercentage: Float = 0.0
-    var bossHealth = 200
+    var bossHealth = 20
     var unfilledBossHealthBarTexture = SKTexture(imageNamed: "UnfilledBossHealthBar.png")
     var filledBossHealthBarTexture = SKTexture(imageNamed: "FilledBossHealthBar.png")
     let bossHealthLabel = SKLabelNode()
@@ -164,7 +165,6 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         }
         
         //VVVVVVVVVVVVVVVVVVVVVVVVVVVVV
-        //TRACK DATA WITH CORE DATA
         //FIX MUSIC TO REPLAY AND START WHEN THE APP OPENS
         //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
     }
@@ -790,6 +790,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         } catch {
             print("Failed")
         }
+        didWin = true
         totalTotalBulletsDodged = totalTotalBulletsDodged.advanced(by: bulletsDodgedThisGame)
         totalTotalBulletsFired = totalTotalBulletsFired.advanced(by: bulletsFiredThisGame)
         totalTotalWins = totalTotalWins.advanced(by: 1)
@@ -823,6 +824,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         } catch {
             print("Failed")
         }
+        didWin = false
         totalTotalBulletsDodged = totalTotalBulletsDodged.advanced(by: bulletsDodgedThisGame)
         totalTotalBulletsFired = totalTotalBulletsFired.advanced(by: bulletsFiredThisGame)
         totalTotalLosses = totalTotalLosses.advanced(by: 1)

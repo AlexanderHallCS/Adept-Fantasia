@@ -13,18 +13,27 @@ class EndScene: SKScene {
     
     override func didMove(to view: SKView) {
         
+        if(didWin == true) {
+            let winLabel = SKLabelNode()
+            winLabel.text = "You Won!"
+            winLabel.fontName = "Baskerville"
+            winLabel.fontSize = 180
+            winLabel.fontColor = .magenta
+            winLabel.position = CGPoint(x: 0, y: self.size.height/4)
+            winLabel.zPosition = 1
+            addChild(winLabel)
+        } else {
+            let loseLabel = SKLabelNode()
+            loseLabel.text = "You Lost!"
+            loseLabel.fontName = "Baskerville"
+            loseLabel.fontSize = 180
+            loseLabel.fontColor = .magenta
+            loseLabel.position = CGPoint(x: 0, y: self.size.height/4)
+            loseLabel.zPosition = 1
+            addChild(loseLabel)
+        }
+        
     }
-    /*func touchDown(atPoint pos : CGPoint) {
-     
-     }
-     
-     func touchMoved(toPoint pos : CGPoint) {
-     
-     }
-     
-     func touchUp(atPoint pos : CGPoint) {
-     
-     } */
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         //for t in touches { self.touchDown(atPoint: t.location(in: self)) }
