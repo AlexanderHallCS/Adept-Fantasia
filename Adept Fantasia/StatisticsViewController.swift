@@ -38,6 +38,7 @@ class StatisticsViewController: UIViewController {
             view.ignoresSiblingOrder = true
             
             //displayed total bullets dodged
+            
            do {
                 let appDelegate = UIApplication.shared.delegate as! AppDelegate
                 let context = appDelegate.persistentContainer.viewContext
@@ -77,6 +78,7 @@ class StatisticsViewController: UIViewController {
                 for data in result as! [NSManagedObject] {
                     totalWins.textColor = UIColor.cyan
                     totalWins.text = "Total Wins: \(data.value(forKey: "totalWins") as! UInt32)"
+                    print("Total Wins: \(data.value(forKey: "totalWins") as! UInt32)")
                 }
             } catch {
                 print("Failed")
@@ -92,12 +94,14 @@ class StatisticsViewController: UIViewController {
                 for data in result as! [NSManagedObject] {
                     totalLosses.textColor = UIColor.cyan
                     totalLosses.text = "Total Losses: \(data.value(forKey: "totalLosses") as! UInt32)"
+                    print("Total Losses: \(data.value(forKey: "totalLosses") as! UInt32)")
                 }
             } catch {
                 print("Failed")
             }
             
         }
+        
     }
     
     @IBAction func goToHomeView(_ sender: Any) {

@@ -52,7 +52,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     
     var firstHourGlassHalf = true
     var bossHealthPercentage: Float = 0.0
-    var bossHealth = 200
+    var bossHealth = 10
     var unfilledBossHealthBarTexture = SKTexture(imageNamed: "UnfilledBossHealthBar.png")
     var filledBossHealthBarTexture = SKTexture(imageNamed: "FilledBossHealthBar.png")
     let bossHealthLabel = SKLabelNode()
@@ -75,6 +75,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     
     var totalTotalBulletsDodged: UInt32 = 0
     var totalTotalBulletsFired: UInt32 = 0
+    
     var totalTotalWins: UInt32 = 0
     var totalTotalLosses: UInt32 = 0
     
@@ -164,10 +165,6 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
                 self.character.physicsBody?.velocity = CGVector(dx: (data?.acceleration.x)! * 9.0, dy: 0)
             }
         }
-        
-        //VVVVVVVVVVVVVVVVVVVVVVVVVVVVV
-        //FIX MUSIC TO REPLAY AND START WHEN THE APP OPENS
-        //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
     }
     
     func didBegin(_ contact: SKPhysicsContact) {
@@ -777,6 +774,8 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     
     
     func winGame() {
+        didWin = true
+        print("won!")
         do {
             let appDelegate = UIApplication.shared.delegate as! AppDelegate
             let context = appDelegate.persistentContainer.viewContext
@@ -787,11 +786,11 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
                 totalTotalBulletsDodged = (data.value(forKey: "totalBulletsDodged") as! UInt32)
                 totalTotalBulletsFired = (data.value(forKey: "totalBulletsFired") as! UInt32)
                 totalTotalWins = (data.value(forKey: "totalWins") as! UInt32)
+                totalTotalLosses = (data.value(forKey: "totalLosses") as! UInt32)
             }
         } catch {
             print("Failed")
         }
-        didWin = true
         totalTotalBulletsDodged = totalTotalBulletsDodged.advanced(by: bulletsDodgedThisGame)
         totalTotalBulletsFired = totalTotalBulletsFired.advanced(by: bulletsFiredThisGame)
         totalTotalWins = totalTotalWins.advanced(by: 1)
@@ -800,6 +799,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         let newUser = NSManagedObject(entity: entity!, insertInto: context)
         newUser.setValue(totalTotalBulletsDodged, forKey: "totalBulletsDodged")
         newUser.setValue(totalTotalBulletsFired, forKey: "totalBulletsFired")
+        newUser.setValue(totalTotalLosses, forKey: "totalLosses")
         newUser.setValue(totalTotalWins, forKey: "totalWins")
         do {
             try context.save()
@@ -810,7 +810,8 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func loseGame() {
-        
+        didWin = false
+        print("lost!")
         do {
             let appDelegate = UIApplication.shared.delegate as! AppDelegate
             let context = appDelegate.persistentContainer.viewContext
@@ -821,11 +822,11 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
                 totalTotalBulletsDodged = (data.value(forKey: "totalBulletsDodged") as! UInt32)
                 totalTotalBulletsFired = (data.value(forKey: "totalBulletsFired") as! UInt32)
                 totalTotalLosses = (data.value(forKey: "totalLosses") as! UInt32)
+                totalTotalWins = (data.value(forKey: "totalWins") as! UInt32)
             }
         } catch {
             print("Failed")
         }
-        didWin = false
         totalTotalBulletsDodged = totalTotalBulletsDodged.advanced(by: bulletsDodgedThisGame)
         totalTotalBulletsFired = totalTotalBulletsFired.advanced(by: bulletsFiredThisGame)
         totalTotalLosses = totalTotalLosses.advanced(by: 1)
@@ -835,6 +836,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         newUser.setValue(totalTotalBulletsDodged, forKey: "totalBulletsDodged")
         newUser.setValue(totalTotalBulletsFired, forKey: "totalBulletsFired")
         newUser.setValue(totalTotalLosses, forKey: "totalLosses")
+        newUser.setValue(totalTotalWins, forKey: "totalWins")
         do {
             try context.save()
         } catch {
