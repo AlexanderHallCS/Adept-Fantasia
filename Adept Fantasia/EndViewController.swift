@@ -31,9 +31,6 @@ class EndViewController: UIViewController {
             }
             
             view.ignoresSiblingOrder = true
-            
-            view.showsFPS = true
-            view.showsNodeCount = true
         }
     }
     @IBAction func PlayAgainButton(_ sender: Any) {

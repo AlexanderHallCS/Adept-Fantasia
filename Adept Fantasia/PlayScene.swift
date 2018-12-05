@@ -52,7 +52,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     
     var firstHourGlassHalf = true
     var bossHealthPercentage: Float = 0.0
-    var bossHealth = 10
+    var bossHealth = 200
     var unfilledBossHealthBarTexture = SKTexture(imageNamed: "UnfilledBossHealthBar.png")
     var filledBossHealthBarTexture = SKTexture(imageNamed: "FilledBossHealthBar.png")
     let bossHealthLabel = SKLabelNode()
@@ -109,7 +109,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         bossHealthLabel.fontName = "Baskerville"
         bossHealthLabel.fontSize = 60
         bossHealthLabel.fontColor = .green
-        bossHealthLabel.position = CGPoint(x: -107, y: self.size.height/4 + 270)
+        bossHealthLabel.position = CGPoint(x: -132, y: self.size.height/4 + 270)
         bossHealthLabel.zPosition = 1
         addChild(bossHealthLabel)
         
@@ -198,7 +198,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
                     bossAndCharBulletsIterator = bossAndCharBulletsIterator - 1
                     if(bossHealth > 0) {
                     bossHealth -= 1
-                    bossHealthLabel.text = "Boss Health \(bossHealth)"
+                    bossHealthLabel.text = "Boss Health: \(bossHealth)"
                     }
                     unfilledBossHealthBar = SKSpriteNode(texture: unfilledBossHealthBarTexture)
                     unfilledBossHealthBar.position = CGPoint(x: CGFloat(347 - (3.45*Double(charBulletsThatHitTheBoss))), y: self.size.height/4 + 240)
@@ -748,7 +748,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         bossLinearPath.addLine(to: CGPoint(x: 250, y: self.size.height/4))
         bossLinearPath.addLine(to: CGPoint(x: -200, y: self.size.height/4))
         bossLinearPath.addLine(to: CGPoint(x: 0, y: self.size.height/4))
-        let bossLinearMove = SKAction.follow(bossLinearPath.cgPath, asOffset: false, orientToPath: false, speed: 500)
+        let bossLinearMove = SKAction.follow(bossLinearPath.cgPath, asOffset: false, orientToPath: false, speed: 180)
         boss.run(SKAction.repeat(bossLinearMove, count: 3), completion: {
             self.isHourGlassPathOn = true
         })
@@ -766,7 +766,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         bossHourglassPath.addLine(to: CGPoint(x: 300, y: self.size.height/4 - 350))
         bossHourglassPath.addLine(to: CGPoint(x: 300, y: 400))
         bossHourglassPath.addLine(to: CGPoint(x: 0 , y: self.size.height/4))
-        let bossHourglassMove = SKAction.follow(bossHourglassPath.cgPath, asOffset: false, orientToPath: false, speed: 500)
+        let bossHourglassMove = SKAction.follow(bossHourglassPath.cgPath, asOffset: false, orientToPath: false, speed: 180)
         boss.run(SKAction.repeat(bossHourglassMove, count: 3), completion: {
             self.isLinearPathOn = true
         })
@@ -775,7 +775,6 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     
     func winGame() {
         didWin = true
-        print("won!")
         do {
             let appDelegate = UIApplication.shared.delegate as! AppDelegate
             let context = appDelegate.persistentContainer.viewContext
@@ -811,7 +810,6 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     
     func loseGame() {
         didWin = false
-        print("lost!")
         do {
             let appDelegate = UIApplication.shared.delegate as! AppDelegate
             let context = appDelegate.persistentContainer.viewContext
