@@ -29,8 +29,10 @@ class PlayViewController: UIViewController {
         catch {
             print("The audio file was not found!")
         }
-       
+        
+        if(audioPlayer.isPlaying == false) {
         audioPlayer.play()
+        }
         //may make the sound loop forever <-- make sure
         audioPlayer.numberOfLoops = -1
         
