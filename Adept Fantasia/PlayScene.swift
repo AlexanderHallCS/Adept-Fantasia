@@ -748,7 +748,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         bossLinearPath.addLine(to: CGPoint(x: 250, y: self.size.height/4))
         bossLinearPath.addLine(to: CGPoint(x: -200, y: self.size.height/4))
         bossLinearPath.addLine(to: CGPoint(x: 0, y: self.size.height/4))
-        let bossLinearMove = SKAction.follow(bossLinearPath.cgPath, asOffset: false, orientToPath: false, speed: 180)
+        let bossLinearMove = SKAction.follow(bossLinearPath.cgPath, asOffset: false, orientToPath: false, speed: 145)
         boss.run(SKAction.repeat(bossLinearMove, count: 3), completion: {
             self.isHourGlassPathOn = true
         })
@@ -766,7 +766,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         bossHourglassPath.addLine(to: CGPoint(x: 300, y: self.size.height/4 - 350))
         bossHourglassPath.addLine(to: CGPoint(x: 300, y: 400))
         bossHourglassPath.addLine(to: CGPoint(x: 0 , y: self.size.height/4))
-        let bossHourglassMove = SKAction.follow(bossHourglassPath.cgPath, asOffset: false, orientToPath: false, speed: 180)
+        let bossHourglassMove = SKAction.follow(bossHourglassPath.cgPath, asOffset: false, orientToPath: false, speed: 145)
         boss.run(SKAction.repeat(bossHourglassMove, count: 3), completion: {
             self.isLinearPathOn = true
         })
