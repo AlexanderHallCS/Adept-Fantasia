@@ -16,9 +16,6 @@ var audioPlayer = AVAudioPlayer()
 
 class PlayViewController: UIViewController {
     
-    
-    let appDelegate = UIApplication.shared.delegate as! AppDelegate
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -33,7 +30,7 @@ class PlayViewController: UIViewController {
         if(audioPlayer.isPlaying == false) {
         audioPlayer.play()
         }
-        //may make the sound loop forever <-- make sure
+        
         audioPlayer.numberOfLoops = -1
         
         if let view = self.view as! SKView? {
