@@ -280,7 +280,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     
     @objc func haveInvulnerability() {
         self.invulnerabilityPowerupOn = false
-        invulnerabilityPowerupHealth = 20
+        invulnerabilityPowerupHealth = 5
     }
     
     @objc func gridAttackFire() {
@@ -711,7 +711,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
                 bossBullets[iterator].removeFromParent()
                 bossBullets.remove(at: iterator)
             }
-            clearBulletsHealth = 7
+            clearBulletsHealth = 5
             isClearBulletsOnScreen = false
         }
     }
