@@ -19,7 +19,7 @@ class PlayViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        do {
+        /*do {
             audioPlayer = try AVAudioPlayer(contentsOf: URL.init(fileURLWithPath: Bundle.main.path(forResource: "Aaron_Smith_Ft_Luvli_Dancin_Krono_Remix_ostofmydays_(mp3co.biz)", ofType: "mp3")!))
             audioPlayer.prepareToPlay()
         }
@@ -31,7 +31,7 @@ class PlayViewController: UIViewController {
         audioPlayer.play()
         }
         
-        audioPlayer.numberOfLoops = -1
+        audioPlayer.numberOfLoops = -1  */
         
         if let view = self.view as! SKView? {
             
