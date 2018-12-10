@@ -21,10 +21,10 @@
 		11D88AD0215D0BA90087643D /* Adept_FantasiaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D88ACF215D0BA90087643D /* Adept_FantasiaTests.swift */; };
 		11D88ADB215D0BA90087643D /* Adept_FantasiaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D88ADA215D0BA90087643D /* Adept_FantasiaUITests.swift */; };
 		11EABD79216251B100C6E6A7 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 11EABD78216251B100C6E6A7 /* GameScene.sks */; };
+		11EB517521BF2356009D5B3F /* Fur_Elise_by_Beethoven.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 11EB517421BF2356009D5B3F /* Fur_Elise_by_Beethoven.mp3 */; };
 		11ECEC182174C372007DBC40 /* PlayElements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11ECEC172174C371007DBC40 /* PlayElements.swift */; };
 		11ED28F7216797350053C242 /* StatisticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11ED28F6216797350053C242 /* StatisticsViewController.swift */; };
 		11ED28F9216797490053C242 /* StatisticsScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 11ED28F8216797490053C242 /* StatisticsScene.sks */; };
-		11EF85742166485700B09A15 /* Aaron_Smith_Ft_Luvli_Dancin_Krono_Remix_ostofmydays_(mp3co.biz).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 11EF85732166485700B09A15 /* Aaron_Smith_Ft_Luvli_Dancin_Krono_Remix_ostofmydays_(mp3co.biz).mp3 */; };
 		11F2F21221702D0900E410E7 /* PlayScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F2F21121702D0900E410E7 /* PlayScene.swift */; };
 		11F2F21421702D1B00E410E7 /* StatisticsScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F2F21321702D1B00E410E7 /* StatisticsScene.swift */; };
 		11F2F21621702D2B00E410E7 /* EndScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F2F21521702D2B00E410E7 /* EndScene.swift */; };
@@ -68,10 +68,10 @@
 		11D88ADA215D0BA90087643D /* Adept_FantasiaUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Adept_FantasiaUITests.swift; sourceTree = "<group>"; };
 		11D88ADC215D0BA90087643D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		11EABD78216251B100C6E6A7 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
+		11EB517421BF2356009D5B3F /* Fur_Elise_by_Beethoven.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Fur_Elise_by_Beethoven.mp3; sourceTree = "<group>"; };
 		11ECEC172174C371007DBC40 /* PlayElements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayElements.swift; sourceTree = "<group>"; };
 		11ED28F6216797350053C242 /* StatisticsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsViewController.swift; sourceTree = "<group>"; };
 		11ED28F8216797490053C242 /* StatisticsScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = StatisticsScene.sks; sourceTree = "<group>"; };
-		11EF85732166485700B09A15 /* Aaron_Smith_Ft_Luvli_Dancin_Krono_Remix_ostofmydays_(mp3co.biz).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Aaron_Smith_Ft_Luvli_Dancin_Krono_Remix_ostofmydays_(mp3co.biz).mp3"; sourceTree = "<group>"; };
 		11F2F21121702D0900E410E7 /* PlayScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayScene.swift; sourceTree = "<group>"; };
 		11F2F21321702D1B00E410E7 /* StatisticsScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsScene.swift; sourceTree = "<group>"; };
 		11F2F21521702D2B00E410E7 /* EndScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndScene.swift; sourceTree = "<group>"; };
@@ -144,7 +144,7 @@
 				11D88AC1215D0BA90087643D /* Assets.xcassets */,
 				11D88AC3215D0BA90087643D /* LaunchScreen.storyboard */,
 				11D88AC6215D0BA90087643D /* Info.plist */,
-				11EF85722166482000B09A15 /* Music */,
+				11EB517321BF2309009D5B3F /* Music */,
 			);
 			path = "Adept Fantasia";
 			sourceTree = "<group>";
@@ -167,10 +167,10 @@
 			path = "Adept FantasiaUITests";
 			sourceTree = "<group>";
 		};
-		11EF85722166482000B09A15 /* Music */ = {
+		11EB517321BF2309009D5B3F /* Music */ = {
 			isa = PBXGroup;
 			children = (
-				11EF85732166485700B09A15 /* Aaron_Smith_Ft_Luvli_Dancin_Krono_Remix_ostofmydays_(mp3co.biz).mp3 */,
+				11EB517421BF2356009D5B3F /* Fur_Elise_by_Beethoven.mp3 */,
 			);
 			path = Music;
 			sourceTree = "<group>";
@@ -284,12 +284,12 @@
 			files = (
 				11A7AB1B2163A6A40018A4B6 /* EndScene.sks in Resources */,
 				11A7AB132163A4900018A4B6 /* PlayScene.sks in Resources */,
-				11EF85742166485700B09A15 /* Aaron_Smith_Ft_Luvli_Dancin_Krono_Remix_ostofmydays_(mp3co.biz).mp3 in Resources */,
 				11ED28F9216797490053C242 /* StatisticsScene.sks in Resources */,
 				11EABD79216251B100C6E6A7 /* GameScene.sks in Resources */,
 				11D88AC0215D0BA90087643D /* Main.storyboard in Resources */,
 				117AC3112164F76F00AB9856 /* Assets.xcassets in Resources */,
 				11D88AC5215D0BA90087643D /* LaunchScreen.storyboard in Resources */,
+				11EB517521BF2356009D5B3F /* Fur_Elise_by_Beethoven.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
