@@ -17,7 +17,7 @@ extension PlayScene {
     func createPlayBackground() {
         
         for i in 0...3 {
-            let backgroundNode = SKSpriteNode(imageNamed: "AdeptFantasiaPlayBackground")
+            let backgroundNode = SKSpriteNode(imageNamed: "AdeptFantasiaPlayBackgroundRedone")
             backgroundNode.name = "Space"
             backgroundNode.size = CGSize(width: (self.scene?.size.width)!, height: (self.scene?.size.height)!)
             backgroundNode.anchorPoint = CGPoint(x: 0.5, y: 0.5)
