@@ -12,8 +12,7 @@ import GameplayKit
 class GameScene: SKScene {
     
     override func didMove(to view: SKView) {
-       let startBackground = SKSpriteNode(imageNamed: "AFStartScreen")
-       addChild(startBackground)
+        
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
