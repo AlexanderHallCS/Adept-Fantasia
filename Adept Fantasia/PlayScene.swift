@@ -288,7 +288,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         let bossBullet1 = SKSpriteNode(texture: bossBulletTexture)
         bossBullet1.name = "bossbullet"
         bossBullet1.physicsBody = SKPhysicsBody(texture: bossBulletTexture, size: bossBulletTexture.size())
-        bossBullet1.zPosition = 1
+        bossBullet1.zPosition = 3
         bossBullet1.physicsBody!.isDynamic = true
         bossBullet1.physicsBody!.usesPreciseCollisionDetection = true
         bossBullet1.physicsBody!.affectedByGravity = false
@@ -304,7 +304,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         let bossBullet2 = SKSpriteNode(texture: bossBulletTexture)
         bossBullet2.name = "bossbullet"
         bossBullet2.physicsBody = SKPhysicsBody(texture: bossBulletTexture, size: bossBulletTexture.size())
-        bossBullet2.zPosition = 1
+        bossBullet2.zPosition = 3
         bossBullet2.physicsBody!.isDynamic = true
         bossBullet2.physicsBody!.usesPreciseCollisionDetection = true
         bossBullet2.physicsBody!.affectedByGravity = false
@@ -320,7 +320,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         let bossBullet3 = SKSpriteNode(texture: bossBulletTexture)
         bossBullet3.name = "bossbullet"
         bossBullet3.physicsBody = SKPhysicsBody(texture: bossBulletTexture, size: bossBulletTexture.size())
-        bossBullet3.zPosition = 1
+        bossBullet3.zPosition = 3
         bossBullet3.physicsBody!.isDynamic = true
         bossBullet3.physicsBody!.usesPreciseCollisionDetection = true
         bossBullet3.physicsBody!.affectedByGravity = false
@@ -336,7 +336,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         let bossBullet7 = SKSpriteNode(texture: bossBulletTexture)
         bossBullet7.name = "bossbullet"
         bossBullet7.physicsBody = SKPhysicsBody(texture: bossBulletTexture, size: bossBulletTexture.size())
-        bossBullet7.zPosition = 1
+        bossBullet7.zPosition = 3
         bossBullet7.physicsBody!.isDynamic = true
         bossBullet7.physicsBody!.usesPreciseCollisionDetection = true
         bossBullet7.physicsBody!.affectedByGravity = false
@@ -352,7 +352,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         let bossBullet8 = SKSpriteNode(texture: bossBulletTexture)
         bossBullet8.name = "bossbullet"
         bossBullet8.physicsBody = SKPhysicsBody(texture: bossBulletTexture, size: bossBulletTexture.size())
-        bossBullet8.zPosition = 1
+        bossBullet8.zPosition = 3
         bossBullet8.physicsBody!.isDynamic = true
         bossBullet8.physicsBody!.usesPreciseCollisionDetection = true
         bossBullet8.physicsBody!.affectedByGravity = false
@@ -368,7 +368,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         let bossBullet4 = SKSpriteNode(texture: bossBulletTexture)
         bossBullet4.name = "bossbullet"
         bossBullet4.physicsBody = SKPhysicsBody(texture: bossBulletTexture, size: bossBulletTexture.size())
-        bossBullet4.zPosition = 1
+        bossBullet4.zPosition = 3
         bossBullet4.physicsBody!.isDynamic = true
         bossBullet4.physicsBody!.usesPreciseCollisionDetection = true
         bossBullet4.physicsBody!.affectedByGravity = false
@@ -384,7 +384,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         let bossBullet5 = SKSpriteNode(texture: bossBulletTexture)
         bossBullet5.name = "bossbullet"
         bossBullet5.physicsBody = SKPhysicsBody(texture: bossBulletTexture, size: bossBulletTexture.size())
-        bossBullet5.zPosition = 1
+        bossBullet5.zPosition = 3
         bossBullet5.physicsBody!.isDynamic = true
         bossBullet5.physicsBody!.usesPreciseCollisionDetection = true
         bossBullet5.physicsBody!.affectedByGravity = false
@@ -400,7 +400,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         let bossBullet6 = SKSpriteNode(texture: bossBulletTexture)
         bossBullet6.name = "bossbullet"
         bossBullet6.physicsBody = SKPhysicsBody(texture: bossBulletTexture, size: bossBulletTexture.size())
-        bossBullet6.zPosition = 1
+        bossBullet6.zPosition = 3
         bossBullet6.physicsBody!.isDynamic = true
         bossBullet6.physicsBody!.usesPreciseCollisionDetection = true
         bossBullet6.physicsBody!.affectedByGravity = false
@@ -418,7 +418,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         let bossBullet1 = SKSpriteNode(texture: bossBulletTexture)
         bossBullet1.name = "bossbullet"
         bossBullet1.physicsBody = SKPhysicsBody(texture: bossBulletTexture, size: bossBulletTexture.size())
-        bossBullet1.zPosition = 1
+        bossBullet1.zPosition = 3
         bossBullet1.physicsBody!.isDynamic = true
         bossBullet1.physicsBody!.usesPreciseCollisionDetection = true
         bossBullet1.physicsBody!.affectedByGravity = false
@@ -434,7 +434,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         let bossBullet2 = SKSpriteNode(texture: bossBulletTexture)
         bossBullet2.name = "bossbullet"
         bossBullet2.physicsBody = SKPhysicsBody(texture: bossBulletTexture, size: bossBulletTexture.size())
-        bossBullet2.zPosition = 1
+        bossBullet2.zPosition = 3
         bossBullet2.physicsBody!.isDynamic = true
         bossBullet2.physicsBody!.usesPreciseCollisionDetection = true
         bossBullet2.physicsBody!.affectedByGravity = false
@@ -450,7 +450,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         let bossBullet3 = SKSpriteNode(texture: bossBulletTexture)
         bossBullet3.name = "bossbullet"
         bossBullet3.physicsBody = SKPhysicsBody(texture: bossBulletTexture, size: bossBulletTexture.size())
-        bossBullet3.zPosition = 1
+        bossBullet3.zPosition = 3
         bossBullet3.physicsBody!.isDynamic = true
         bossBullet3.physicsBody!.usesPreciseCollisionDetection = true
         bossBullet3.physicsBody!.affectedByGravity = false
@@ -466,7 +466,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         let bossBullet4 = SKSpriteNode(texture: bossBulletTexture)
         bossBullet4.name = "bossbullet"
         bossBullet4.physicsBody = SKPhysicsBody(texture: bossBulletTexture, size: bossBulletTexture.size())
-        bossBullet4.zPosition = 1
+        bossBullet4.zPosition = 3
         bossBullet4.physicsBody!.isDynamic = true
         bossBullet4.physicsBody!.usesPreciseCollisionDetection = true
         bossBullet4.physicsBody!.affectedByGravity = false
@@ -482,7 +482,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         let bossBullet5 = SKSpriteNode(texture: bossBulletTexture)
         bossBullet5.name = "bossbullet"
         bossBullet5.physicsBody = SKPhysicsBody(texture: bossBulletTexture, size: bossBulletTexture.size())
-        bossBullet5.zPosition = 1
+        bossBullet5.zPosition = 3
         bossBullet5.physicsBody!.isDynamic = true
         bossBullet5.physicsBody!.usesPreciseCollisionDetection = true
         bossBullet5.physicsBody!.affectedByGravity = false
@@ -498,7 +498,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         let bossBullet6 = SKSpriteNode(texture: bossBulletTexture)
         bossBullet6.name = "bossbullet"
         bossBullet6.physicsBody = SKPhysicsBody(texture: bossBulletTexture, size: bossBulletTexture.size())
-        bossBullet6.zPosition = 1
+        bossBullet6.zPosition = 3
         bossBullet6.physicsBody!.isDynamic = true
         bossBullet6.physicsBody!.usesPreciseCollisionDetection = true
         bossBullet6.physicsBody!.affectedByGravity = false
@@ -514,7 +514,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         let bossBullet7 = SKSpriteNode(texture: bossBulletTexture)
         bossBullet7.name = "bossbullet"
         bossBullet7.physicsBody = SKPhysicsBody(texture: bossBulletTexture, size: bossBulletTexture.size())
-        bossBullet7.zPosition = 1
+        bossBullet7.zPosition = 3
         bossBullet7.physicsBody!.isDynamic = true
         bossBullet7.physicsBody!.usesPreciseCollisionDetection = true
         bossBullet7.physicsBody!.affectedByGravity = false
@@ -530,7 +530,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         let bossBullet8 = SKSpriteNode(texture: bossBulletTexture)
         bossBullet8.name = "bossbullet"
         bossBullet8.physicsBody = SKPhysicsBody(texture: bossBulletTexture, size: bossBulletTexture.size())
-        bossBullet8.zPosition = 1
+        bossBullet8.zPosition = 3
         bossBullet8.physicsBody!.isDynamic = true
         bossBullet8.physicsBody!.usesPreciseCollisionDetection = true
         bossBullet8.physicsBody!.affectedByGravity = false
@@ -548,7 +548,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         let bossBullet1 = SKSpriteNode(texture: bossBulletTexture)
         bossBullet1.name = "bossbullet"
         bossBullet1.physicsBody = SKPhysicsBody(texture: bossBulletTexture, size: bossBulletTexture.size())
-        bossBullet1.zPosition = 1
+        bossBullet1.zPosition = 3
         bossBullet1.physicsBody!.isDynamic = true
         bossBullet1.physicsBody!.usesPreciseCollisionDetection = true
         bossBullet1.physicsBody!.affectedByGravity = false
@@ -564,7 +564,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         let bossBullet2 = SKSpriteNode(texture: bossBulletTexture)
         bossBullet2.name = "bossbullet"
         bossBullet2.physicsBody = SKPhysicsBody(texture: bossBulletTexture, size: bossBulletTexture.size())
-        bossBullet2.zPosition = 1
+        bossBullet2.zPosition = 3
         bossBullet2.physicsBody!.isDynamic = true
         bossBullet2.physicsBody!.usesPreciseCollisionDetection = true
         bossBullet2.physicsBody!.affectedByGravity = false
@@ -580,7 +580,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         let bossBullet3 = SKSpriteNode(texture: bossBulletTexture)
         bossBullet3.name = "bossbullet"
         bossBullet3.physicsBody = SKPhysicsBody(texture: bossBulletTexture, size: bossBulletTexture.size())
-        bossBullet3.zPosition = 1
+        bossBullet3.zPosition = 3
         bossBullet3.physicsBody!.isDynamic = true
         bossBullet3.physicsBody!.usesPreciseCollisionDetection = true
         bossBullet3.physicsBody!.affectedByGravity = false
@@ -596,7 +596,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         let bossBullet4 = SKSpriteNode(texture: bossBulletTexture)
         bossBullet4.name = "bossbullet"
         bossBullet4.physicsBody = SKPhysicsBody(texture: bossBulletTexture, size: bossBulletTexture.size())
-        bossBullet4.zPosition = 1
+        bossBullet4.zPosition = 3
         bossBullet4.physicsBody!.isDynamic = true
         bossBullet4.physicsBody!.usesPreciseCollisionDetection = true
         bossBullet4.physicsBody!.affectedByGravity = false
@@ -847,7 +847,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         let charBullet = SKSpriteNode(texture: charBulletTexture)
         charBullet.name = "bullet"
         charBullet.physicsBody = SKPhysicsBody(texture: charBulletTexture, size: charBulletTexture.size())
-        charBullet.zPosition = 1
+        charBullet.zPosition = 3
         charBullet.physicsBody!.isDynamic = true
         charBullet.physicsBody!.usesPreciseCollisionDetection = true
         charBullet.physicsBody!.affectedByGravity = false
