@@ -109,19 +109,31 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         bossHealthLabel.fontName = "Baskerville"
         bossHealthLabel.fontSize = 60
         bossHealthLabel.fontColor = .green
-        bossHealthLabel.position = CGPoint(x: -132, y: self.size.height/4 + 270)
+        if(UIDevice.current.userInterfaceIdiom == .phone) {
+            bossHealthLabel.position = CGPoint(x: -132, y: self.size.height/4 + 270)
+        } else if(UIDevice.current.userInterfaceIdiom == .pad) {
+            bossHealthLabel.position = CGPoint(x: -132, y: self.size.height/4 + 115)
+        }
         bossHealthLabel.zPosition = 1
         addChild(bossHealthLabel)
         
         bossHealthBar = SKSpriteNode(texture: filledBossHealthBarTexture)
-        bossHealthBar.position = CGPoint(x: 0, y: self.size.height/4 + 240)
+        if(UIDevice.current.userInterfaceIdiom == .phone) {
+            bossHealthBar.position = CGPoint(x: 0, y: self.size.height/4 + 240)
+        } else if(UIDevice.current.userInterfaceIdiom == .pad) {
+            bossHealthBar.position = CGPoint(x: 0, y: self.size.height/4 + 85)
+        }
         bossHealthBar.size = CGSize(width: self.size.width - 60, height: 40)
         bossHealthBar.zPosition = 1
         addChild(bossHealthBar)
         
         character = SKSpriteNode(texture: characterTexture)
         character.name = "character"
-        character.position = CGPoint(x: 0, y: self.size.height/2 * -1 + self.size.height/14)
+        if(UIDevice.current.userInterfaceIdiom == .phone) {
+            character.position = CGPoint(x: 0, y: self.size.height/2 * -1 + self.size.height/14)
+        } else if(UIDevice.current.userInterfaceIdiom == .pad) {
+            character.position = CGPoint(x: 0, y: self.size.height/2 * -1 + self.size.height/14 * 3 - 30)
+        }
         character.zPosition = 1
         character.physicsBody = SKPhysicsBody(texture: characterTexture, size: characterTexture.size())
         character.physicsBody!.isDynamic = true
@@ -142,7 +154,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         boss.physicsBody!.categoryBitMask = ColliderType.bossCategory.rawValue
         boss.physicsBody!.collisionBitMask = 0
         boss.physicsBody!.contactTestBitMask = ColliderType.bulletCategory.rawValue
-        boss.zPosition = 1
+        boss.zPosition = 4
         boss.position = CGPoint(x: 0, y: self.size.height/4)
         addChild(boss)
         
@@ -201,7 +213,11 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
                     bossHealthLabel.text = "Boss Health: \(bossHealth)"
                     }
                     unfilledBossHealthBar = SKSpriteNode(texture: unfilledBossHealthBarTexture)
-                    unfilledBossHealthBar.position = CGPoint(x: CGFloat(347 - (3.45*Double(charBulletsThatHitTheBoss))), y: self.size.height/4 + 240)
+                    if(UIDevice.current.userInterfaceIdiom == .phone) {
+                        unfilledBossHealthBar.position = CGPoint(x: CGFloat(347 - (3.45*Double(charBulletsThatHitTheBoss))), y: self.size.height/4 + 240)
+                    } else if(UIDevice.current.userInterfaceIdiom == .pad) {
+                        unfilledBossHealthBar.position = CGPoint(x: CGFloat(347 - (3.45*Double(charBulletsThatHitTheBoss))), y: self.size.height/4 + 85)
+                    }
                     unfilledBossHealthBar.size = CGSize(width: 3.45, height: 40)
                     unfilledBossHealthBar.zPosition = 2
                     addChild(unfilledBossHealthBar)
